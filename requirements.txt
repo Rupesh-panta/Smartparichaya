@@ -1,0 +1,13 @@
+Django>=4.2,<5.0
+Pillow
+xhtml2pdf
+python-docx
+django
+djangorestframework
+pillow
+requests
+python-dotenv
+gunicorn
+whitenoise
+
+pip install django-environ django-allauth PyJWT sympy PyPDF2

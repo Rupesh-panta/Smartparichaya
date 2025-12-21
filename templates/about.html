@@ -1,0 +1,735 @@
+{% extends "baseTemp.html" %}
+{% block body %}
+
+
+
+
+<div id="default-carousel" class="relative w-full" data-carousel="slide"
+  style="height: 70vh; background-color: #1c64f2; border-radius: 0">
+  <!-- Carousel wrapper -->
+  <div class="relative h-56 overflow-hidden rounded-lg md:h-96" style="height: 70vh; border-radius: 0">
+    <!-- Item 1 -->
+    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+      <section class="bg-center bg-no-repeat bg-blue-600 bg-blend-multiply" style="
+              height: 70vh;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              text-align: center;
+              flex-wrap: wrap;
+            ">
+        <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56" id="SlideDetails1">
+          <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">
+            We unlock career paths
+          </h1>
+          <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">
+            At Simpfolio, we are dedicated to offering innovative resources and personalized support to help individuals
+            and professionals thrive in their career journeys.
+          </p>
+        </div>
+      </section>
+    </div>
+    <!-- Item 2 -->
+    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+      <section class="bg-center bg-no-repeat bg-purple-600 bg-blend-multiply" style="
+              height: 70vh;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              text-align: center;
+              flex-wrap: wrap;
+            ">
+        <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56 " id="SlideDetails2">
+          <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">
+            We grow career potential
+          </h1>
+          <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">
+            At Simpfolio, we concentrate on empowering job seekers with tools, resources, and insights that enhance
+            employability and drive career growth.
+          </p>
+        </div>
+      </section>
+    </div>
+    <!-- Item 3 -->
+    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+      <section class="bg-center bg-no-repeat bg-green-600 bg-blend-multiply" style="
+              height: 70vh;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              text-align: center;
+              flex-wrap: wrap;
+            ">
+        <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56" id="SlideDetails3">
+          <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">
+            We nurture career success
+          </h1>
+          <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">
+            At Simpfolio, we prioritize providing job seekers with advanced tools and expert guidance to optimize their
+            job search and achieve long-term career aspirations. </p>
+        </div>
+      </section>
+    </div>
+  </div>
+  <!-- Slider indicators -->
+  <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+    <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1"
+      data-carousel-slide-to="0"></button>
+    <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2"
+      data-carousel-slide-to="1"></button>
+    <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3"
+      data-carousel-slide-to="2"></button>
+    <!-- <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4" data-carousel-slide-to="3"></button>
+      <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5" data-carousel-slide-to="4"></button> -->
+  </div>
+
+  <button type="button" id="leftSlideBtn"
+    class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+    data-carousel-prev>
+    <span
+      class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+      <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4" />
+      </svg>
+      <span class="sr-only">Previous</span>
+    </span>
+  </button>
+  <button type="button" id="rightSlideBtn"
+    class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+    data-carousel-next>
+    <span
+      class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+      <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
+      </svg>
+      <span class="sr-only">Next</span>
+    </span>
+  </button>
+</div>
+
+<style>
+  #leftSlideBtn,
+  #rightSlideBtn:hover {
+    cursor: url('/static/Simpfolio-Cursor/Pointer2.cur'), pointer;
+  }
+
+
+  @media (max-width: 860px) {
+
+    #leftSlideBtn,
+    #rightSlideBtn {
+      display: none;
+    }
+
+    #SlideDetails1,
+    #SlideDetails2,
+    #SlideDetails3 {
+      margin-top: 50px;
+    }
+  }
+</style>
+
+
+
+<div class="abt1Cont" style="padding-top: 30px">
+  <section class="bg-black light:bg-gray-900">
+    <div class="grid max-w-screen-xl mx-auto px-6 py-8 lg:gap-8 xl:gap-30 lg:py-16 lg:grid-cols-12">
+      <div class="mr-auto place-self-center lg:col-span-7">
+        <h1
+          class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl light:text-black">
+         SmartParichaya : Job Hunt Now At Ease
+        </h1>
+        <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl light:text-gray-400">
+          SmartParichaya serves both personal users and organizational entities,
+          providing efficient template tools for job seekers to optimize
+          their employment prospects.
+        </p>
+
+        {% if user.is_authenticated %}
+        <a href="/testUserAuth"
+          class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 light:focus:ring-primary-900">
+          Get started
+          <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+              d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+              clip-rule="evenodd"></path>
+          </svg>
+        </a>
+
+        {% else %}
+        <a href="/login"
+          class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 light:focus:ring-primary-900">
+          Get started
+          <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+              d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+              clip-rule="evenodd"></path>
+          </svg>
+        </a>
+        {% endif %}
+
+
+
+        <a href="/faq"
+          class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 light:text-black light:border-gray-700 light:hover:bg-gray-700 light:focus:ring-gray-800">
+          Learn More
+        </a>
+      </div>
+      <div class=" lg:mt-0 lg:col-span-5 lg:flex " id="cvIMGHolder">
+        <img src="/static/blog-section/jobHuntCVIMG.png" alt="CV bg" style="height: auto; width: 100%; " />
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  #cvIMGHolder {
+    max-width: 500px;
+
+
+  }
+
+  @media(max-width:1023px) {
+    #cvIMGHolder {
+      margin: 100px auto;
+      /* padding-top: 100px; */
+      padding-left: 20px;
+      padding-right: 20px;
+      /* background-color: red; */
+
+
+
+
+    }
+
+    .abt1Cont {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+
+
+
+    }
+
+  }
+
+  @media(max-width:640px) {
+    #WCText {
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-top: 5px;
+    }
+  }
+</style>
+
+<div class="whyUs" style="
+        padding-top: 100px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        flex-direction: column;
+        
+      ">
+  <h1
+    class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl light:text-black">
+    Why Choose
+    <span class="text-blue-600 light:text-blue-500">SmartParichaya</span> ?
+  </h1>
+  <p class="text-lg font-normal text-gray-500 lg:text-xl light:text-gray-400"
+    style=" padding-top: 50px; max-width: 1100px; margin: 0 auto;" id="WCText">
+    Embarking on your professional journey demands the best resources and
+    tools to ensure progress and success. At SmartParichaya, we're committed to
+    providing you with exactly that.
+  </p>
+</div>
+
+<style>
+  @media(max-width:1023px) {
+
+    .whyUs {
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-top: 20px !important;
+
+
+    }
+  }
+</style>
+
+<div class="whyCards" style="
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        margin-top: 50px;
+      ">
+  <div class="max-w-sm p-6 bg-black border border-gray-200 rounded-lg shadow light:bg-gray-800 light:border-gray-700"
+    style="margin: 20px; height: auto">
+    <svg class="w-7 h-7 text-gray-500 light:text-gray-400 mb-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+      fill="#1c64f2" viewBox="0 0 20 20">
+      <path
+        d="M18 5h-.7c.229-.467.349-.98.351-1.5a3.5 3.5 0 0 0-3.5-3.5c-1.717 0-3.215 1.2-4.331 2.481C8.4.842 6.949 0 5.5 0A3.5 3.5 0 0 0 2 3.5c.003.52.123 1.033.351 1.5H2a2 2 0 0 0-2 2v3a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V7a2 2 0 0 0-2-2ZM8.058 5H5.5a1.5 1.5 0 0 1 0-3c.9 0 2 .754 3.092 2.122-.219.337-.392.635-.534.878Zm6.1 0h-3.742c.933-1.368 2.371-3 3.739-3a1.5 1.5 0 0 1 0 3h.003ZM11 13H9v7h2v-7Zm-4 0H2v5a2 2 0 0 0 2 2h3v-7Zm6 0v7h3a2 2 0 0 0 2-2v-5h-5Z" />
+    </svg>
+    <a href="#">
+      <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-black">
+        Free To Use
+      </h5>
+    </a>
+    <p class="mb-3 font-normal text-gray-500 light:text-gray-400">
+      Access premium features and tools without any cost, allowing you to
+      create impressive resumes tailored to your needs and style
+      effortlessly.
+    </p>
+  </div>
+
+  <div class="max-w-sm p-6 bg-black border border-gray-200 rounded-lg shadow light:bg-gray-800 light:border-gray-700"
+    style="margin: 20px; height: auto">
+    <svg class="w-7 h-7 text-gray-500 light:text-gray-400 mb-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+      fill="#1c64f2" viewBox="0 0 22 21">
+      <path
+        d="M7.24 7.194a24.16 24.16 0 0 1 3.72-3.062m0 0c3.443-2.277 6.732-2.969 8.24-1.46 2.054 2.053.03 7.407-4.522 11.959-4.552 4.551-9.906 6.576-11.96 4.522C1.223 17.658 1.89 14.412 4.121 11m6.838-6.868c-3.443-2.277-6.732-2.969-8.24-1.46-2.054 2.053-.03 7.407 4.522 11.959m3.718-10.499a24.16 24.16 0 0 1 3.719 3.062M17.798 11c2.23 3.412 2.898 6.658 1.402 8.153-1.502 1.503-4.771.822-8.2-1.433m1-6.808a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z" />
+    </svg>
+
+    <a href="#">
+      <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-black">
+        Dynamic Template Selection
+      </h5>
+    </a>
+    <p class="mb-3 font-normal text-gray-500 light:text-gray-400">
+      Select from a diverse array of templates tailored to varied
+      professional needs and personal styles, ensuring your resume stands
+      out with every choice.
+    </p>
+  </div>
+
+  <div class="max-w-sm p-6 bg-black border border-gray-200 rounded-lg shadow light:bg-gray-800 light:border-gray-700"
+    style="margin: 20px; height: auto">
+    <svg class="w-7 h-7 text-gray-500 light:text-gray-400 mb-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+      fill="#1c64f2" viewBox="0 0 20 18">
+      <path stroke="#1c64f2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="m1 14 3-3m-3 3 3 3m-3-3h16v-3m2-7-3 3m3-3-3-3m3 3H3v3" />
+    </svg>
+    <a href="#">
+      <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-black">
+        Real-Time Preview
+      </h5>
+    </a>
+    <p class="mb-3 font-normal text-gray-500 light:text-gray-400">
+      Preview your resume instantly as you edit, ensuring every change
+      reflects seamlessly, providing you with a real-time glimpse into the
+      final product.
+    </p>
+  </div>
+
+  <div class="max-w-sm p-6 bg-black border border-gray-200 rounded-lg shadow light:bg-gray-800 light:border-gray-700"
+    style="margin: 20px; height: auto">
+    <svg class="w-7 h-7 text-gray-500 light:text-gray-400 mb-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+      fill="#1c64f2" viewBox="0 0 16 16">
+      <path stroke="#1c64f2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M4 8h11m0 0-4-4m4 4-4 4m-5 3H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h3" />
+    </svg>
+    <a href="#">
+      <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-black">
+        Multi-Format Export
+      </h5>
+    </a>
+    <p class="mb-3 font-normal text-gray-500 light:text-gray-400">
+      Effortlessly export your resume into multiple formats, ensuring
+      compatibility across various platforms and applications with just a
+      few clicks.
+    </p>
+  </div>
+</div>
+
+<div class="ourDesc" style="
+        margin-top: 100px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 30px;
+      ">
+  <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl light:text-black
+        ">
+    Our
+    <span
+      class="underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">Description</span>
+  </h1>
+</div>
+
+<!-- <div
+      class="contHolders"
+      style="
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+      "
+    >
+      <div
+        class="leftHolder"
+        style="padding: 50px; display: flex; flex-direction: column"
+      >
+        <p class="mb-3 text-gray-500 light:text-gray-400">
+          Our advanced resume builder simplifies the task, crafting polished,
+          professional, and standout resumes effortlessly. Additionally, we
+          offer dedicated virtual assistance and comprehensive job application
+          tracking services, ensuring a smooth job search experience.
+        </p>
+
+        <img
+          class="h-auto max-w-lg"
+          src="https://picjj.com/images/2024/05/10/F4dd7.png"
+          style="margin-top: 50px"
+          alt="image description"
+          id="cvIMGDesc"
+        />
+      </div>
+
+      <div
+        class="rightholder"
+        style="padding: 50px; display: flex; flex-direction: column"
+      >
+        <p class="mb-3 text-gray-500 light:text-gray-400">
+          Discover how our platform can revolutionize your job search and career
+          development. Our objectives are tailored to streamline the application
+          process, optimize CV presentation, and provide valuable insights for
+          career growth. Explore below to see how we can empower you in your job
+          search journey.
+        </p>
+
+        <ol
+          class="relative border-s border-gray-200 light:border-gray-700"
+          style="margin-top: 50px"
+        >
+          <li class="mb-10 ms-6">
+            <span
+              class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -start-3 ring-8 ring-gray light:ring-gray-900 light:bg-blue-900"
+            >
+              <svg
+                class="w-2.5 h-2.5 text-blue-800 light:text-blue-300"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"
+                />
+              </svg>
+            </span>
+            <h3
+              class="flex items-center mb-1 text-lg font-semibold text-gray-900 light:text-white"
+            >
+              Tailored CV Creation
+              <span
+                class="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded light:bg-blue-900 light:text-blue-300 ms-3"
+                >HOT</span
+              >
+            </h3>
+
+            <p
+              class="mb-4 text-base font-normal text-gray-500 light:text-gray-400"
+            >
+              Offering users a platform to create and customize their CVs
+              efficiently. This objective involves providing templates,
+              guidance, and tools to help users showcase their skills,
+              experiences, and qualifications effectively to potential
+              employers.
+            </p>
+          </li>
+          <li class="mb-10 ms-6">
+            <span
+              class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -start-3 ring-8 ring-gray light:ring-gray-900 light:bg-blue-900"
+            >
+              <svg
+                class="w-2.5 h-2.5 text-blue-800 light:text-blue-300"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"
+                />
+              </svg>
+            </span>
+            <h3
+              class="mb-1 text-lg font-semibold text-gray-900 dark:text-black"
+            >
+              Targeted Job Matching
+            </h3>
+
+            <p class="text-base font-normal text-gray-500 light:text-gray-400">
+              Developing algorithms and features to match users with job
+              opportunities that align with their skills, experience levels, and
+              career objectives. This objective aims to enhance the efficiency
+              of job searches by presenting relevant openings to users and
+              increasing their chances of finding suitable positions.
+            </p>
+          </li>
+          <li class="ms-6">
+            <span
+              class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -start-3 ring-8 ring-gray light:ring-gray-900 light:bg-blue-900"
+            >
+              <svg
+                class="w-2.5 h-2.5 text-blue-800 light:text-blue-300"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"
+                />
+              </svg>
+            </span>
+            <h3
+              class="mb-1 text-lg font-semibold text-gray-900 dark:text-black"
+            >
+              Professional Development Resources
+            </h3>
+
+            <p class="text-base font-normal text-gray-500 light:text-gray-400">
+              Empowering users with resources for professional growth and
+              increased employability. This includes articles, tutorials, and
+              workshops on CV writing, interview prep, career advancement, and
+              industry insights.
+            </p>
+          </li>
+        </ol>
+      </div>
+    </div> -->
+
+<!-- <style>
+      @media (max-width: 1235px) {
+        .contHolders {
+          flex-direction: column;
+        }
+
+        .leftHolder,
+        .rightholder {
+          max-width: 100%;
+        }
+      }
+    </style> -->
+
+<div class="contHolders">
+  <div class="left-section">
+    <div class="text-section">
+
+
+      <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-l light:text-gray-400">
+        Our advanced resume builder simplifies the task, crafting polished,
+        professional, and standout resumes effortlessly. Additionally, we
+        offer dedicated virtual assistance and comprehensive job application
+        tracking services, ensuring a smooth job search experience.
+
+      </p>
+
+
+    </div>
+    <div class="image-section">
+      <img src="/static/blog-section/descIMGstatic.png" alt="Resume Image" class="resume-image">
+    </div>
+  </div>
+  <div class="right-section">
+    <ol class="relative border-s border-gray-200 light:border-gray-700">
+      <li class="mb-10 ms-6">
+        <span
+          class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -start-3 ring-8 ring-gray light:ring-gray-900 light:bg-blue-900">
+          <svg class="w-2.5 h-2.5 text-blue-800 light:text-blue-300" aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path
+              d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+          </svg>
+        </span>
+        <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 light:text-white">
+          Tailored CV Creation
+          <span
+            class="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded light:bg-blue-900 light:text-blue-300 ms-3">HOT</span>
+        </h3>
+
+        <p class="mb-4 text-base font-normal text-gray-500 light:text-gray-400">
+          Offering users a platform to create and customize their CVs
+          efficiently. This objective involves providing templates,
+          guidance, and tools to help users showcase their skills,
+          experiences, and qualifications effectively to potential
+          employers.
+        </p>
+
+      </li>
+      <li class="mb-10 ms-6">
+        <span
+          class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -start-3 ring-8 ring-gray light:ring-gray-900 light:bg-blue-900">
+          <svg class="w-2.5 h-2.5 text-blue-800 light:text-blue-300" aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path
+              d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+          </svg>
+        </span>
+        <h3 class="mb-1 text-lg font-semibold text-gray-900 dark:text-black">
+          Targeted Job Matching
+        </h3>
+
+        <p class="text-base font-normal text-gray-500 light:text-gray-400">
+          Developing algorithms and features to match users with job
+          opportunities that align with their skills, experience levels, and
+          career objectives. This objective aims to enhance the efficiency
+          of job searches by presenting relevant openings to users and
+          increasing their chances of finding suitable positions.
+        </p>
+      </li>
+      <li class="ms-6">
+        <span
+          class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -start-3 ring-8 ring-gray light:ring-gray-900 light:bg-blue-900">
+          <svg class="w-2.5 h-2.5 text-blue-800 light:text-blue-300" aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path
+              d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+          </svg>
+        </span>
+        <h3 class="mb-1 text-lg font-semibold text-gray-900 dark:text-black">
+          Professional Development Resources
+        </h3>
+
+        <p class="text-base font-normal text-gray-500 light:text-gray-400">
+          Empowering users with resources for professional growth and
+          increased employability. This includes articles, tutorials, and
+          workshops on CV writing, interview prep, career advancement, and
+          industry insights.
+        </p>
+      </li>
+    </ol>
+  </div>
+</div>
+
+<style>
+  .contHolders {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    gap: 60px;
+    max-width: 1150px;
+    padding: 40px;
+    margin-top: 50px;
+
+
+  }
+
+  .left-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 20px;
+  }
+
+  .text-section {
+    margin-bottom: 20px;
+  }
+
+  .image-section {
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+
+  .resume-image {
+    width: 100%;
+    height: auto;
+  }
+
+  .right-section {
+    width: 100%;
+    max-width: 600px;
+    padding-left: 20px;
+  }
+
+  #features-list {
+
+
+    margin-top: 20px;
+  }
+
+  #features-list li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+
+
+
+
+
+  @media (min-width: 1250px) {
+    .contHolders {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+
+
+    }
+
+    .left-section,
+    .right-section {
+      max-width: 48%;
+    }
+
+    .right-section {
+      margin-left: 20px;
+    }
+
+    .features-list {
+      margin-top: 0;
+    }
+
+
+  }
+
+  @media screen and (max-width: 768px) {
+    .contHolders {
+      margin-top: 5px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .contHolders {
+      margin-top: 10px;
+    }
+  }
+  @media screen and (max-width:1300px) {
+    #reach-section{
+      padding: 20px;
+    }
+  }
+</style>
+
+<section class="bg-white light:bg-gray-900 mb-10" id="reach-section">
+  <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 grid lg:grid-cols-2 gap-8 lg:gap-16">
+    <div class="flex flex-col justify-center">
+      <h1
+        class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl light:text-white">
+        "A Million-Mile Reach"</h1>
+      <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl light:text-gray-400">Our mission is to extend our reach
+        far and wide, striving to make an impact that spans a million miles, connecting with individuals and
+        professionals across the globe. </p>
+
+    </div>
+    <div>
+      <video class="mx-auto w-full lg:max-w-xl h-auto rounded-lg sm:h-96 "
+        src="/static/About-Aim-Reach/Aim-Reach.mp4" autoplay muted loop playsinline>
+      </video>
+    </div>
+  </div>
+</section>
+
+{% endblock body %}

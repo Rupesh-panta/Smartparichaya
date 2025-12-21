@@ -1,0 +1,281 @@
+{% extends 'testuserAuth.html' %}
+{% block content %}
+<!----Dashboard Content -->
+<div id="dashboard-content"
+    class="tab-content p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
+    <h2 class="text-2xl font-semibold">Dashboard</h2>
+    <div class="my-6 w-full text-left h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800 w-full p-4 h-full text-left  border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700"
+        style="background-image: linear-gradient(to bottom, #1906e7 0%, #4829f8 100%);">
+
+        <h5 class="mb-2 text-3xl font-bold text-white light:text-white">👋 Welcome, {{username}}!</h5>
+        <h6 class="mb-3 text-base text-white sm:text-lg dark:text-gray-400">
+            Build your dream career with SmartParichaya.
+        </h6>
+        <p class="mb-5 text-base text-white sm:text-l dark:text-gray-400">
+            Create professional resumes and export them in minutes. Start now!
+        </p>
+
+
+        <div class="items-left justify-left space-y-4 sm:flex sm:space-y-0 sm:space-x-4 rtl:space-x-reverse">
+            <button type="button"
+                class="text-white hover:text-white border border-white-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"
+                id="BuildCVBtn">Build
+                CV</button>
+        </div>
+        <div class="hidden lg:block lg:w-1/3 relative custom-image">
+            <img src="/static/dashboardWc/wci.png" alt="Simpfolio Image"
+                class="absolute bottom-0 right-0  w-52 h-auto object-contain">
+        </div>
+
+        <style>
+            @media (max-width: 1140px) {
+                .custom-image {
+                    display: none;
+                }
+            }
+
+            #BuildCVBtn:hover {
+                background-color: white;
+                color: black;
+
+            }
+
+
+        </style>
+
+    </div>
+
+
+    <div class="grid grid-cols-2 gap-4 mb-4">
+
+        <div class="flex items-center justify-center rounded bg-blue-300 h-auto dark:bg-gray-800"
+            style="display: flex; flex-direction: column; padding: 30px;">
+            <span class="items-center px-4 py-4 m-auto bg-blue-200 rounded-full hover:bg-blue-300">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    class="items-center w-8 h-8 m-auto text-blue-500 hover:text-blue-600" viewBox="0 0 20 20"
+                    fill="currentColor">
+                    <path
+                        d="M19.728 10.686c-2.38 2.256-6.153 3.381-9.875 3.381-3.722 0-7.4-1.126-9.571-3.371L0 10.437V18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-7.6l-.272.286Z">
+                    </path>
+                    <path
+                        d="m.135 7.847 1.542 1.417c3.6 3.712 12.747 3.7 16.635.01L19.605 7.9A.98.98 0 0 1 20 7.652V6a2 2 0 0 0-2-2h-3V3a3 3 0 0 0-3-3H8a3 3 0 0 0-3 3v1H2a2 2 0 0 0-2 2v1.765c.047.024.092.051.135.082ZM10 10.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5ZM7 3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1H7V3Z">
+                    </path>
+                </svg>
+            </span>
+            <p class="text-2xl text-gray-400 dark:text-gray-500">
+            <div class="flex flex-col items-center justify-center">
+                <dt class="mb-2 text-3xl font-bold" id="resume-count">{{template_count}}</dt>
+                <dd class="text-center text-black-500 dark:text-black-400">Resume Attempts</dd>
+            </div>
+            </p>
+
+        </div>
+
+        <div class="flex items-center justify-center rounded bg-yellow-100 h-auto dark:bg-gray-800"
+            style="display: flex; flex-direction: column; padding: 30px;">
+            <span class="items-center px-4 py-4 m-auto bg-yellow-200 rounded-full hover:bg-yellow-300">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    class="items-center w-8 h-8 m-auto text-yellow-500 hover:text-yellow-600" fill="currentcolor"
+                    viewBox="0 0 24 24" stroke="currentColor">
+                    <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z"></path>
+                    <path
+                        d="M6.737 11.061a2.961 2.961 0 0 1 .81-1.515l6.117-6.116A4.839 4.839 0 0 1 16 2.141V2a1.97 1.97 0 0 0-1.933-2H7v5a2 2 0 0 1-2 2H0v11a1.969 1.969 0 0 0 1.933 2h12.134A1.97 1.97 0 0 0 16 18v-3.093l-1.546 1.546c-.413.413-.94.695-1.513.81l-3.4.679a2.947 2.947 0 0 1-1.85-.227 2.96 2.96 0 0 1-1.635-3.257l.681-3.397Z">
+                    </path>
+                    <path
+                        d="M8.961 16a.93.93 0 0 0 .189-.019l3.4-.679a.961.961 0 0 0 .49-.263l6.118-6.117a2.884 2.884 0 0 0-4.079-4.078l-6.117 6.117a.96.96 0 0 0-.263.491l-.679 3.4A.961.961 0 0 0 8.961 16Zm7.477-9.8a.958.958 0 0 1 .68-.281.961.961 0 0 1 .682 1.644l-.315.315-1.36-1.36.313-.318Zm-5.911 5.911 4.236-4.236 1.359 1.359-4.236 4.237-1.7.339.341-1.699Z">
+                    </path>
+                </svg>
+            </span>
+            <p class="text-2xl text-gray-400 dark:text-gray-500">
+            <div class="flex flex-col items-center justify-center">
+                <dt class="mb-2 text-3xl font-bold">2</dt>
+                <dd class="text-center text-black-500 dark:text-black-400">Template</dd>
+            </div>
+            </p>
+
+        </div>
+
+        <div class="flex items-center justify-center rounded bg-green-300 h-auto dark:bg-gray-800"
+            style="display: flex; flex-direction: column; padding: 30px;">
+            <span class="items-center px-4 py-4 m-auto bg-green-200 rounded-full hover:bg-green-300">
+
+
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    class="items-center w-8 h-8 m-auto text-green-500 hover:text-green-600" fill="currentcolor"
+                    viewBox="0 0 576 512" stroke="" currentcolor>
+                    <path
+                        d="M0 64C0 28.7 28.7 0 64 0L224 0l0 128c0 17.7 14.3 32 32 32l128 0 0 128-168 0c-13.3 0-24 10.7-24 24s10.7 24 24 24l168 0 0 112c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 64zM384 336l0-48 110.1 0-39-39c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l80 80c9.4 9.4 9.4 24.6 0 33.9l-80 80c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l39-39L384 336zm0-208l-128 0L256 0 384 128z" />
+                </svg>
+            </span>
+
+            <p class="text-2xl text-gray-400 dark:text-gray-500">
+            <div class="flex flex-col items-center justify-center">
+                <dt class="mb-2 text-3xl font-bold">0</dt>
+                <dd class="text-center text-black-500 dark:text-black-400">Cover Letter</dd>
+            </div>
+            </p>
+
+        </div>
+
+        <div class="flex items-center justify-center rounded bg-red-300 h-auto dark:bg-gray-800"
+            style="display: flex; flex-direction: column; padding: 30px;">
+            <span class="items-center px-4 py-4 m-auto bg-red-200 rounded-full hover:bg-red-300">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    class="items-center w-8 h-8 m-auto text-red-500 hover:text-red-600 " fill="currentcolor"
+                    viewBox="0 0 20 20" stroke="currentColor">
+                    <path
+                        d="M18 0H2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h3.546l3.2 3.659a1 1 0 0 0 1.506 0L13.454 14H18a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-8 10H5a1 1 0 0 1 0-2h5a1 1 0 1 1 0 2Zm5-4H5a1 1 0 0 1 0-2h10a1 1 0 1 1 0 2Z">
+                    </path>
+                </svg>
+            </span>
+            <p class="text-2xl text-gray-400 dark:text-gray-500">
+            <div class="flex flex-col items-center justify-center">
+                <dt class="mb-2 text-3xl font-bold">{{feedback_count}}</dt>
+                <dd class="text-center text-black-500 dark:text-black-400">Feedback</dd>
+            </div>
+            </p>
+
+        </div>
+    </div>
+    <div class="grid grid-cols-2 gap-4 mb-4">
+
+        <div
+            class="w-full h-full mb-4 rounded bg-gray-50 dark:bg-gray-800  py-8 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer ">
+            <div class="flex items-center justify-center w-full h-full">
+                <div class="text-center space-y-4">
+
+                   <a href="/testUserAuth/cv-builder/"> <button 
+                        class="flex items-center justify-center w-full py-2 px-4 text-blue-800 hover:text-blue-800 border border-transparent rounded hover:border-blue-700 transition ease-in-out duration-200">
+                        <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4">
+                            </path>
+                        </svg>
+                        <span class="text-sm md:text-base">Create a new CV</span>
+                    </button>
+                </a>
+                    <hr class="my-4 border-gray-300 dark:border-gray-600">
+                    
+                    <a href="/testUserAuth/resume-score/"><button
+                        class="flex items-center justify-center w-full py-2 px-4 text-blue-800 hover:text-blue-800 border border-transparent rounded hover:border-blue-700 transition ease-in-out duration-200">
+                        <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M8 12l4-4m0 0l4 4m-4-4v12" />
+                        </svg>
+                        <span class="text-sm md:text-base">Upload CV for Score Test</span>
+                    </button>
+                </a>
+                    <hr class="my-4 border-gray-300 dark:border-gray-600">
+                </div>
+            </div>
+        </div>
+
+
+        <div
+            class="w-full h-full mb-4 rounded bg-white dark:bg-white  py-8 border-2 border-gray-300 border-solid rounded-lg cursor-pointer ">
+            <div class="flex items-center justify-center w-full h-full">
+                <div class="text-center space-y-4">
+                    <button onclick="showSweetAlert()"
+                        class="flex items-center justify-center w-full py-2 px-4 text-blue-800 hover:text-blue-800 border border-transparent rounded hover:border-blue-800 transition ease-in-out duration-200">
+                        <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="currentcolor" stroke="none" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z">
+                            </path>
+                        </svg>
+
+                        <span class="text-sm md:text-base">Track a Suitable Job</span>
+                    </button>
+                    <hr class="my-4 border-gray-300 dark:border-gray-600">
+                    <button onclick="showSweetAlert()"
+                        class="flex items-center justify-center w-full py-2 px-4 text-blue-800 hover:text-blue-800 border border-transparent rounded hover:border-blue-800 transition ease-in-out duration-200">
+                        <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4">
+                            </path>
+                        </svg>
+                        <span class="text-sm md:text-base">Create a new CoverLetter</span>
+                    </button>
+
+
+                    <hr class="my-4 border-gray-300 dark:border-gray-600">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-full text-center h-60 mb-4 rounded bg-gray-50 dark:bg-gray-800 w-full p-4 h-full text-left border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700"
+        style="background-image:linear-gradient(to left,#8b18dd 0%, #44039f 100% );" id="testCVText">
+
+        <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+            <div class="mr-auto place-self-center lg:col-span-7">
+                <h1
+                    class="max-w-2xl mb-4 text-4xl font-bold tracking-tight leading-none md:text-4xl xl:text-4xl light:text-white text-white">
+                    "Evaluate Resume Effectiveness"</h1>
+                <p class="max-w-2xl mb-6 font-dark text-white lg:mb-8 md:text-lg lg:text-xl dark:text-white">Ensure
+                    your resume stands out by evaluating its effectiveness. Identify areas for improvement, tailor
+                    your content to specific job roles, and increase your chances of landing interviews.</p>
+
+                <a href="/testUserAuth/resume-score/"
+                    class="inline-flex items-center bg-white justify-center px-5 py-3 text-base font-medium text-center text-black border border-gray-300 rounded-lg"
+                    id="testCVButtonDashboard">
+                    Test Resume
+                </a>
+            </div>
+            <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
+                <img src="/static/dashboardWc/tcv.png" alt="mockup" id="testCVIMG">
+            </div>
+        </div>
+
+    </div>
+
+
+    <style>
+        #testCVButtonDashboard:hover {
+            background-color: transparent;
+            color: white;
+
+
+        }
+
+        #testCVText {
+            background-image: linear-gradient(to left, #8b18dd 0%, #44039f 100%);
+        }
+
+        #testCVIMG {
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+            display: block;
+            object-fit: contain;
+        }
+
+        @media (max-width: 1140px) {
+            #testCVIMG {
+                display: none;
+            }
+
+            #testCVText .grid {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+            }
+
+            #testCVText .mr-auto {
+                margin: 0;
+            }
+
+            #testCVText h1,
+            #testCVText p,
+            #testCVButtonDashboard {
+                max-width: none;
+            }
+        }
+    </style>
+</div>
+
+
+{% endblock %}

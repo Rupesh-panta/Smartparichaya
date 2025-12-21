@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CV Template</title>
+        <link rel="stylesheet" href="https://cdn.tutorialjinni.com/intl-tel-input/17.0.8/css/intlTelInput.css" />
+        <script src="https://cdn.tutorialjinni.com/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
+
+        <link rel="stylesheet" href="/static/css/main.css">
+
+
+
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+            body {
+                font-family: "Inter", sans-serif;
+
+
+
+            }
+
+            html,
+            body {
+                scrollbar-width: none;
+
+
+            }
+
+            #dropdownDownload {
+                z-index: 9999 !important;
+                /* A higher z-index than 50 */
+            }
+
+            #drawer-right-example {
+                z-index: 40 !important;
+                /* Push the drawer behind the dropdown */
+            }
+
+            .li-align {
+                display: list-item;
+                list-style-position: inside;
+                text-indent: -1.5em;
+                padding-left: 1.5em;
+            }
+
+            #cv-data-form {
+                border: 1px solid #fff;
+                box-shadow: 0 0 10px 5px rgba(221, 221, 221, 0.4);
+                max-height: 85vh;
+                overflow-y: scroll;
+                overflow-x: hidden;
+                position: fixed;
+                left: 30px;
+                top: auto;
+                z-index: 10;
+                width: 350px;
+
+            }
+
+            #cv-data-form::-webkit-scrollbar {
+                width: 5px;
+            }
+
+            #cv-data-form::-webkit-scrollbar-track {
+                background: transparent;
+            }
+
+            #cv-data-form::-webkit-scrollbar-thumb {
+                background: #888;
+                border-radius: 10px;
+
+            }
+
+            #cv-data-form::-webkit-scrollbar-thumb:hover {
+                background: #555;
+                /* lighter shade on hover */
+            }
+
+
+            #drawer-right-example::-webkit-scrollbar {
+                width: 5px;
+            }
+
+            #drawer-right-example::-webkit-scrollbar-track {
+                background: transparent;
+            }
+
+            #drawer-right-example::-webkit-scrollbar-thumb {
+                background: #888;
+                border-radius: 10px;
+            }
+
+            #drawer-right-example::-webkit-scrollbar-thumb:hover {
+                background: #555;
+                /* lighter shade on hover */
+            }
+
+            /* Container for the entire CV preview */
+            #preview-sc {
+                width: 100%;
+                /* Makes the container full width of the viewport */
+                max-width: 100%;
+                /* Maximum width of the CV container */
+                overflow-y: auto;
+
+
+                border: 1px solid #fff;
+                box-shadow: 0 0 10px 5px rgba(221, 221, 221, 0.4);
+                background-color: #FAFAFA;
+
+            }
+
+            #preview-sc {
+                scrollbar-width: none;
+            }
+
+            .preview-container {
+                width: 100%;
+                max-width: 1200px;
+                margin: 0 auto;
+                box-shadow: 0 0 10px 5px rgba(221, 221, 221, 0.4);
+                top: 0;
+                left: 0;
+
+            }
+
+            @media(max-width:1250px) {
+                #preview-sc {
+                    visibility: hidden;
+                }
+
+                #cv-data-form {
+                    width: 92%;
+                    left: 0;
+                    height: 85vh;
+                    max-height: none;
+                    margin-bottom: auto;
+                    margin-left: 20px;
+                    overflow-y: scroll;
+                    position: absolute;
+                }
+
+                .holder {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin: 0 auto;
+                }
+
+                html,
+                body {
+                    height: 85vh;
+                    overflow: hidden;
+                }
+            }
+
+            @media(max-width:425px) {
+
+                #cv-data-form {
+                    width: 86%;
+                    left: 0;
+                    height: 85vh;
+                    max-height: none;
+                    margin-bottom: auto;
+                    margin-left: 10px;
+                    margin-right: 50px;
+                    overflow-y: scroll;
+                }
+
+            }
+
+            @media(max-width:386px) {
+
+                #cv-data-form {
+                    width: 80%;
+                    left: 0;
+                    height: 85vh;
+                    max-height: none;
+                    margin-bottom: auto;
+                    margin-left: 0px;
+                    margin-right: 70px;
+                    overflow-y: scroll;
+
+                }
+            }
+
+            @media(max-width:342px) {
+                #cv-data-form {
+                    width: 70%;
+                    left: 0;
+                    height: 85vh;
+                    max-height: none;
+                    margin-bottom: auto;
+                    margin-left: 0px;
+                    margin-right: 90px;
+                    overflow-y: scroll;
+                }
+            }
+
+            @media(max-width:298px) {
+                #cv-data-form {
+                    width: 60%;
+                    left: 0;
+                    height: 85vh;
+                    max-height: none;
+                    margin-bottom: auto;
+                    margin-left: 0px;
+                    margin-right: 110px;
+                    overflow-y: scroll;
+                }
+            }
+
+
+            @media(max-width:345px) {
+                #bulbButton {
+                    display: none;
+                }
+            }
+
+
+
+
+            .animate-bounce-emoji {
+                animation: bounce 1s ease infinite;
+            }
+
+            @keyframes bounce {
+
+                0%,
+                100% {
+                    transform: scale(1);
+                }
+
+                50% {
+                    transform: scale(1.2);
+                }
+            }
+
+            /* Optional: Add a transition when hovering over the button */
+            #bulbButton:hover #bulbEmoji {
+                animation: bounce 0.5s ease infinite;
+            }
+
+
+
+
+
+            #holder {
+                width: 100%;
+                max-width: 100%;
+                display: flex;
+                justify-content: space-between;
+                flex-direction: row;
+                padding-left: 400px;
+                position: relative;
+                max-height: max-content;
+                height: max-content;
+
+
+
+
+            }
+
+            #dropdowntipsbtn {
+                color: white;
+                transition: background 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            #dropdowntipsbtn:hover {
+                background: linear-gradient(135deg, rgba(110, 142, 251, 0.9), rgba(167, 119, 227, 0.9));
+                box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+                /* lighter shadow */
+
+            }
+
+            .active-button {
+                background: linear-gradient(135deg, rgba(110, 142, 251, 0.9), rgba(167, 119, 227, 0.9)) !important;
+                box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2) !important;
+                color: white !important;
+            }
+
+            .show-sv {
+                display: none;
+            }
+
+            #dropdownprotips {
+                width: 250px;
+                max-width: 250px;
+            }
+
+
+
+
+
+            @media(max-width:600px) {
+                .hide-text {
+                    display: none;
+                }
+            }
+
+            @media(max-width:1460px) {
+                #cta-button-sidebar {
+                    display: none;
+                }
+
+
+
+
+
+                #dropdowntipsbtn {
+                    justify-content: center;
+                    /* Center the SVG horizontally */
+                    padding-left: 0.5rem;
+                    padding-right: 0.5rem;
+                    height: 35px;
+
+
+                }
+
+                #dropdowntipsbtn svg {
+                    margin-left: 0;
+                    /* Remove left margin from the SVG */
+                }
+
+            }
+
+
+
+            @media (max-width: 390px) {
+                .hide-db {
+                    display: none;
+                }
+
+                .show-sv {
+                    display: block;
+                    padding-left: 1px;
+                    padding-right: 1px;
+                }
+
+            }
+
+            #cta-button-sidebar {
+                position: relative;
+                width: 10%;
+                right: 0;
+                scrollbar-width: none;
+                height: 85vh;
+                flex-grow: 1;
+                left: 35px;
+
+            }
+
+
+            #tips {
+                word-wrap: break-word;
+                max-width: 90%;
+                scrollbar-width: none;
+
+            }
+        </style>
+
+    </head>
+
+    <body class=" min-h-screen p-4">
+
+        <nav
+            class="bg-white border-b border-gray-200 px-4 py-2.5 light:bg-gray-800 light:border-gray-700 fixed left-0 right-0 top-0 z-50">
+            <div class="flex flex-wrap justify-between items-center">
+                <div class="flex justify-start items-center">
+
+                    <a href="/testUserAuth/dashboard/" class="flex items-center justify-between mr-4">
+                        <img src="https://flowbite.s3.amazonaws.com/logo.svg" class="mr-3 h-8" alt="Flowbite Logo" />
+                        <span
+                            class="self-center text-2xl font-semibold whitespace-nowrap light:text-white">Simpfolio</span>
+                    </a>
+
+                </div>
+                <div class="flex flex-wrap items-end lg:order-3 gap-2">
+
+
+                    <button id="dropdowntipsbtn" data-dropdown-toggle="dropdownprotips"
+                        class="relative inline-flex items-center justify-center px-3 py-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white light:text-white focus:ring-4 focus:outline-none focus:ring-green-200 light:focus:ring-green-800"
+                        type="button">
+                        <span class="hide-text">Quick Tips</span>
+                        <svg class="flex-shrink-0 inline w-5 h-4 ms-1" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="currentcolor" viewBox="0 0 20 20">
+                            <path
+                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                        </svg>
+                    </button>
+
+                    <!-- Dropdown menu -->
+                    <div id="dropdownprotips"
+                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 light:bg-gray-700">
+                        <ul class="py-2 text-sm text-gray-700 light:text-gray-200"
+                            aria-labelledby="dropdownDefaultButton">
+                            <li>
+                                <a href=""
+                                    class="block px-4 py-2 hover:bg-gray-100 light:hover:bg-gray-600 light:hover:text-white">Name
+                                    - 3%</a>
+                            </li>
+                            <li>
+                                <a href=""
+                                    class="block px-4 py-2 hover:bg-gray-100 light:hover:bg-gray-600 light:hover:text-white">Role
+                                    - 3%</a>
+                            </li>
+                            <li>
+                                <a href=""
+                                    class="block px-4 py-2 hover:bg-gray-100 light:hover:bg-gray-600 light:hover:text-white">Email
+                                    - 3%</a>
+                            </li>
+                            <li>
+                                <a href=""
+                                    class="block px-4 py-2 hover:bg-gray-100 light:hover:bg-gray-600 light:hover:text-white">Phone
+                                    - 3%
+                                </a>
+                            </li>
+                            <li>
+                                <a href=""
+                                    class="block px-4 py-2 hover:bg-gray-100 light:hover:bg-gray-600 light:hover:text-white">Country
+                                    / State - 3%
+                                </a>
+                            </li>
+                            <li>
+                                <a href=""
+                                    class="block px-4 py-2 hover:bg-gray-100 light:hover:bg-gray-600 light:hover:text-white">City
+                                    / Zipcode - 3%
+                                </a>
+                            </li>
+                            <li>
+                                <a href=""
+                                    class="block px-4 py-2 hover:bg-gray-100 light:hover:bg-gray-600 light:hover:text-white">Weblink/s
+                                    - 3%
+                                </a>
+                            </li>
+                            <li>
+                                <a href=""
+                                    class="block px-4 py-2 hover:bg-gray-100 light:hover:bg-gray-600 light:hover:text-white">Professional
+                                    Summary - 15%
+                                </a>
+                            </li>
+                            <li>
+                                <a href=""
+                                    class="block px-4 py-2 hover:bg-gray-100 light:hover:bg-gray-600 light:hover:text-white">Certification
+                                    - 2x6%=12%
+                                </a>
+                            </li>
+                            <li>
+                                <a href=""
+                                    class="block px-4 py-2 hover:bg-gray-100 light:hover:bg-gray-600 light:hover:text-white">Skills
+                                    - 4x3%=12%
+                                </a>
+                            </li>
+                            <li>
+                                <a href=""
+                                    class="block px-4 py-2 hover:bg-gray-100 light:hover:bg-gray-600 light:hover:text-white">Employment
+                                    - 2x10%=20%
+                                </a>
+                            </li>
+                            <li>
+                                <a href=""
+                                    class="block px-4 py-2 hover:bg-gray-100 light:hover:bg-gray-600 light:hover:text-white">Education
+                                    - 2x7%=14%
+                                </a>
+                            </li>
+                            <li>
+                                <a href=""
+                                    class="block px-4 py-2 hover:bg-gray-100 light:hover:bg-gray-600 light:hover:text-white">Custom
+                                    Sections - 2x3%=6%
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+
+
+                    <!-- Download -->
+
+                    <button id="dropdownDefaultButton" data-dropdown-toggle="dropdownDownload"
+                        class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center light:bg-blue-600 light:hover:bg-blue-700 light:focus:ring-blue-800"
+                        type="button" "><span class=" hide-db">Download</span>
+                        <span class="show-sv">
+
+                            <svg class="w-5 h-5 text-gray-800 light:text-white " aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                viewBox="0 0 24 24">
+                                <path stroke="white" stroke-linecap="round" stroke-width="2"
+                                    d="M11 16h2m6.707-9.293-2.414-2.414A1 1 0 0 0 16.586 4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V7.414a1 1 0 0 0-.293-.707ZM16 20v-6a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v6h8ZM9 4h6v3a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V4Z" />
+                            </svg>
+
+
+                        </span>
+                    </button>
+                    <!-- Dropdown menu (Download) -->
+                    <div id="dropdownDownload"
+                        class=" hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 light:bg-gray-700">
+                        <ul class="py-2 text-sm text-gray-700 light:text-gray-200"
+                            aria-labelledby="dropdownDefaultButton">
+                            <li class="flex flex items-center">
+                                <svg height="200px" width="200px" version="1.1" id="Layer_1" class="w-4 h-4 ml-6"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    viewBox="0 0 309.267 309.267" xml:space="preserve" fill="#000000">
+                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                    <g id="SVGRepo_iconCarrier">
+                                        <g>
+                                            <path style="fill:#E2574C;"
+                                                d="M38.658,0h164.23l87.049,86.711v203.227c0,10.679-8.659,19.329-19.329,19.329H38.658 c-10.67,0-19.329-8.65-19.329-19.329V19.329C19.329,8.65,27.989,0,38.658,0z">
+                                            </path>
+                                            <path style="fill:#B53629;"
+                                                d="M289.658,86.981h-67.372c-10.67,0-19.329-8.659-19.329-19.329V0.193L289.658,86.981z">
+                                            </path>
+                                            <path style="fill:#FFFFFF;"
+                                                d="M217.434,146.544c3.238,0,4.823-2.822,4.823-5.557c0-2.832-1.653-5.567-4.823-5.567h-18.44 c-3.605,0-5.615,2.986-5.615,6.282v45.317c0,4.04,2.3,6.282,5.412,6.282c3.093,0,5.403-2.242,5.403-6.282v-12.438h11.153 c3.46,0,5.19-2.832,5.19-5.644c0-2.754-1.73-5.49-5.19-5.49h-11.153v-16.903C204.194,146.544,217.434,146.544,217.434,146.544z M155.107,135.42h-13.492c-3.663,0-6.263,2.513-6.263,6.243v45.395c0,4.629,3.74,6.079,6.417,6.079h14.159 c16.758,0,27.824-11.027,27.824-28.047C183.743,147.095,173.325,135.42,155.107,135.42z M155.755,181.946h-8.225v-35.334h7.413 c11.221,0,16.101,7.529,16.101,17.918C171.044,174.253,166.25,181.946,155.755,181.946z M106.33,135.42H92.964 c-3.779,0-5.886,2.493-5.886,6.282v45.317c0,4.04,2.416,6.282,5.663,6.282s5.663-2.242,5.663-6.282v-13.231h8.379 c10.341,0,18.875-7.326,18.875-19.107C125.659,143.152,117.425,135.42,106.33,135.42z M106.108,163.158h-7.703v-17.097h7.703 c4.755,0,7.78,3.711,7.78,8.553C113.878,159.447,110.863,163.158,106.108,163.158z">
+                                            </path>
+                                        </g>
+                                    </g>
+                                </svg>
+                                <a href="#" onclick="printCV()"
+                                    class="block px-4 py-2 hover:bg-gray-100 light:hover:bg-gray-600 light:hover:text-white">PDF</a>
+                            </li>
+
+
+
+                        </ul>
+                    </div>
+
+
+
+
+                    <button id="dropdownAvatarNameButton" data-dropdown-toggle="dropdown-user"
+                        class="flex items-center text-sm pe-1 font-medium text-gray-900 rounded-full hover:text-blue-600 dark:hover:text-blue-500 md:me-0 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-white"
+                        type="button">
+                        <span class="sr-only">Open user menu</span>
+                        {% if profile_picture %}
+                        <img class="w-8 h-8 me-2 rounded-full" src="{{ profile_picture }}" alt="user photo">
+                        {% else %}
+                        <img class="w-8 h-8 me-2 rounded-full" src="/media/profile_pics/user-circle_svgrepo.com.png"
+                            alt="user photo">
+                        {% endif %}
+
+
+                        <!-- <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                       fill="none" viewBox="0 0 10 6">
+                       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="2" d="m1 1 4 4 4-4" />
+                    </svg> -->
+                    </button>
+
+                    <!-- Dropdown menu -->
+                    <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
+                        id="dropdown-user">
+                        <div class="px-4 py-3" role="none">
+                            <p class="text-sm text-gray-900 dark:text-white" role="none">
+                                {{username}}
+                            </p>
+                            <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
+                                {{email}}
+                            </p>
+                        </div>
+                        <ul class="py-1" role="none">
+                            <li>
+                                <a href="/testUserAuth/dashboard"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                    role="menuitem">Dashboard</a>
+                            </li>
+                            <li>
+                                <a href="/testUserAuth/profile"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                    role="menuitem">Account Settings</a>
+                            </li>
+                            <li>
+                                <a href="/testUserAuth/cv-builder/"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                    role="menuitem">CV Builder</a>
+                            </li>
+                        </ul>
+
+                        <!-- <li>
+                       <a href="#"
+                          class="block px-4 py-2 text-sm text-gray-700 hover:text-red-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-red-600"
+                          role="menuitem" id="signoutDropDownProfile">Sign out</a>
+                    </li> -->
+
+                        <div class="py-2">
+                            <a href="#" onclick="confirmLogout(event)"
+                                class="flex items-center p-3 text-sm font-medium text-red-600    hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-red-500 "
+                                role="menuitem">
+                                <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    fill="currentColor" viewBox="0 0 20 18">
+                                    <path
+                                        d="M6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Zm11-3h-6a1 1 0 1 0 0 2h6a1 1 0 1 0 0-2Z" />
+                                </svg>
+                                Sign out
+                            </a>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+
+        <div class="w-full h-full mt-20" id="holder">
+
+
+            <section class="bg-white shadow-lg light:bg-gray-900 p-5 " id="cv-data-form">
+                <section id="about-sc" class="">
+                    <div class="container">
+                        <div class="about-cnt">
+                            <form action="" class="cv-form" id="cv-form">
+                                <div class="cv-form-blk">
+                                    <div class="cv-form-row-title">
+                                        <h2 class="mb-4 text-xl font-bold text-gray-900 light:text-white">Personal
+                                            Details</h2>
+                                    </div>
+                                    <div class="cv-form-row cv-form-row-about">
+                                        <div class="cols-3">
+                                            <div class="form-elem">
+                                                <label for=""
+                                                    class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">First
+                                                    Name</label>
+                                                <input name="firstname" type="text"
+                                                    class="form-control firstname mb-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    id="" onkeyup="generateCV()" placeholder="e.g. John"
+                                                    value="{{first_name}}">
+                                                <span class="form-text"></span>
+                                            </div>
+                                            <div class="form-elem">
+                                                <label for=""
+                                                    class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Middle
+                                                    Name </label>
+                                                <input name="middlename" type="text"
+                                                    class="form-control middlename mb-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    id="" onkeyup="generateCV()" placeholder="e.g. Herbert">
+                                                <span class="form-text"></span>
+                                            </div>
+                                            <div class="form-elem">
+                                                <label for=""
+                                                    class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last
+                                                    Name</label>
+                                                <input name="lastname" type="text"
+                                                    class="form-control lastname mb-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    id="" onkeyup="generateCV()" placeholder="e.g. Doe">
+                                                <span class="form-text"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="cols-3">
+                                            <div class="form-elem">
+                                                <label for=""
+                                                    class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
+                                                    Image</label>
+                                                <input name="image" type="file"
+                                                    class="form-control image mb-5 px-8 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    id="" accept="image/*" onchange="previewImage()">
+                                            </div>
+                                            <div class="form-elem">
+                                                <label for=""
+                                                    class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Designation</label>
+                                                <input name="designation" type="text"
+                                                    class="form-control designation mb-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    id="" onkeyup="generateCV()" placeholder="e.g. Accountant">
+                                                <span class="form-text"></span>
+                                            </div>
+                                            <div class="form-elem">
+                                                <label for=""
+                                                    class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
+                                                <input name="address" type="text"
+                                                    class="form-control address mb-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    id="" onkeyup="generateCV()" placeholder="e.g. 34 Main St">
+                                                <span class="form-text"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="cols-3">
+                                            <div class="form-elem">
+                                                <label for=""
+                                                    class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                                                <input name="email" type="text"
+                                                    class="form-control email mb-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    id="" onkeyup="generateCV()" placeholder="e.g. jd@gmail.com"
+                                                    value="{{email}}">
+                                                <span class="form-text"></span>
+                                            </div>
+                                            <div class="form-elem">
+                                                <label for=""
+                                                    class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone
+                                                    No:</label>
+                                                <input name="phoneno" type="text"
+                                                    class="form-control phoneno mb-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    id="" onkeyup="generateCV()"
+                                                    placeholder="e.g. 456-768-798, 567.654.002">
+                                                <span class="form-text"></span>
+                                            </div>
+
+                                            <div class="sm:col-span-2">
+                                                <hr class="border-t border-gray-200 my-4 border-light"
+                                                    style="border-width: 1px;">
+
+                                            </div>
+                                            <div class="form-elem">
+                                                <h2 for=""
+                                                    class="form-label mb-5 text-xl font-bold text-gray-900 light:text-white">
+                                                    Professional Summary</h2>
+                                                <textarea rows="10" name="summary" type="text"
+                                                    class="form-control summary mb-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 resize-none"
+                                                    id="" onkeyup="generateCV()"></textarea>
+                                                <span class="form-text"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="sm:col-span-2">
+                                    <hr class="border-t border-gray-200 my-4 border-light" style="border-width: 1px;">
+
+                                </div>
+
+                                <div class="cv-form-blk">
+                                    <div class="cv-form-row-title">
+                                        <h2 class="mb-4 text-xl font-bold text-gray-900 light:text-white">Achievements
+                                        </h2>
+                                    </div>
+
+                                    <div class="row-separator repeater">
+                                        <div class="repeater" data-repeater-list="group-a">
+                                            <div data-repeater-item>
+                                                <div class="cv-form-row cv-form-row-achievement"
+                                                    style="border: 1px solid rgb(191, 191, 191); border-radius: 10px; padding:10px; margin-bottom: 10px;">
+                                                    <div class="cols-2">
+                                                        <div class="form-elem">
+                                                            <label for=""
+                                                                class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+                                                            <input name="achieve_title " type="text"
+                                                                class="form-control achieve_title mb-5 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                id="" onkeyup="generateCV()">
+                                                            <span class="form-text"></span>
+                                                        </div>
+                                                        <div class="form-elem">
+                                                            <label for=""
+                                                                class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                                                            <input name="achieve_description" type="text"
+                                                                class="form-control achieve_description mb-5 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                id="" onkeyup="generateCV()">
+                                                            <span class="form-text"></span>
+                                                        </div>
+                                                    </div>
+                                                    <button data-repeater-delete type="button"
+                                                        class="repeater-remove-btn mb-8 inline-flex items-center justify-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round">
+                                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                                        </svg>&nbsp;Delete achievement</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="button" data-repeater-create value="Add"
+                                            class="repeater-add-btn inline-flex items-center justify-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                            </svg>&nbsp;Add achievement</button>
+                                    </div>
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <hr class="border-t border-gray-200 my-4 border-light" style="border-width: 1px;">
+
+                                </div>
+                                <div class="cv-form-blk">
+                                    <div class="cv-form-row-title">
+                                        <h2 class="mb-4 text-xl font-bold text-gray-900 light:text-white">Experience
+                                        </h2>
+                                    </div>
+
+                                    <div class="row-separator repeater">
+                                        <div class="repeater" data-repeater-list="group-b">
+                                            <div data-repeater-item>
+                                                <div class="cv-form-row cv-form-row-experience "
+                                                    style="border: 1px solid rgb(191, 191, 191); border-radius: 10px; padding:10px; margin-bottom: 10px;">
+                                                    <div class="cols-3">
+                                                        <div class="form-elem">
+                                                            <label for=""
+                                                                class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+                                                            <input name="exp_title" type="text"
+                                                                class="form-control exp_title border mb-5 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                id="" onkeyup="generateCV()">
+                                                            <span class="form-text"></span>
+                                                        </div>
+                                                        <div class="form-elem">
+                                                            <label for=""
+                                                                class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Company
+                                                                /
+                                                                Organization</label>
+                                                            <input name="exp_organization" type="text"
+                                                                class="form-control exp_organization mb-5  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                id="" onkeyup="generateCV()">
+                                                            <span class="form-text"></span>
+                                                        </div>
+                                                        <div class="form-elem">
+                                                            <label for=""
+                                                                class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
+                                                            <input name="exp_location" type="text"
+                                                                class="form-control exp_location mb-5  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                id="" onkeyup="generateCV()">
+                                                            <span class="form-text"></span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="cols-3">
+                                                        <div class="form-elem">
+                                                            <label for=""
+                                                                class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Start
+                                                                Date</label>
+                                                            <input name="exp_start_date" type="date"
+                                                                class="form-control exp_start_date mb-5  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                id="" onkeyup="generateCV()">
+                                                            <span class="form-text"></span>
+                                                        </div>
+                                                        <div class="form-elem">
+                                                            <label for=""
+                                                                class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">End
+                                                                Date</label>
+                                                            <input name="exp_end_date" type="date"
+                                                                class="form-control exp_end_date mb-5  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                id="" onkeyup="generateCV()">
+                                                            <span class="form-text"></span>
+                                                        </div>
+                                                        <div class="form-elem">
+                                                            <label for=""
+                                                                class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                                                            <input name="exp_description" type="text"
+                                                                class="form-control exp_description mb-5  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                id="" onkeyup="generateCV()">
+                                                            <span class="form-text"></span>
+                                                        </div>
+                                                    </div>
+
+                                                    <button data-repeater-delete type="button"
+                                                        class="repeater-remove-btn mb-8 inline-flex items-center justify-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round">
+                                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                                        </svg>&nbsp;Delete experience</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="button" data-repeater-create value="Add"
+                                            class="repeater-add-btn inline-flex items-center justify-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                            </svg>&nbsp;Add experience</button>
+                                    </div>
+                                </div>
+
+                                <div class="sm:col-span-2">
+                                    <hr class="border-t border-gray-200 my-4 border-light" style="border-width: 1px;">
+
+                                </div>
+                                <div class="cv-form-blk">
+                                    <div class="cv-form-row-title">
+                                        <h2 class="mb-4 text-xl font-bold text-gray-900 light:text-white">Education</h2>
+                                    </div>
+
+                                    <div class="row-separator repeater">
+                                        <div class="repeater" data-repeater-list="group-c">
+                                            <div data-repeater-item>
+                                                <div class="cv-form-row cv-form-row-experience"
+                                                    style="border: 1px solid rgb(191, 191, 191); border-radius: 10px; padding:10px; margin-bottom: 10px;">
+                                                    <div class="cols-3">
+                                                        <div class="form-elem">
+                                                            <label for=""
+                                                                class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">School</label>
+                                                            <input name="edu_school" type="text"
+                                                                class="form-control edu_school mb-5  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                id="" onkeyup="generateCV()">
+                                                            <span class="form-text"></span>
+                                                        </div>
+                                                        <div class="form-elem">
+                                                            <label for=""
+                                                                class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Degree</label>
+                                                            <input name="edu_degree" type="text"
+                                                                class="form-control edu_degree mb-5  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                id="" onkeyup="generateCV()">
+                                                            <span class="form-text"></span>
+                                                        </div>
+                                                        <div class="form-elem">
+                                                            <label for=""
+                                                                class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">City</label>
+                                                            <input name="edu_city" type="text"
+                                                                class="form-control edu_city mb-5  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                id="" onkeyup="generateCV()">
+                                                            <span class="form-text"></span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="cols-3">
+                                                        <div class="form-elem">
+                                                            <label for=""
+                                                                class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Start
+                                                                Date</label>
+                                                            <input name="edu_start_date" type="date"
+                                                                class="form-control edu_start_date mb-5  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                id="" onkeyup="generateCV()">
+                                                            <span class="form-text"></span>
+                                                        </div>
+                                                        <div class="form-elem">
+                                                            <label for=""
+                                                                class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">End
+                                                                Date</label>
+                                                            <input name="edu_graduation_date" type="date"
+                                                                class="form-control edu_graduation_date mb-5  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                id="" onkeyup="generateCV()">
+                                                            <span class="form-text"></span>
+                                                        </div>
+                                                        <div class="form-elem">
+                                                            <label for=""
+                                                                class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                                                            <input name="edu_description" type="text"
+                                                                class="form-control edu_description mb-5  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                id="" onkeyup="generateCV()">
+                                                            <span class="form-text"></span>
+                                                        </div>
+                                                    </div>
+
+                                                    <button data-repeater-delete type="button"
+                                                        class="repeater-remove-btn mb-8 inline-flex items-center justify-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round">
+                                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                                        </svg>&nbsp;Delete education</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="button" data-repeater-create value="Add"
+                                            class="repeater-add-btn inline-flex items-center justify-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                            </svg>&nbsp;Add education</button>
+                                    </div>
+                                </div>
+
+                                <div class="sm:col-span-2">
+                                    <hr class="border-t border-gray-200 my-4 border-light" style="border-width: 1px;">
+
+                                </div>
+
+                                <div class="cv-form-blk">
+                                    <div class="cv-form-row-title">
+                                        <h2 class="mb-4 text-xl font-bold text-gray-900 light:text-white">Projects
+                                        </h2>
+                                    </div>
+
+                                    <div class="row-separator repeater">
+                                        <div class="repeater" data-repeater-list="group-d">
+                                            <div data-repeater-item>
+                                                <div class="cv-form-row cv-form-row-experience"
+                                                    style="border: 1px solid rgb(191, 191, 191); border-radius: 10px; padding:10px; margin-bottom: 10px;">
+                                                    <div class="cols-3">
+                                                        <div class="form-elem">
+                                                            <label for=""
+                                                                class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Project
+                                                                Name</label>
+                                                            <input name="proj_title" type="text"
+                                                                class="form-control proj_title mb-5  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                id="" onkeyup="generateCV()">
+                                                            <span class="form-text"></span>
+                                                        </div>
+                                                        <div class="form-elem">
+                                                            <label for=""
+                                                                class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Project
+                                                                link</label>
+                                                            <input name="proj_link" type="text"
+                                                                class="form-control proj_link mb-5  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                id="" onkeyup="generateCV()">
+                                                            <span class="form-text"></span>
+                                                        </div>
+                                                        <div class="form-elem">
+                                                            <label for=""
+                                                                class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                                                            <input name="proj_description" type="text"
+                                                                class="form-control proj_description mb-5 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                id="" onkeyup="generateCV()">
+                                                            <span class="form-text"></span>
+                                                        </div>
+                                                    </div>
+                                                    <button data-repeater-delete type="button"
+                                                        class="repeater-remove-btn mb-8 inline-flex items-center justify-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round">
+                                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                                        </svg>&nbsp;Delete project</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="button" data-repeater-create value="Add"
+                                            class="repeater-add-btn inline-flex items-center justify-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                            </svg>&nbsp;Add project</button>
+                                    </div>
+                                </div>
+
+                                <div class="sm:col-span-2">
+                                    <hr class="border-t border-gray-200 my-4 border-light" style="border-width: 1px;">
+
+                                </div>
+
+                                <div class="cv-form-blk">
+                                    <div class="cv-form-row-title">
+                                        <h2 class="mb-4 text-xl font-bold text-gray-900 light:text-white">Skills
+                                        </h2>
+                                    </div>
+
+                                    <div class="row-separator repeater">
+                                        <div class="repeater" data-repeater-list="group-e">
+                                            <div data-repeater-item>
+                                                <div class="cv-form-row cv-form-row-skills"
+                                                    style="border: 1px solid rgb(191, 191, 191); border-radius: 10px; padding:10px; margin-bottom: 10px;">
+                                                    <div class="form-elem">
+                                                        <label for=""
+                                                            class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Skill</label>
+                                                        <input name="skill" type="text"
+                                                            class="form-control skill mb-5 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                            id="" onkeyup="generateCV()">
+                                                        <span class="form-text"></span>
+                                                    </div>
+
+                                                    <button data-repeater-delete type="button"
+                                                        class="repeater-remove-btn mb-8 inline-flex items-center justify-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round">
+                                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                                        </svg>&nbsp;Delete skill</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="button" data-repeater-create value="Add"
+                                            class="repeater-add-btn inline-flex items-center justify-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                            </svg>&nbsp;Add skill</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+
+            </section>
+
+
+            <section id="preview-sc" class="print_area">
+                <div class="preview-container">
+                    <div class="preview-cnt">
+                        <div class="preview-cnt-l bg-green text-white">
+                            <div class="preview-blk">
+                                <div class="preview-image">
+                                    <img src="" alt="" id="image_dsp">
+                                </div>
+                                <div class="preview-item preview-item-name">
+                                    <span class="preview-item-val fw-6" id="fullname_dsp"></span>
+                                </div>
+                                <div class="preview-item">
+                                    <span class="preview-item-val  fw-6 ls-1" id="designation_dsp"></span>
+                                </div>
+                            </div>
+
+                            <div class="preview-blk">
+                                <div class="preview-blk-title">
+                                    <h3>about</h3>
+                                </div>
+                                <div class="preview-blk-list">
+                                    <div class="preview-item">
+                                        <span class="preview-item-val" id="phoneno_dsp"></span>
+                                    </div>
+                                    <div class="preview-item">
+                                        <span class="preview-item-val" id="email_dsp"></span>
+                                    </div>
+                                    <div class="preview-item">
+                                        <span class="preview-item-val" id="address_dsp"></span>
+                                    </div>
+                                    <div class="preview-item">
+                                        <span class="preview-item-val" id="summary_dsp"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="preview-blk">
+                                <div class="preview-blk-title">
+                                    <h3>skills</h3>
+                                </div>
+                                <div class="skills-items preview-blk-list" id="skills_dsp">
+                                    <!-- skills list here -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="preview-cnt-r bg-white">
+                            <div class="preview-blk">
+                                <div class="preview-blk-title">
+                                    <h3>Achievements</h3>
+                                </div>
+                                <div class="achievements-items preview-blk-list" id="achievements_dsp"></div>
+                            </div>
+
+                            <div class="preview-blk">
+                                <div class="preview-blk-title">
+                                    <h3>educations</h3>
+                                </div>
+                                <div class="educations-items preview-blk-list" id="educations_dsp"></div>
+                            </div>
+
+                            <div class="preview-blk">
+                                <div class="preview-blk-title">
+                                    <h3>experiences</h3>
+                                </div>
+                                <div class="experiences-items preview-blk-list" id="experiences_dsp"></div>
+                            </div>
+
+                            <div class="preview-blk">
+                                <div class="preview-blk-title">
+                                    <h3>projects</h3>
+                                </div>
+                                <div class="projects-items preview-blk-list" id="projects_dsp"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+
+        </div>
+
+        <!-- Bulb Toggle Button -->
+        <div class="fixed right-4 top-1/2 transform -translate-y-1/2 z-50">
+            <button id="bulbButton" data-popover-target="popover-top" data-popover-placement="top"
+                class="inline-flex items-center justify-center w-12 h-12 bg-indigo-500 text-white rounded-full shadow-lg cursor-pointer transition-transform duration-300 hover:bg-indigo-600 rotate-0"
+                type="button" aria-controls="drawer-right-example">
+                <span id="bulbEmoji" class="animate-bounce-emoji">💡</span>
+            </button>
+
+            <div data-popover id="popover-top" role="tooltip"
+                class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500  transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+                <div
+                    class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
+                    <h3 class="font-semibold text-gray-900 dark:text-white">Pro Tips!</h3>
+                </div>
+                <div class="px-3 py-2">
+                    <p>Consider taking a sneak peek at Simpfolio's Resume Guide</p>
+                </div>
+                <div data-popper-arrow></div>
+            </div>
+        </div>
+
+
+
+        <!-- Grey Overlay -->
+        <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
+
+        <!-- Drawer Component -->
+        <div id="drawer-right-example"
+            class="fixed top-14 right-0 z-50 h-full  overflow-y-auto transition-transform translate-x-full bg-white w-80 dark:bg-gray-800"
+            tabindex="-1" aria-labelledby="drawer-right-label" style="padding-left: 20px; padding-right: 0px; 
+background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);">
+
+            <div class="tipsheadersticky"
+                style="position: sticky; top:0; padding-top: 10px; padding-bottom: 5px; background-color: #e2ebf0;">
+                <h1
+                    class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl light:text-white mt-4">
+                    Resume <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Guide</span>
+                </h1>
+                <button type="button" id="closeDrawer" aria-controls="drawer-right-example"
+                    class="text-blue-500 bg-transparent hover:bg-gray-200 hover:text-blue-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 right-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
+                    <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                    </svg>
+                    <span class="sr-only">Close menu</span>
+                </button>
+            </div>
+
+            <div class=" px-1 py-1 overflow-y-auto " id="tips"
+                style="width: 100%; padding: 4px; width: 100%; margin-bottom: 100px;">
+
+                <a href="#"
+                    class="bg-blue-100 text-blue-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md light:bg-gray-700 light:text-blue-400 mb-2">
+
+                    <svg class="w-3.5 h-3.5 mr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="currentcolor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd"
+                            d="M7.05 4.05A7 7 0 0 1 19 9c0 2.407-1.197 3.874-2.186 5.084l-.04.048C15.77 15.362 15 16.34 15 18a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1c0-1.612-.77-2.613-1.78-3.875l-.045-.056C6.193 12.842 5 11.352 5 9a7 7 0 0 1 2.05-4.95ZM9 21a1 1 0 0 1 1-1h4a1 1 0 1 1 0 2h-4a1 1 0 0 1-1-1Zm1.586-13.414A2 2 0 0 1 12 7a1 1 0 1 0 0-2 4 4 0 0 0-4 4 1 1 0 0 0 2 0 2 2 0 0 1 .586-1.414Z"
+                            clip-rule="evenodd" />
+                    </svg>
+
+                    Tutorial
+                </a>
+
+
+
+                <div class="p-4 mt-6 rounded-lg bg-blue-50 light:bg-blue-900">
+                    <div class="flex items-center mb-3">
+                        <span
+                            class="bg-orange-100 text-orange-800 text-sm font-semibold me-2 px-2.5 py-0.5 rounded light:bg-orange-200 light:text-orange-900">Summary
+                            Guide</span>
+
+                    </div>
+                    <p class="mb-3 text-sm text-blue-800 light:text-blue-400">
+                        Craft a concise, tailored professional summary by highlighting your key expertise,
+                        relevant
+                        skills, and measurable accomplishments. Use action words and focus on how you can add
+                        value
+                        to the specific role or company in 2-3 impactful sentences.
+                </div>
+
+                <div class="p-4 mt-6 rounded-lg bg-blue-50 light:bg-blue-900">
+                    <div class="flex items-center mb-3">
+                        <span
+                            class="bg-orange-100 text-orange-800 text-sm font-semibold me-2 px-2.5 py-0.5 rounded light:bg-orange-200 light:text-orange-900">Skills
+                            Tips</span>
+
+                    </div>
+                    <p class="mb-3 text-sm text-blue-800 light:text-blue-400">
+                        Highlight relevant skills tailored to the job, focusing on both technical expertise and
+                        soft
+                        skills. Group similar skills, prioritize proficiency, and align them with the job
+                        description for impact.
+                </div>
+
+                <div class="p-4 mt-6 rounded-lg bg-blue-50 light:bg-blue-900">
+                    <div class="flex items-center mb-3">
+                        <span
+                            class="bg-orange-100 text-orange-800 text-sm font-semibold me-2 px-2.5 py-0.5 rounded light:bg-orange-200 light:text-orange-900">Experience
+                            Insights</span>
+
+                    </div>
+                    <p class="mb-3 text-sm text-blue-800 light:text-blue-400">
+                        List roles in reverse order, focusing on achievements and outcomes. Use action verbs and
+                        tailor details to match the job description.
+                </div>
+
+                <div class="p-4 mt-6 rounded-lg bg-blue-50 light:bg-blue-900">
+                    <div class="flex items-center mb-3">
+                        <span
+                            class="bg-orange-100 text-orange-800 text-sm font-semibold me-2 px-2.5 py-0.5 rounded light:bg-orange-200 light:text-orange-900">Academic
+                            Overview
+                        </span>
+
+                    </div>
+                    <p class="mb-3 text-sm text-blue-800 light:text-blue-400">
+                        Keep your academic background concise and relevant. List degrees in reverse order,
+                        including
+                        the institution and graduation year. Highlight honors, certifications, or coursework
+                        that
+                        align with the job.
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function confirmLogout(event) {
+                event.preventDefault(); // Prevent default action
+                Swal.fire({
+                    title: "Signout",
+                    text: "Are you sure you want to sign out from Simpfolio?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#d33",
+                    cancelButtonColor: "#3085d6",
+                    confirmButtonText: "Logout",
+                    cancelButtonText: "No", // Text for the cancel button
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '/logout/'
+                    }
+                });
+            }
+        </script>
+
+
+        <!-- Script -->
+        <script>
+            const bulbButton = document.getElementById('bulbButton');
+            const drawer = document.getElementById('drawer-right-example');
+            const overlay = document.getElementById('overlay');
+            let isDrawerOpen = false;
+
+            const openDrawer = () => {
+                drawer.classList.remove('translate-x-full');
+                drawer.classList.add('translate-x-0');
+                overlay.classList.remove('hidden');
+                isDrawerOpen = true;
+                bulbButton.classList.add('rotate-180');
+            };
+
+            const closeDrawer = () => {
+                drawer.classList.remove('translate-x-0');
+                drawer.classList.add('translate-x-full');
+                overlay.classList.add('hidden');
+                isDrawerOpen = false;
+                bulbButton.classList.remove('rotate-180');
+            };
+
+            bulbButton.addEventListener('click', () => {
+                if (isDrawerOpen) {
+                    closeDrawer();
+                } else {
+                    openDrawer();
+                }
+            });
+
+            overlay.addEventListener('click', closeDrawer);
+            document.getElementById('closeDrawer').addEventListener('click', closeDrawer);
+        </script>
+
+
+
+        <script>
+            const button = document.getElementById("dropdowntipsbtn");
+
+            // Toggle button active state on click
+            button.addEventListener("click", (event) => {
+                event.stopPropagation();
+                button.classList.toggle("active-button");
+            });
+
+            // Remove active state when clicking outside the button
+            document.addEventListener("click", () => {
+                button.classList.remove("active-button");
+            });
+
+        </script>
+
+
+        <!-- jquery cdn -->
+        <script src="https://code.jquery.com/jquery-3.6.4.js"
+            integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+        <!-- jquery repeater cdn -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.js"
+            integrity="sha512-bZAXvpVfp1+9AUHQzekEZaXclsgSlAeEnMJ6LfFAvjqYUVZfcuVXeQoN5LhD7Uw0Jy4NCY9q3kbdEXbwhZUmUQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+
+        <!-- custom js -->
+        <script src="/static/js/script.js"></script>
+
+
+        <!-- app js -->
+        <script src="/static/js/app.js"></script>
+        <!-- jsPDF library -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <script>
+            window.addEventListener('beforeunload', function (event) {
+                // This triggers the confirmation dialog with a default message
+                const message = "Leave the page? Changes are not saved by Simpfolio in this version.";
+                event.returnValue = message;  // Standard for most browsers
+                return message;  // For compatibility with older browsers
+            });
+        </script>
+
+
+    </body>
+
+</html>
+
+<!-- Phone number original min1.html cool one -->
+
+<!-- <div class="sm:col-span-2 ">
+    <label for="PhoneNo"
+        class="block mb-2 text-sm font-medium text-gray-900 light:text-white">Phone Number
+    </label>
+    <input id="phone" name="phone"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-primary-500 light:focus:border-primary-500">
+
+    </input>
+</div> -->
+
+
+
+
+<!-- <button type=""
+    class=" inline-flex items-center justify-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+    </svg>Add Skills
+</button> -->

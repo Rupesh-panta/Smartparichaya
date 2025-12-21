@@ -1,0 +1,316 @@
+{% extends "baseTemp.html" %}
+{% block body %}
+
+<div class="contHead" style="
+        padding-left: 50px;
+        padding-top: 150px;
+        padding-right: 50px;
+        
+        text-align: center;
+      ">
+  <h1
+    class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl light:text-white">
+    Contact <span class="text-blue-600 light:text-blue-500">Us</span>
+  </h1>
+</div>
+
+<div class="contmain">
+  <div class="card">
+    <div class="card-content">
+      <div class="left-content">
+        <p class="mb-8 lg:mb-16 font-light text-center text-gray-500 light:text-gray-400 sm:text-xl">
+          We're eager to hear from you! Share your questions, comments, or
+          concerns with the SmartParichaya team by filling out our form. Your
+          feedback is valuable to us.
+        </p>
+
+        <div class="container">
+          <div class="contact-info">
+            <div class="icon">
+              <svg id="uniqueNofill" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path
+                    d="M4 18L9 12M20 18L15 12M3 8L10.225 12.8166C10.8665 13.2443 11.1872 13.4582 11.5339 13.5412C11.8403 13.6147 12.1597 13.6147 12.4661 13.5412C12.8128 13.4582 13.1335 13.2443 13.775 12.8166L21 8M6.2 19H17.8C18.9201 19 19.4802 19 19.908 18.782C20.2843 18.5903 20.5903 18.2843 20.782 17.908C21 17.4802 21 16.9201 21 15.8V8.2C21 7.0799 21 6.51984 20.782 6.09202C20.5903 5.71569 20.2843 5.40973 19.908 5.21799C19.4802 5 18.9201 5 17.8 5H6.2C5.0799 5 4.51984 5 4.09202 5.21799C3.71569 5.40973 3.40973 5.71569 3.21799 6.09202C3 6.51984 3 7.07989 3 8.2V15.8C3 16.9201 3 17.4802 3.21799 17.908C3.40973 18.2843 3.71569 18.5903 4.09202 18.782C4.51984 19 5.07989 19 6.2 19Z"
+                    stroke="#007bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </g>
+              </svg>
+            </div>
+            <div class="details">
+              <p class="text-gray-500 light:text-gray-400">
+                smartparichayacv@gmail.com
+              </p>
+            </div>
+          </div>
+          <div class="contact-info">
+            <div class="icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path
+                    d="M16.5562 12.9062L16.1007 13.359C16.1007 13.359 15.0181 14.4355 12.0631 11.4972C9.10812 8.55901 10.1907 7.48257 10.1907 7.48257L10.4775 7.19738C11.1841 6.49484 11.2507 5.36691 10.6342 4.54348L9.37326 2.85908C8.61028 1.83992 7.13596 1.70529 6.26145 2.57483L4.69185 4.13552C4.25823 4.56668 3.96765 5.12559 4.00289 5.74561C4.09304 7.33182 4.81071 10.7447 8.81536 14.7266C13.0621 18.9492 17.0468 19.117 18.6763 18.9651C19.1917 18.9171 19.6399 18.6546 20.0011 18.2954L21.4217 16.883C22.3806 15.9295 22.1102 14.2949 20.8833 13.628L18.9728 12.5894C18.1672 12.1515 17.1858 12.2801 16.5562 12.9062Z">
+                  </path>
+                </g>
+              </svg>
+            </div>
+            <div class="details">
+              <p class="text-gray-500 light:text-gray-400">
+                +977 98XXXXXXXX
+              </p>
+            </div>
+          </div>
+          <div class="contact-info">
+            <div class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M0 0h24v24H0z" fill="none" />
+                <path
+                  d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9c-1.38 0-2.5-1.12-2.5-2.5S10.62 6 12 6s2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                <path d="M0 0h24v24H0z" fill="none" />
+              </svg>
+            </div>
+            <div class="details">
+              <p class="text-gray-500 light:text-gray-400">
+                Banepa,Kavre
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-content">
+        <div class="contact-form">
+          <section class="bg-black light:bg-gray-900">
+            <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
+              <form action="/contact/" class="space-y-8" method="post" id="contactForm">
+                <div>
+                  <label for="name" class="block mb-2 text-sm font-medium text-gray-900 light:text-gray-300">Name
+                  </label>
+                  <input type="text" id="name"
+                    class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-black light:focus:ring-primary-500 light:focus:border-primary-500 light:shadow-sm-light"
+                    name="name" placeholder="Your Name" required />
+                </div>
+                <div>
+                  <label for="email" class="block mb-2 text-sm font-medium text-gray-900 light:text-gray-300">E-mail
+                    address</label>
+                  <input type="email" id="email"
+                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-black light:focus:ring-primary-500 light:focus:border-primary-500 light:shadow-sm-light"
+                    name="email" placeholder="name@mail.com" required />
+                </div>
+
+                <div>
+                  <label for="subject"
+                    class="block mb-2 text-sm font-medium text-gray-900 light:text-gray-300">Subject</label>
+                  <input type="text" id="subject"
+                    class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-black light:focus:ring-primary-500 light:focus:border-primary-500 light:shadow-sm-light"
+                    name="subject" placeholder="Let us know how we can help you" required />
+                </div>
+                <div class="sm:col-span-2">
+                  <label for="message" class="block mb-2 text-sm font-medium text-gray-900 light:text-gray-400">Your
+                    message</label>
+                  <textarea id="message" rows="6"
+                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-black light:focus:ring-primary-500 light:focus:border-primary-500"
+                    style="resize: none" name="message" placeholder="Leave your message..."></textarea>
+                </div>
+                <button type="submit"
+                  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  id="formSubmitBtn">
+                  Send message
+                </button>
+
+                {% csrf_token %}
+                <!-- Resolves the 403 forbidden issue when using method post to submit a form in django template -->
+
+              </form>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  label {
+    cursor: url('/static/Simpfolio-Cursor/Normal.cur'), auto;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  input[type="search"],
+
+  textarea {
+    cursor: url('/static/Simpfolio-Cursor/IBeam.cur'), text;
+  }
+
+
+  .contmain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: white;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .card {
+    max-width: 1000px;
+    width: 100%;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(168, 168, 168, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .card-content {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .left-content,
+  .right-content {
+    flex: 1;
+    padding: 20px;
+  }
+
+  .left-content {
+    background-color: #fdfdfd;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 40px;
+    /* align-items: left; */
+  }
+
+  .left-content>p {
+    text-align: left;
+    margin-top: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .container {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .contact-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .icon {
+    margin-right: 30px;
+  }
+
+  .icon svg {
+    width: 25px;
+    height: 25px;
+    fill: #007bff;
+    transition: fill 0.3s ease;
+    cursor: pointer;
+  }
+
+  #uniqueNofill {
+    fill: none;
+  }
+
+  .icon svg:hover {
+    fill: #0056b3;
+  }
+
+  .details {
+    flex: 1;
+  }
+
+  .right-content {
+    background-color: #f1f1f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .contact-form {
+    max-width: 450px;
+    width: 100%;
+    /* background-color: red; */
+  }
+
+  @media screen and (max-width: 800px) {
+    .card {
+      max-width: 90%;
+      margin-top: -18px;
+    }
+
+    .card-content {
+      flex-direction: column;
+    }
+
+    .left-content {
+      gap: 5px;
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    .card {
+      max-width: 90%;
+    }
+  }
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  document.getElementById('contactForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const formData = new FormData(this);
+
+    fetch('/contact/', {
+      method: 'POST',
+      body: formData
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          Swal.fire({
+            title: "Thank You!",
+            text: "Your message was sent successfully! We'll get back to you as soon as possible.",
+            icon: "success",
+            confirmButtonColor: '#3085d6',
+          }).then(() => {
+            this.reset();
+          });
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong! Please try again later.",
+            confirmButtonColor: '#3085d6',
+          });
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong! Please try again later.",
+          confirmButtonColor: '#3085d6',
+        });
+      });
+  });
+</script>
+
+
+{% endblock body %}

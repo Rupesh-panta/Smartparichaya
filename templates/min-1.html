@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CV Template</title>
+        <link rel="stylesheet" href="https://cdn.tutorialjinni.com/intl-tel-input/17.0.8/css/intlTelInput.css" />
+        <script src="https://cdn.tutorialjinni.com/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.js"></script>
+
+
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+            body {
+                font-family: "Inter", sans-serif;
+
+
+
+            }
+
+            html,
+            body {
+                overflow: hidden;
+                scrollbar-width: none;
+
+
+            }
+
+            .li-align {
+                display: list-item;
+                list-style-position: inside;
+                text-indent: -1.5em;
+                padding-left: 1.5em;
+            }
+
+            #cv-data-form {
+                border: 1px solid #fff;
+                box-shadow: 0 0 10px 5px rgba(221, 221, 221, 0.4);
+                max-height: 85vh;
+                overflow-y: scroll;
+                overflow-x: hidden;
+                position: fixed;
+                left: 30px;
+                top: auto;
+                z-index: 10;
+                width: 350px;
+
+            }
+
+            #cv-data-form::-webkit-scrollbar {
+                width: 5px;
+            }
+
+            #cv-data-form::-webkit-scrollbar-track {
+                background: transparent;
+            }
+
+            #cv-data-form::-webkit-scrollbar-thumb {
+                background: #888;
+                border-radius: 10px;
+
+            }
+
+
+
+            #cv-data-form::-webkit-scrollbar-thumb:hover {
+                background: #555;
+                /* lighter shade on hover */
+            }
+
+            /* Container for the entire CV preview */
+            .cv-preview-container {
+                width: 100%;
+                /* Makes the container full width of the viewport */
+                max-width: 780px;
+                /* Maximum width of the CV container */
+                height: 85vh;
+                /* 85% of the viewport height */
+                max-height: 100%;
+                /* Prevents height from growing beyond content */
+                overflow-y: auto;
+                /* Enables vertical scrolling */
+                overflow-x: hidden;
+                /* Prevents horizontal overflow */
+
+                border: 1px solid #fff;
+                box-shadow: 0 0 10px 5px rgba(221, 221, 221, 0.4);
+                background-color: #FAFAFA;
+
+            }
+
+            .cv-preview-container {
+                scrollbar-width: none;
+            }
+
+
+            /* Define A4 dimensions and scale down for the preview */
+            .cv-preview {
+                transform-origin: top left;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                max-width: 800px !important;
+                padding-top: 6rem !important;
+                padding-bottom: 6rem !important;
+                width: 100% !important;
+                height: 100%;
+                max-height: 100%;
+                overflow-y: auto;
+                overflow-x: hidden;
+
+
+            }
+
+            .cv-preview {
+                scrollbar-width: none;
+            }
+
+
+
+            @media(max-width:1220px) {
+                .cv-preview-container {
+                    display: none;
+                }
+
+                #cv-data-form {
+                    width: 90%;
+                }
+
+                #holder {
+                    justify-content: center;
+                }
+            }
+
+            #holder {
+                width: 100%;
+                max-width: 100%;
+                display: flex;
+                justify-content: space-between;
+                flex-direction: row;
+                padding-left: 400px;
+                position: relative;
+                max-height: max-content;
+                height: max-content;
+
+
+
+
+            }
+
+            #dropdowntipsbtn {
+                color: white;
+                transition: background 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            #dropdowntipsbtn:hover {
+                background: linear-gradient(135deg, rgba(110, 142, 251, 0.9), rgba(167, 119, 227, 0.9));
+                box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+                /* lighter shadow */
+
+            }
+
+            .active-button {
+                background: linear-gradient(135deg, rgba(110, 142, 251, 0.9), rgba(167, 119, 227, 0.9)) !important;
+                box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2) !important;
+                color: white !important;
+            }
+
+            .show-sv {
+                display: none;
+            }
+
+            #dropdownprotips {
+                width: 250px;
+                max-width: 250px;
+            }
+
+
+
+
+
+            @media(max-width:600px) {
+                .hide-text {
+                    display: none;
+                }
+            }
+
+            @media(max-width:1460px) {
+                #cta-button-sidebar {
+                    display: none;
+                }
+
+                .cv-preview-container {
+                    width: 100%;
+                }
+
+
+
+                #dropdowntipsbtn {
+                    justify-content: center;
+                    /* Center the SVG horizontally */
+                    padding-left: 0.5rem;
+                    padding-right: 0.5rem;
+                    height: 35px;
+
+
+                }
+
+                #dropdowntipsbtn svg {
+                    margin-left: 0;
+                    /* Remove left margin from the SVG */
+                }
+
+            }
+
+
+
+            @media (max-width: 390px) {
+                .hide-db {
+                    display: none;
+                }
+
+                .show-sv {
+                    display: block;
+                    padding-left: 1px;
+                    padding-right: 1px;
+                }
+
+            }
+
+            #cta-button-sidebar {
+                position: relative;
+                width: 10%;
+                right: 0;
+                scrollbar-width: none;
+                height: 85vh;
+                flex-grow: 1;
+                left: 35px;
+
+            }
+
+
+            #tips {
+                word-wrap: break-word;
+                max-width: 90%;
+                scrollbar-width: none;
+
+            }
+
+            .note-editor ul {
+                list-style: initial;
+                margin-left: 10px;
+            }
+
+            .note-editor ol {
+                list-style: decimal;
+                margin-left: 10px;
+            }
+        </style>
+    </head>
+
+    <body class=" min-h-screen p-4">
+        <nav
+            class="bg-white border-b border-gray-200 px-4 py-2.5 light:bg-gray-800 light:border-gray-700 fixed left-0 right-0 top-0 z-50">
+            <div class="flex flex-wrap justify-between items-center">
+                <div class="flex justify-start items-center">
+
+                    <a href="/" class="flex items-center justify-between mr-4">
+                        <img src="https://flowbite.s3.amazonaws.com/logo.svg" class="mr-3 h-8" alt="Flowbite Logo" />
+                        <span
+                            class="self-center text-2xl font-semibold whitespace-nowrap light:text-white">Simpfolio</span>
+                    </a>
+
+                </div>
+                <div class="flex flex-wrap items-end lg:order-3 gap-2">
+
+
+                    <button id="dropdowntipsbtn" data-dropdown-toggle="dropdownprotips"
+                        class="relative inline-flex items-center justify-center px-3 py-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white light:text-white focus:ring-4 focus:outline-none focus:ring-green-200 light:focus:ring-green-800"
+                        type="button">
+                        <span class="hide-text">Quick Tips</span>
+                        <svg class="flex-shrink-0 inline w-5 h-4 ms-1" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="currentcolor" viewBox="0 0 20 20">
+                            <path
+                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                        </svg>
+                    </button>
+
+                    <!-- Dropdown menu -->
+                    <div id="dropdownprotips"
+                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 light:bg-gray-700">
+                        <ul class="py-2 text-sm text-gray-700 light:text-gray-200"
+                            aria-labelledby="dropdownDefaultButton">
+                            <li>
+                                <a href=""
+                                    class="block px-4 py-2 hover:bg-gray-100 light:hover:bg-gray-600 light:hover:text-white">Name
+                                    - 3%</a>
+                            </li>
+                            <li>
+                                <a href=""
+                                    class="block px-4 py-2 hover:bg-gray-100 light:hover:bg-gray-600 light:hover:text-white">Role
+                                    - 3%</a>
+                            </li>
+                            <li>
+                                <a href=""
+                                    class="block px-4 py-2 hover:bg-gray-100 light:hover:bg-gray-600 light:hover:text-white">Email
+                                    - 3%</a>
+                            </li>
+                            <li>
+                                <a href=""
+                                    class="block px-4 py-2 hover:bg-gray-100 light:hover:bg-gray-600 light:hover:text-white">Phone
+                                    - 3%
+                                </a>
+                            </li>
+                            <li>
+                                <a href=""
+                                    class="block px-4 py-2 hover:bg-gray-100 light:hover:bg-gray-600 light:hover:text-white">Country
+                                    / State - 3%
+                                </a>
+                            </li>
+                            <li>
+                                <a href=""
+                                    class="block px-4 py-2 hover:bg-gray-100 light:hover:bg-gray-600 light:hover:text-white">City
+                                    / Zipcode - 3%
+                                </a>
+                            </li>
+                            <li>
+                                <a href=""
+                                    class="block px-4 py-2 hover:bg-gray-100 light:hover:bg-gray-600 light:hover:text-white">Weblink/s
+                                    - 3%
+                                </a>
+                            </li>
+                            <li>
+                                <a href=""
+                                    class="block px-4 py-2 hover:bg-gray-100 light:hover:bg-gray-600 light:hover:text-white">Professional
+                                    Summary - 15%
+                                </a>
+                            </li>
+                            <li>
+                                <a href=""
+                                    class="block px-4 py-2 hover:bg-gray-100 light:hover:bg-gray-600 light:hover:text-white">Certification
+                                    - 2x6%=12%
+                                </a>
+                            </li>
+                            <li>
+                                <a href=""
+                                    class="block px-4 py-2 hover:bg-gray-100 light:hover:bg-gray-600 light:hover:text-white">Skills
+                                    - 4x3%=12%
+                                </a>
+                            </li>
+                            <li>
+                                <a href=""
+                                    class="block px-4 py-2 hover:bg-gray-100 light:hover:bg-gray-600 light:hover:text-white">Employment
+                                    - 2x10%=20%
+                                </a>
+                            </li>
+                            <li>
+                                <a href=""
+                                    class="block px-4 py-2 hover:bg-gray-100 light:hover:bg-gray-600 light:hover:text-white">Education
+                                    - 2x7%=14%
+                                </a>
+                            </li>
+                            <li>
+                                <a href=""
+                                    class="block px-4 py-2 hover:bg-gray-100 light:hover:bg-gray-600 light:hover:text-white">Custom
+                                    Sections - 2x3%=6%
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+
+
+                    <!-- Download -->
+                    <button id="dropdownDefaultButton" data-dropdown-toggle="dropdownDownload"
+                        class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center light:bg-blue-600 light:hover:bg-blue-700 light:focus:ring-blue-800"
+                        type="button"><span class="hide-db">Download</span>
+                        <span class="show-sv">
+
+                            <svg class="w-5 h-5 text-gray-800 light:text-white " aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                viewBox="0 0 24 24">
+                                <path stroke="white" stroke-linecap="round" stroke-width="2"
+                                    d="M11 16h2m6.707-9.293-2.414-2.414A1 1 0 0 0 16.586 4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V7.414a1 1 0 0 0-.293-.707ZM16 20v-6a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v6h8ZM9 4h6v3a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V4Z" />
+                            </svg>
+
+
+                        </span>
+                    </button>
+                    <!-- Dropdown menu (Download) -->
+                    <div id="dropdownDownload"
+                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 light:bg-gray-700">
+                        <ul class="py-2 text-sm text-gray-700 light:text-gray-200"
+                            aria-labelledby="dropdownDefaultButton">
+                            <li class="flex flex items-center">
+                                <svg height="200px" width="200px" version="1.1" id="Layer_1" class="w-4 h-4 ml-6"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    viewBox="0 0 309.267 309.267" xml:space="preserve" fill="#000000">
+                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                    <g id="SVGRepo_iconCarrier">
+                                        <g>
+                                            <path style="fill:#E2574C;"
+                                                d="M38.658,0h164.23l87.049,86.711v203.227c0,10.679-8.659,19.329-19.329,19.329H38.658 c-10.67,0-19.329-8.65-19.329-19.329V19.329C19.329,8.65,27.989,0,38.658,0z">
+                                            </path>
+                                            <path style="fill:#B53629;"
+                                                d="M289.658,86.981h-67.372c-10.67,0-19.329-8.659-19.329-19.329V0.193L289.658,86.981z">
+                                            </path>
+                                            <path style="fill:#FFFFFF;"
+                                                d="M217.434,146.544c3.238,0,4.823-2.822,4.823-5.557c0-2.832-1.653-5.567-4.823-5.567h-18.44 c-3.605,0-5.615,2.986-5.615,6.282v45.317c0,4.04,2.3,6.282,5.412,6.282c3.093,0,5.403-2.242,5.403-6.282v-12.438h11.153 c3.46,0,5.19-2.832,5.19-5.644c0-2.754-1.73-5.49-5.19-5.49h-11.153v-16.903C204.194,146.544,217.434,146.544,217.434,146.544z M155.107,135.42h-13.492c-3.663,0-6.263,2.513-6.263,6.243v45.395c0,4.629,3.74,6.079,6.417,6.079h14.159 c16.758,0,27.824-11.027,27.824-28.047C183.743,147.095,173.325,135.42,155.107,135.42z M155.755,181.946h-8.225v-35.334h7.413 c11.221,0,16.101,7.529,16.101,17.918C171.044,174.253,166.25,181.946,155.755,181.946z M106.33,135.42H92.964 c-3.779,0-5.886,2.493-5.886,6.282v45.317c0,4.04,2.416,6.282,5.663,6.282s5.663-2.242,5.663-6.282v-13.231h8.379 c10.341,0,18.875-7.326,18.875-19.107C125.659,143.152,117.425,135.42,106.33,135.42z M106.108,163.158h-7.703v-17.097h7.703 c4.755,0,7.78,3.711,7.78,8.553C113.878,159.447,110.863,163.158,106.108,163.158z">
+                                            </path>
+                                        </g>
+                                    </g>
+                                </svg>
+                                <a href="#"
+                                    class="block px-4 py-2 hover:bg-gray-100 light:hover:bg-gray-600 light:hover:text-white">PDF</a>
+                            </li>
+                            <li class="flex flex items-center">
+                                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-6"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000">
+                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                    <g id="SVGRepo_iconCarrier">
+                                        <defs>
+                                            <linearGradient id="a" x1="4.494" y1="-1712.086" x2="13.832" y2="-1695.914"
+                                                gradientTransform="translate(0 1720)" gradientUnits="userSpaceOnUse">
+                                                <stop offset="0" stop-color="#2368c4"></stop>
+                                                <stop offset="0.5" stop-color="#1a5dbe"></stop>
+                                                <stop offset="1" stop-color="#1146ac"></stop>
+                                            </linearGradient>
+                                        </defs>
+                                        <title>file_type_word</title>
+                                        <path
+                                            d="M28.806,3H9.705A1.192,1.192,0,0,0,8.512,4.191h0V9.5l11.069,3.25L30,9.5V4.191A1.192,1.192,0,0,0,28.806,3Z"
+                                            style="fill:#41a5ee"></path>
+                                        <path d="M30,9.5H8.512V16l11.069,1.95L30,16Z" style="fill:#2b7cd3"></path>
+                                        <path d="M8.512,16v6.5L18.93,23.8,30,22.5V16Z" style="fill:#185abd"></path>
+                                        <path
+                                            d="M9.705,29h19.1A1.192,1.192,0,0,0,30,27.809h0V22.5H8.512v5.309A1.192,1.192,0,0,0,9.705,29Z"
+                                            style="fill:#103f91"></path>
+                                        <path
+                                            d="M16.434,8.2H8.512V24.45h7.922a1.2,1.2,0,0,0,1.194-1.191V9.391A1.2,1.2,0,0,0,16.434,8.2Z"
+                                            style="opacity:0.10000000149011612;isolation:isolate"></path>
+                                        <path
+                                            d="M15.783,8.85H8.512V25.1h7.271a1.2,1.2,0,0,0,1.194-1.191V10.041A1.2,1.2,0,0,0,15.783,8.85Z"
+                                            style="opacity:0.20000000298023224;isolation:isolate"></path>
+                                        <path
+                                            d="M15.783,8.85H8.512V23.8h7.271a1.2,1.2,0,0,0,1.194-1.191V10.041A1.2,1.2,0,0,0,15.783,8.85Z"
+                                            style="opacity:0.20000000298023224;isolation:isolate"></path>
+                                        <path
+                                            d="M15.132,8.85H8.512V23.8h6.62a1.2,1.2,0,0,0,1.194-1.191V10.041A1.2,1.2,0,0,0,15.132,8.85Z"
+                                            style="opacity:0.20000000298023224;isolation:isolate"></path>
+                                        <path
+                                            d="M3.194,8.85H15.132a1.193,1.193,0,0,1,1.194,1.191V21.959a1.193,1.193,0,0,1-1.194,1.191H3.194A1.192,1.192,0,0,1,2,21.959V10.041A1.192,1.192,0,0,1,3.194,8.85Z"
+                                            style="fill:url(#a)"></path>
+                                        <path
+                                            d="M6.9,17.988c.023.184.039.344.046.481h.028c.01-.13.032-.287.065-.47s.062-.338.089-.465l1.255-5.407h1.624l1.3,5.326a7.761,7.761,0,0,1,.162,1h.022a7.6,7.6,0,0,1,.135-.975l1.039-5.358h1.477l-1.824,7.748H10.591L9.354,14.742q-.054-.222-.122-.578t-.084-.52H9.127q-.021.189-.084.561c-.042.249-.075.432-.1.552L7.78,19.871H6.024L4.19,12.127h1.5l1.131,5.418A4.469,4.469,0,0,1,6.9,17.988Z"
+                                            style="fill:#fff"></path>
+                                    </g>
+                                </svg>
+                                <a href="#"
+                                    class="block px-4 py-2 hover:bg-gray-100 light:hover:bg-gray-600 light:hover:text-white">Word</a>
+                            </li>
+
+
+                        </ul>
+                    </div>
+
+
+
+
+                    <button type="button"
+                        class="flex mx-0 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 light:focus:ring-gray-600"
+                        id="user-menu-button" aria-expanded="false" data-dropdown-toggle="dropdown">
+                        <span class="sr-only">Open user menu</span>
+                        <img class="w-8 h-8 rounded-full"
+                            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png"
+                            alt="user photo" />
+                    </button>
+                    <!-- Dropdown menu -->
+                    <div class="hidden z-50 my-4 w-56 text-base list-none bg-white rounded divide-y divide-gray-100 shadow light:bg-gray-700 light:divide-gray-600 rounded-xl"
+                        id="dropdown">
+                        <div class="py-3 px-4">
+                            <span class="block text-sm font-semibold text-gray-900 light:text-white">Neil Sims</span>
+                            <span class="block text-sm text-gray-900 truncate light:text-white">name@flowbite.com</span>
+                        </div>
+                        <ul class="py-1 text-gray-700 light:text-gray-300" aria-labelledby="dropdown">
+                            <li>
+                                <a href="#"
+                                    class="block py-2 px-4 text-sm hover:bg-gray-100 light:hover:bg-gray-600 light:text-gray-400 light:hover:text-white">My
+                                    profile</a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                    class="block py-2 px-4 text-sm hover:bg-gray-100 light:hover:bg-gray-600 light:text-gray-400 light:hover:text-white">Account
+                                    settings</a>
+                            </li>
+                        </ul>
+                        <ul class="py-1 text-gray-700 light:text-gray-300" aria-labelledby="dropdown">
+                            <li>
+                                <a href="#"
+                                    class="flex items-center py-2 px-4 text-sm hover:bg-gray-100 light:hover:bg-gray-600 light:hover:text-white"><svg
+                                        class="mr-2 w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                    My likes</a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                    class="flex items-center py-2 px-4 text-sm hover:bg-gray-100 light:hover:bg-gray-600 light:hover:text-white"><svg
+                                        class="mr-2 w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z">
+                                        </path>
+                                    </svg>
+                                    Collections</a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                    class="flex justify-between items-center py-2 px-4 text-sm hover:bg-gray-100 light:hover:bg-gray-600 light:hover:text-white">
+                                    <span class="flex items-center">
+                                        <svg aria-hidden="true"
+                                            class="mr-2 w-5 h-5 text-primary-600 light:text-primary-500"
+                                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        Pro version
+                                    </span>
+                                    <svg aria-hidden="true" class="w-5 h-5 text-gray-400" fill="currentColor"
+                                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="py-1 text-gray-700 light:text-gray-300" aria-labelledby="dropdown">
+                            <li>
+                                <a href="#"
+                                    class="block py-2 px-4 text-sm hover:bg-gray-100 light:hover:bg-gray-600 light:hover:text-white">Sign
+                                    out</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="w-full h-full mt-20" id="holder">
+
+
+            <section class="bg-white shadow-lg light:bg-gray-900 " id="cv-data-form">
+                <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
+                    <h2 class="mb-4 text-xl font-bold text-gray-900 light:text-white">Personal Details</h2>
+                    <form action="#" id = "cv-form" class="cv-form">
+                        <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+                            <div class="w-full">
+                                <label for=""
+                                    class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">First
+                                    Name</label>
+                                <input name="firstname" type="text"
+                                    class="form-control firstname bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    id="" onkeyup="generateCV()" placeholder="e.g. John">
+                                <span class="form-text"></span>
+                            </div>
+                            <div class="w-full">
+                                <label for=""
+                                    class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Middle
+                                    Name </label>
+                                <input name="middlename" type="text"
+                                    class="form-control middlename bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    id="" onkeyup="generateCV()" placeholder="e.g. Herbert">
+                                <span class="form-text"></span>
+                            </div>
+                            <div class="w-full">
+                                <label for=""
+                                    class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last
+                                    Name</label>
+                                <input name="lastname" type="text"
+                                    class="form-control lastname bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    id="" onkeyup="generateCV()" placeholder="e.g. Doe">
+                                <span class="form-text"></span>
+                            </div>
+                            <div class="sm:col-span-2 ">
+                                <label for=""
+                                    class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
+                                    Image</label>
+                                <input name="image" type="file"
+                                    class="form-control image px-8 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    id="" accept="image/*" onchange="previewImage()">
+                            </div>
+                            <div class="sm:col-span-2  ">
+                                <label for=""
+                                    class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Designation</label>
+                                <input name="designation" type="text"
+                                    class="form-control designation bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    id="" onkeyup="generateCV()" placeholder="e.g. Accountant">
+                                <span class="form-text"></span>
+                            </div>
+                            <div class="w-full ">
+                                <label for=""
+                                    class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
+                                <input name="address" type="text"
+                                    class="form-control address bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    id="" onkeyup="generateCV()" placeholder="e.g. 34 Main St">
+                                <span class="form-text"></span>
+                            </div>
+                            <div class="w-full  ">
+                                <label for=""
+                                    class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                                <input name="email" type="text"
+                                    class="form-control email bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    id="" onkeyup="generateCV()" placeholder="e.g. jd@gmail.com">
+                                <span class="form-text"></span>
+                            </div>
+                            <div class="sm:col-span-2 ">
+                                <label for=""
+                                    class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone
+                                    No:</label>
+                                <input name="phoneno" type="text"
+                                    class="form-control phoneno bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    id="" onkeyup="generateCV()" placeholder="e.g. 456-768-798, 567.654.002">
+                                <span class="form-text"></span>
+                            </div>
+
+                            <div class="sm:col-span-2">
+                                <hr class="border-t border-gray-200 my-4 border-light" style="border-width: 1px;">
+
+                            </div>
+
+                            <div class="sm:col-span-2">
+
+                                <h2 class="mb-4 text-xl font-bold text-gray-900 light:text-white">Professional Summary
+                                </h2>
+
+                                <textarea rows="10" name="summary" type="text"
+                                    class="form-control summary bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 resize-none"
+                                    id="" onkeyup="generateCV()"></textarea>
+                                <span class="form-text"></span>
+                            </div>
+
+                            <div class="sm:col-span-2">
+                                <hr class="border-t border-gray-200 my-4 border-light" style="border-width: 1px;">
+
+                            </div>
+                            <div class="sm:col-span-2">
+                                <h2 class=" text-xl font-bold text-gray-900 light:text-white">Achievements</h2>
+                            </div>
+
+
+                            <!--Achievements-->
+                            <div class="sm:col-span-2">
+                                <div class="row-separator repeater">
+                                    <div class="repeater" data-repeater-list="group-a">
+                                        <div data-repeater-item>
+                                            <div class="cv-form-row cv-form-row-achievement">
+                                                <div class="cols-2">
+                                                    <div class="sm:col-span-2">
+                                                        <label for=""
+                                                            class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+                                                        <input name="achieve_title " type="text"
+                                                            class="form-control achieve_title mb-5 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                            id="" onkeyup="generateCV()">
+                                                        <span class="form-text"></span>
+                                                    </div>
+                                                    <div class="sm:col-span-2">
+                                                        <label for=""
+                                                            class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                                                        <input name="achieve_description" type="text"
+                                                            class="form-control achieve_description mb-5 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                            id="" onkeyup="generateCV()">
+                                                        <span class="form-text"></span>
+                                                    </div>
+                                                </div>
+                                                <button data-repeater-delete type="button"
+                                                    class="repeater-remove-btn mb-8 inline-flex items-center justify-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                                    </svg>&nbsp;Delete achievement</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" data-repeater-create value="Add"
+                                        class="repeater-add-btn inline-flex items-center justify-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        </svg>&nbsp;Add achievement</button>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="sm:col-span-2">
+                                <hr class="border-t border-gray-200 my-4 border-light" style="border-width: 1px;">
+
+                                <!-- Experience -->
+                            </div>
+                            <div class="sm:col-span-2">
+                                <h2 class=" text-xl font-bold text-gray-900 light:text-white">Experience</h2>
+                            </div>
+
+                            <div class="sm:col-span-2">
+                                <div class="row-separator repeater">
+                                    <div class="repeater" data-repeater-list="group-b">
+                                        <div data-repeater-item>
+                                            <div class="cv-form-row cv-form-row-experience">
+                                                <div class="cols-3">
+                                                    <div class="form-elem">
+                                                        <label for=""
+                                                            class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+                                                        <input name="exp_title" type="text"
+                                                            class="form-control exp_title border mb-5 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                            id="" onkeyup="generateCV()">
+                                                        <span class="form-text"></span>
+                                                    </div>
+                                                    <div class="form-elem">
+                                                        <label for=""
+                                                            class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Company
+                                                            /
+                                                            Organization</label>
+                                                        <input name="exp_organization" type="text"
+                                                            class="form-control exp_organization mb-5  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                            id="" onkeyup="generateCV()">
+                                                        <span class="form-text"></span>
+                                                    </div>
+                                                    <div class="form-elem">
+                                                        <label for=""
+                                                            class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
+                                                        <input name="exp_location" type="text"
+                                                            class="form-control exp_location mb-5  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                            id="" onkeyup="generateCV()">
+                                                        <span class="form-text"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="cols-3">
+                                                    <div class="form-elem">
+                                                        <label for=""
+                                                            class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Start
+                                                            Date</label>
+                                                        <input name="exp_start_date" type="date"
+                                                            class="form-control exp_start_date mb-5  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                            id="" onkeyup="generateCV()">
+                                                        <span class="form-text"></span>
+                                                    </div>
+                                                    <div class="form-elem">
+                                                        <label for=""
+                                                            class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">End
+                                                            Date</label>
+                                                        <input name="exp_end_date" type="date"
+                                                            class="form-control exp_end_date mb-5  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                            id="" onkeyup="generateCV()">
+                                                        <span class="form-text"></span>
+                                                    </div>
+                                                    <div class="form-elem">
+                                                        <label for=""
+                                                            class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                                                        <input name="exp_description" type="text"
+                                                            class="form-control exp_description mb-5  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                            id="" onkeyup="generateCV()">
+                                                        <span class="form-text"></span>
+                                                    </div>
+                                                </div>
+
+                                                <button data-repeater-delete type="button"
+                                                    class="repeater-remove-btn mb-8 inline-flex items-center justify-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                                    </svg>&nbsp;Delete experience</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" data-repeater-create value="Add"
+                                        class="repeater-add-btn inline-flex items-center justify-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        </svg>&nbsp;Add experience</button>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="sm:col-span-2">
+                                <hr class="border-t border-gray-200 my-4 border-light" style="border-width: 1px;">
+
+                            </div>
+                            <div class="sm:col-span-2">
+                                <h2 class=" text-xl font-bold text-gray-900 light:text-white">Education</h2>
+                            </div>
+                            <div class="sm:col-span-2">
+                                <div class="row-separator repeater">
+                                    <div class="repeater" data-repeater-list="group-c">
+                                        <div data-repeater-item>
+                                            <div class="cv-form-row cv-form-row-experience">
+                                                <div class="cols-3">
+                                                    <div class="form-elem">
+                                                        <label for=""
+                                                            class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">School</label>
+                                                        <input name="edu_school" type="text"
+                                                            class="form-control edu_school mb-5  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                            id="" onkeyup="generateCV()">
+                                                        <span class="form-text"></span>
+                                                    </div>
+                                                    <div class="form-elem">
+                                                        <label for=""
+                                                            class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Degree</label>
+                                                        <input name="edu_degree" type="text"
+                                                            class="form-control edu_degree mb-5  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                            id="" onkeyup="generateCV()">
+                                                        <span class="form-text"></span>
+                                                    </div>
+                                                    <div class="form-elem">
+                                                        <label for=""
+                                                            class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">City</label>
+                                                        <input name="edu_city" type="text"
+                                                            class="form-control edu_city mb-5  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                            id="" onkeyup="generateCV()">
+                                                        <span class="form-text"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="cols-3">
+                                                    <div class="form-elem">
+                                                        <label for=""
+                                                            class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Start
+                                                            Date</label>
+                                                        <input name="edu_start_date" type="date"
+                                                            class="form-control edu_start_date mb-5  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                            id="" onkeyup="generateCV()">
+                                                        <span class="form-text"></span>
+                                                    </div>
+                                                    <div class="form-elem">
+                                                        <label for=""
+                                                            class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">End
+                                                            Date</label>
+                                                        <input name="edu_graduation_date" type="date"
+                                                            class="form-control edu_graduation_date mb-5  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                            id="" onkeyup="generateCV()">
+                                                        <span class="form-text"></span>
+                                                    </div>
+                                                    <div class="form-elem">
+                                                        <label for=""
+                                                            class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                                                        <input name="edu_description" type="text"
+                                                            class="form-control edu_description mb-5  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                            id="" onkeyup="generateCV()">
+                                                        <span class="form-text"></span>
+                                                    </div>
+                                                </div>
+
+                                                <button data-repeater-delete type="button"
+                                                    class="repeater-remove-btn mb-8 inline-flex items-center justify-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                                    </svg>&nbsp;Delete education</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" data-repeater-create value="Add"
+                                        class="repeater-add-btn inline-flex items-center justify-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        </svg>&nbsp;Add education</button>
+                                </div>
+                            </div>
+
+
+                            <div class="sm:col-span-2">
+                                <hr class="border-t border-gray-200 my-4 border-light" style="border-width: 1px;">
+
+                            </div>
+
+                            <div class="sm:col-span-2">
+                                <h2 class=" text-xl font-bold text-gray-900 light:text-white">Projects</h2>
+                            </div>
+
+                            <div class="sm:col-span-2">
+                                <div class="row-separator repeater">
+                                    <div class="repeater" data-repeater-list="group-d">
+                                        <div data-repeater-item>
+                                            <div class="cv-form-row cv-form-row-experience">
+                                                <div class="cols-3">
+                                                    <div class="form-elem">
+                                                        <label for=""
+                                                            class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Project
+                                                            Name</label>
+                                                        <input name="proj_title" type="text"
+                                                            class="form-control proj_title mb-5  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                            id="" onkeyup="generateCV()">
+                                                        <span class="form-text"></span>
+                                                    </div>
+                                                    <div class="form-elem">
+                                                        <label for=""
+                                                            class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Project
+                                                            link</label>
+                                                        <input name="proj_link" type="text"
+                                                            class="form-control proj_link mb-5  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                            id="" onkeyup="generateCV()">
+                                                        <span class="form-text"></span>
+                                                    </div>
+                                                    <div class="form-elem">
+                                                        <label for=""
+                                                            class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                                                        <input name="proj_description" type="text"
+                                                            class="form-control proj_description mb-5 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                            id="" onkeyup="generateCV()">
+                                                        <span class="form-text"></span>
+                                                    </div>
+                                                </div>
+                                                <button data-repeater-delete type="button"
+                                                    class="repeater-remove-btn mb-8 inline-flex items-center justify-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                                    </svg>&nbsp;Delete project</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" data-repeater-create value="Add"
+                                        class="repeater-add-btn inline-flex items-center justify-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        </svg>&nbsp;Add project</button>
+                                </div>
+
+                            </div>
+
+                            <div class="sm:col-span-2">
+                                <hr class="border-t border-gray-200 my-4 border-light" style="border-width: 1px;">
+
+                            </div>
+
+                            <div class="sm:col-span-2">
+                                <h2 class=" text-xl font-bold text-gray-900 light:text-white">Skills</h2>
+                            </div>
+
+                            <div class="sm:col-span-2">
+                                <div class="row-separator repeater">
+                                    <div class="repeater" data-repeater-list="group-e">
+                                        <div data-repeater-item>
+                                            <div class="cv-form-row cv-form-row-skills">
+                                                <div class="form-elem">
+                                                    <label for=""
+                                                        class="form-label block mb-2 text-sm font-medium text-gray-900 dark:text-white">Skill</label>
+                                                    <input name="skill" type="text"
+                                                        class="form-control skill mb-5 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        id="" onkeyup="generateCV()">
+                                                    <span class="form-text"></span>
+                                                </div>
+
+                                                <button data-repeater-delete type="button"
+                                                    class="repeater-remove-btn mb-8 inline-flex items-center justify-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                                    </svg>&nbsp;Delete skill</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" data-repeater-create value="Add"
+                                        class="repeater-add-btn inline-flex items-center justify-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        </svg>&nbsp;Add skill</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                    </form>
+                </div>
+            </section>
+
+
+            <div class="cv-preview-container ">
+                <div class="bg-white shadow-lg  p-10 cv-preview">
+                    <header class="text-center mb-8">
+                        <h1 class="text-4xl font-bold mb-2">JAMES ANDERSON</h1>
+                        <p class="text-lg mb-1">United States of America</p>
+                        <p class="text-lg">jamesanderson112@gmail.com</p>
+                    </header>
+
+                    <hr class="border-t border-gray-800 my-6 border-light" style="border-width: 2px;">
+
+                    <section class="mb-8">
+                        <h2 class="text-xl font-bold uppercase mb-4 text-center">PROFESSIONAL SUMMARY</h2>
+                        <p class="text-sm leading-relaxed " style="text-align: justify;">
+                            Results-driven marketing professional with over 8 years of experience in developing and
+                            executing
+                            strategic marketing campaigns. Specialization in digital marketing, brand management, and
+                            data-driven decision-making to enhance customer engagement and drive business growth. With a
+                            strong
+                            background in SEO, content marketing, and social media strategy, James has a proven track
+                            record
+                            of
+                            increasing brand visibility and generating leads across various industries. Skilled in team
+                            leadership, project management, and cross-functional collaboration, ensuring that marketing
+                            initiatives align with organizational goals. Passionate about staying updated with the
+                            latest
+                            industry trends and leveraging innovative tools to achieve optimal results.
+                        </p>
+                    </section>
+
+                    <hr class="border-t border-gray-800 my-6 border-light" style="border-width: 1px;">
+
+                    <section class="mb-8">
+                        <h2 class="text-xl font-bold uppercase mb-4 text-center">SKILLS</h2>
+                        <p class="text-sm">Digital Marketing Strategy, Content Marketing, Social Media Management, Brand
+                            Management, Project Management, Graphic Design</p>
+                    </section>
+
+                    <hr class="border-t border-gray-800 my-6 border-light" style="border-width: 1px;">
+
+                    <section class="mb-8">
+                        <h2 class="text-xl font-bold uppercase mb-4 text-center">EMPLOYMENT HISTORY</h2>
+                        <div class="mb-6">
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h3 class="text-base font-bold">Marketing Manager</h3>
+                                <p class="text-base font-bold">June 2019 - Present</p>
+                            </div>
+                            <p class="text-base font-bold mb-2">ABC Corporation, New York, NY</p>
+                            <ul class="list-disc list-inside text-sm space-y-1 p-2 ">
+                                <li class="li-align">Developed and executed integrated digital marketing campaigns,
+                                    increasing website traffic by 35% and lead generation by 20%.</li>
+                                <li class="li-align">Managed a team of 5 marketing specialists, overseeing content
+                                    creation,
+                                    social media strategy, and email marketing initiatives.</li>
+                                <li class="li-align">Improved brand visibility through SEO optimization, boosting
+                                    organic
+                                    search rankings by 40%.</li>
+                                <li class="li-align">Collaborated with cross-functional teams to align marketing
+                                    initiatives
+                                    with sales and product development, resulting in a 15% increase in customer
+                                    retention.
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h3 class="text-base font-bold">Digital Marketing Specialist</h3>
+                                <p class="text-base font-bold">January 2016 - May 2019</p>
+                            </div>
+                            <p class="text-base font-bold mb-2">XYZ Solutions, San Francisco, CA</p>
+                            <ul class="list-disc list-inside text-sm space-y-1 p-2">
+                                <li class="li-align">Led the execution of PPC and social media campaigns, achieving a
+                                    25%
+                                    increase in
+                                    click-through rates (CTR) and a 30% reduction in cost-per-acquisition (CPA).</li>
+                                <li class="li-align">Conducted market research and competitor analysis to inform content
+                                    marketing strategies and
+                                    improve audience targeting.</li>
+                                <li class="li-align">Implemented email marketing automation systems, improving customer
+                                    engagement and growing
+                                    the email subscriber list by 40%.</li>
+                                <li class="li-align">Optimized SEO strategies, increasing organic traffic by 50% within
+                                    12
+                                    months.</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <hr class="border-t border-gray-800 my-6 border-light" style="border-width: 1px;">
+
+                    <section>
+                        <h2 class="text-xl font-bold uppercase mb-4 text-center">EDUCATION</h2>
+                        <h3 class="text-base font-bold">Bachelor of Science in Marketing</h3>
+                        <p class="text-sm">University of California, Los Angeles (UCLA)</p>
+                    </section>
+                </div>
+            </div>
+
+            <aside id="cta-button-sidebar" class="z-40 w-full sm:w-96 h-screen flex flex-col gap-3">
+
+                <div class=" px-3 py-4 overflow-y-auto bg-gray-50 light:bg-gray-800" id="tips">
+
+                    <a href="#"
+                        class="bg-blue-100 text-blue-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md light:bg-gray-700 light:text-blue-400 mb-2">
+
+                        <svg class="w-3.5 h-3.5 mr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="currentcolor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd"
+                                d="M7.05 4.05A7 7 0 0 1 19 9c0 2.407-1.197 3.874-2.186 5.084l-.04.048C15.77 15.362 15 16.34 15 18a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1c0-1.612-.77-2.613-1.78-3.875l-.045-.056C6.193 12.842 5 11.352 5 9a7 7 0 0 1 2.05-4.95ZM9 21a1 1 0 0 1 1-1h4a1 1 0 1 1 0 2h-4a1 1 0 0 1-1-1Zm1.586-13.414A2 2 0 0 1 12 7a1 1 0 1 0 0-2 4 4 0 0 0-4 4 1 1 0 0 0 2 0 2 2 0 0 1 .586-1.414Z"
+                                clip-rule="evenodd" />
+                        </svg>
+
+                        Tutorial
+                    </a>
+                    <h1
+                        class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl light:text-white">
+                        Resume <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Guide</span>
+                    </h1>
+
+
+                    <div class="p-4 mt-6 rounded-lg bg-blue-50 light:bg-blue-900">
+                        <div class="flex items-center mb-3">
+                            <span
+                                class="bg-orange-100 text-orange-800 text-sm font-semibold me-2 px-2.5 py-0.5 rounded light:bg-orange-200 light:text-orange-900">Summary
+                                Guide</span>
+
+                        </div>
+                        <p class="mb-3 text-sm text-blue-800 light:text-blue-400">
+                            Craft a concise, tailored professional summary by highlighting your key expertise,
+                            relevant
+                            skills, and measurable accomplishments. Use action words and focus on how you can add
+                            value
+                            to the specific role or company in 2-3 impactful sentences.
+                    </div>
+
+                    <div class="p-4 mt-6 rounded-lg bg-blue-50 light:bg-blue-900">
+                        <div class="flex items-center mb-3">
+                            <span
+                                class="bg-orange-100 text-orange-800 text-sm font-semibold me-2 px-2.5 py-0.5 rounded light:bg-orange-200 light:text-orange-900">Skills
+                                Tips</span>
+
+                        </div>
+                        <p class="mb-3 text-sm text-blue-800 light:text-blue-400">
+                            Highlight relevant skills tailored to the job, focusing on both technical expertise and
+                            soft
+                            skills. Group similar skills, prioritize proficiency, and align them with the job
+                            description for impact.
+                    </div>
+                    <div class="p-4 mt-6 rounded-lg bg-blue-50 light:bg-blue-900">
+                        <div class="flex items-center mb-3">
+                            <span
+                                class="bg-orange-100 text-orange-800 text-sm font-semibold me-2 px-2.5 py-0.5 rounded light:bg-orange-200 light:text-orange-900">Experience
+                                Insights</span>
+
+                        </div>
+                        <p class="mb-3 text-sm text-blue-800 light:text-blue-400">
+                            List roles in reverse order, focusing on achievements and outcomes. Use action verbs and
+                            tailor details to match the job description.
+                    </div>
+                    <div class="p-4 mt-6 rounded-lg bg-blue-50 light:bg-blue-900">
+                        <div class="flex items-center mb-3">
+                            <span
+                                class="bg-orange-100 text-orange-800 text-sm font-semibold me-2 px-2.5 py-0.5 rounded light:bg-orange-200 light:text-orange-900">Academic
+                                Overview
+                            </span>
+
+                        </div>
+                        <p class="mb-3 text-sm text-blue-800 light:text-blue-400">
+                            Keep your academic background concise and relevant. List degrees in reverse order,
+                            including
+                            the institution and graduation year. Highlight honors, certifications, or coursework
+                            that
+                            align with the job.
+                    </div>
+                </div>
+
+
+
+
+            </aside>
+
+
+        </div>
+
+
+
+        <script>
+            const button = document.getElementById("dropdowntipsbtn");
+
+            // Toggle button active state on click
+            button.addEventListener("click", (event) => {
+                event.stopPropagation();
+                button.classList.toggle("active-button");
+            });
+
+            // Remove active state when clicking outside the button
+            document.addEventListener("click", () => {
+                button.classList.remove("active-button");
+            });
+
+        </script>
+        <script>
+            var input = document.querySelector("#phone");
+            window.intlTelInput(input, {
+                separateDialCode: true,
+                excludeCountries: ["in", "il"],
+                preferredCountries: ["us", "jp", "np", "no"]
+            });
+        </script>
+
+        <script>
+            $(document).ready(function () {
+                $('#summernote').summernote({
+                    tabsize: 2,
+                    height: 250,
+                    toolbar: [
+                        ['font', ['bold', 'underline']],
+                        ['para', ['ul', 'ol']],
+                    ],
+                    disableResizeEditor: true
+                });
+                $('#jobDescription').summernote({
+                    tabsize: 2,
+                    height: 250,
+                    toolbar: [
+                        ['font', ['bold', 'underline']],
+                        ['para', ['ul', 'ol']],
+                    ],
+                    disableResizeEditor: true
+                });
+                $('#educationDescription').summernote({
+                    tabsize: 2,
+                    height: 250,
+                    toolbar: [
+                        ['font', ['bold', 'underline']],
+                        ['para', ['ul', 'ol']],
+                    ],
+                    disableResizeEditor: true
+                });
+
+            });
+        </script>
+
+                <!-- jquery cdn -->
+                <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+                <!-- jquery repeater cdn -->
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.js" integrity="sha512-bZAXvpVfp1+9AUHQzekEZaXclsgSlAeEnMJ6LfFAvjqYUVZfcuVXeQoN5LhD7Uw0Jy4NCY9q3kbdEXbwhZUmUQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                <!-- custom js -->
+                <script src = "/static/js/script.js"></script>
+                <!-- app js -->
+                <script src="/static/js/app.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
+
+    </body>
+
+</html>
