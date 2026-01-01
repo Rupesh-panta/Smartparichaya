@@ -30,13 +30,13 @@ class CustomSocialAccountAdapter(DefaultSocialAccountAdapter):
 
         logger.info(f"Sending welcome email to {email}")
 
-        subject = "Welcome to Simpfolio!"
+        subject = "Welcome to Smart Parichaya!"
         message = (
             f"Hi {username},\n\n"
-            "Thank you for registering at Simpfolio. We are excited to help you craft your best resumes and test your CV score!\n\n"
+            "Thank you for registering at Smart Parichaya. We are excited to help you craft your best resumes and test your CV score!\n\n"
             "Feel free to explore our platform, and reach out if you have any questions.\n\n"
             "Best regards,\n"
-            "The Simpfolio Team"
+            "The Smart Parichaya Team"
         )
         from_email = settings.DEFAULT_FROM_EMAIL
         recipient_list = [email]

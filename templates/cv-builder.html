@@ -1,422 +1,152 @@
-{% extends 'testuserAuth.html' %}
-{% block content %}
+{% extends 'testuserAuth.html' %} {% block content %}
 
-<!-- CV Builder Content -->
-<div id="cv-builder-content"
-    class="tab-content p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
-    <h2 class="text-2xl font-semibold">CV Builder</h2>
-    <div class="bg-white rounded-lg shadow p-6 mt-4">
-        <h2 class="text-3xl font-bold mb-2 text-center">Professional Resume <span
-                class="text-blue-600 dark:text-blue-500">Templates</span></h2>
-        <p class="text-gray-600 mb-4 mt-4 text-center">Get hired faster with templates built for success. Use them and
-            land the job like a pro.</p>
-        <p class="text-gray-600 mb-4 text-center">Check out the exclusive templates right below !</p>
+<div
+  id="cv-builder-content"
+  class="tab-content p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14"
+>
+  <h2 class="text-2xl font-semibold">CV Builder</h2>
+  <div class="bg-white rounded-lg shadow p-6 mt-4">
+    <h2 class="text-3xl font-bold mb-2 text-center">
+      Professional Resume
+      <span class="text-blue-600 dark:text-blue-500">Templates</span>
+    </h2>
+    <p class="text-gray-600 mb-4 mt-4 text-center">
+      Get hired faster with templates built for success. Use them and land the
+      job like a pro.
+    </p>
 
-        <!-- Templates Container Grid-->
-        <div class="max-w-7xl mx-auto p-4">
-            <div class="grid gap-6 responsive-grid">
-
-
-
-
-                <!-- Template Item 0 -->
-                <div class="relative border border-gray-300 rounded-lg pt-5 pl-5 pr-5 pb-12">
-                    <div class="innerContent border border-gray-300 rounded-lg overflow-hidden relative "
-                        onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">
-
-                        <img src="/static/CV-preview/advanced-0.png" alt="CV Template 0"
-                            class="w-full h-auto object-cover rounded-lg transition duration-300 ease-in-out"
-                            id="templateImage">
-
-                        <div class="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-0 opacity-0 transition-opacity duration-300 ease-in-out"
-                            id="overlay">
-                            <div class="flex flex-col items-center">
-
-                                <form method="POST" action="/testUserAuth/cv-builder/" id="select-template-form">
-                                    {% csrf_token %}
-                                    <button id="select-template-button-0" type="submit"
-                                        class="text-center w-full max-w-[160px] px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg text-sm md:text-base lg:text-lg z-10 mb-2">
-                                        Select Template
-                                    </button>
-                                </form>
-
-                                <a onclick="openPreviewModal()" id="previewBtn"
-                                    class="text-center px-4 py-2 bg-white text-blue-600 border border-blue-600 font-semibold rounded-lg z-10 w-40 text-sm">Preview</a>
-                            </div>
-                        </div>
-
-
-
-                        <script>
-                            document.getElementById('select-template-form').addEventListener('submit', function (event) {
-                                event.preventDefault(); // Prevent the form from submitting normally
-
-                                var form = document.getElementById('select-template-form');
-                                var formData = new FormData(form);
-
-                                // Submit the form via POST to update the resume count
-                                fetch(window.location.href, {
-                                    method: 'POST',  // Ensure this is a POST request
-                                    body: formData,  // Send the form data
-                                    headers: {
-                                        'X-CSRFToken': formData.get('csrfmiddlewaretoken')  // CSRF token for security
-                                    }
-                                })
-                                    .then(response => {
-                                        if (response.ok) {
-                                            // Redirect to /cv-builder/ after updating the resume count
-                                            window.location.href = '/cv-editor/';
-                                        } else {
-                                            console.error('Failed to update resume count');
-                                        }
-                                    })
-                                    .catch(error => console.error('Error:', error));
-                            });
-                        </script>
-
-                    </div>
-
-                    <div class="templateLabels mt-4 mb-4"
-                        style="display: flex; flex-direction: row; flex-wrap: wrap; align-items: flex-end; justify-content: space-between;">
-                        <p class="text-gray-800 dark:text-gray-800">Advanced - Forest</p>
-                        <div class="exportAvailableIcons"
-                            style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap;">
-                            <svg height="22px" width="22px" version="1.1" id="Layer_1"
-                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                viewBox="0 0 309.267 309.267" xml:space="preserve" fill="#000000">
-                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                <g id="SVGRepo_iconCarrier">
-                                    <g>
-                                        <path style="fill:#d7382d;"
-                                            d="M38.658,0h164.23l87.049,86.711v203.227c0,10.679-8.659,19.329-19.329,19.329H38.658 c-10.67,0-19.329-8.65-19.329-19.329V19.329C19.329,8.65,27.989,0,38.658,0z">
-                                        </path>
-                                        <path style="fill:#af2b1d;"
-                                            d="M289.658,86.981h-67.372c-10.67,0-19.329-8.659-19.329-19.329V0.193L289.658,86.981z">
-                                        </path>
-                                        <path style="fill:#FFFFFF;"
-                                            d="M217.434,146.544c3.238,0,4.823-2.822,4.823-5.557c0-2.832-1.653-5.567-4.823-5.567h-18.44 c-3.605,0-5.615,2.986-5.615,6.282v45.317c0,4.04,2.3,6.282,5.412,6.282c3.093,0,5.403-2.242,5.403-6.282v-12.438h11.153 c3.46,0,5.19-2.832,5.19-5.644c0-2.754-1.73-5.49-5.19-5.49h-11.153v-16.903C204.194,146.544,217.434,146.544,217.434,146.544z M155.107,135.42h-13.492c-3.663,0-6.263,2.513-6.263,6.243v45.395c0,4.629,3.74,6.079,6.417,6.079h14.159 c16.758,0,27.824-11.027,27.824-28.047C183.743,147.095,173.325,135.42,155.107,135.42z M155.755,181.946h-8.225v-35.334h7.413 c11.221,0,16.101,7.529,16.101,17.918C171.044,174.253,166.25,181.946,155.755,181.946z M106.33,135.42H92.964 c-3.779,0-5.886,2.493-5.886,6.282v45.317c0,4.04,2.416,6.282,5.663,6.282s5.663-2.242,5.663-6.282v-13.231h8.379 c10.341,0,18.875-7.326,18.875-19.107C125.659,143.152,117.425,135.42,106.33,135.42z M106.108,163.158h-7.703v-17.097h7.703 c4.755,0,7.78,3.711,7.78,8.553C113.878,159.447,110.863,163.158,106.108,163.158z">
-                                        </path>
-                                    </g>
-                                </g>
-                            </svg>
-
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <!-- Template Item 1 -->
-                <div class="relative border border-gray-300 rounded-lg pt-5 pl-5 pr-5 pb-12">
-                    <div class="innerContent border border-gray-300 rounded-lg overflow-hidden relative "
-                        onmouseover="hoverEffect(this)" onmouseout="removeHoverEffect(this)">
-
-                        <img src="/static/CV-preview/minimalist-1.png" alt="CV Template 1"
-                            class="w-full h-auto object-cover rounded-lg transition duration-300 ease-in-out"
-                            id="templateImage">
-
-                        <div class="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-0 opacity-0 transition-opacity duration-300 ease-in-out"
-                            id="overlay">
-                            <div class="flex flex-col items-center">
-                                <a
-                                    class="text-center w-full max-w-[160px] px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg text-sm md:text-base lg:text-lg z-10 mb-2">
-                                    Select Template
-                                </a>
-                                <a onclick="openPreviewModal1()" id="previewBtn"
-                                    class="text-center px-4 py-2 bg-white text-blue-600 border border-blue-600 font-semibold rounded-lg z-10 w-40 text-sm">Preview</a>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="templateLabels mt-4 mb-4"
-                        style="display: flex; flex-direction: row; flex-wrap: wrap; align-items: flex-end; justify-content: space-between;">
-                        <p class="text-gray-800 dark:text-gray-800">Minimal-Snow</p>
-                        <div class="exportAvailableIcons"
-                            style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap;">
-                            <svg height="22px" width="22px" version="1.1" id="Layer_1"
-                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                viewBox="0 0 309.267 309.267" xml:space="preserve" fill="#000000">
-                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                <g id="SVGRepo_iconCarrier">
-                                    <g>
-                                        <path style="fill:#d7382d;"
-                                            d="M38.658,0h164.23l87.049,86.711v203.227c0,10.679-8.659,19.329-19.329,19.329H38.658 c-10.67,0-19.329-8.65-19.329-19.329V19.329C19.329,8.65,27.989,0,38.658,0z">
-                                        </path>
-                                        <path style="fill:#af2b1d;"
-                                            d="M289.658,86.981h-67.372c-10.67,0-19.329-8.659-19.329-19.329V0.193L289.658,86.981z">
-                                        </path>
-                                        <path style="fill:#FFFFFF;"
-                                            d="M217.434,146.544c3.238,0,4.823-2.822,4.823-5.557c0-2.832-1.653-5.567-4.823-5.567h-18.44 c-3.605,0-5.615,2.986-5.615,6.282v45.317c0,4.04,2.3,6.282,5.412,6.282c3.093,0,5.403-2.242,5.403-6.282v-12.438h11.153 c3.46,0,5.19-2.832,5.19-5.644c0-2.754-1.73-5.49-5.19-5.49h-11.153v-16.903C204.194,146.544,217.434,146.544,217.434,146.544z M155.107,135.42h-13.492c-3.663,0-6.263,2.513-6.263,6.243v45.395c0,4.629,3.74,6.079,6.417,6.079h14.159 c16.758,0,27.824-11.027,27.824-28.047C183.743,147.095,173.325,135.42,155.107,135.42z M155.755,181.946h-8.225v-35.334h7.413 c11.221,0,16.101,7.529,16.101,17.918C171.044,174.253,166.25,181.946,155.755,181.946z M106.33,135.42H92.964 c-3.779,0-5.886,2.493-5.886,6.282v45.317c0,4.04,2.416,6.282,5.663,6.282s5.663-2.242,5.663-6.282v-13.231h8.379 c10.341,0,18.875-7.326,18.875-19.107C125.659,143.152,117.425,135.42,106.33,135.42z M106.108,163.158h-7.703v-17.097h7.703 c4.755,0,7.78,3.711,7.78,8.553C113.878,159.447,110.863,163.158,106.108,163.158z">
-                                        </path>
-                                    </g>
-                                </g>
-                            </svg>
-
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-
-
-
-            </div>
+    <div
+      id="dynamicPreviewModal"
+      tabindex="-1"
+      aria-hidden="true"
+      class="hidden fixed inset-0 z-50 flex justify-center items-center w-full h-full backdrop-blur-xl bg-black/40"
+    >
+      <div class="rounded-lg relative p-4 w-auto max-w-full max-h-full">
+        <div
+          class="relative bg-white rounded-lg dark:bg-gray-700 overflow-hidden shadow-2xl"
+          style="width: 460px"
+        >
+          <div class="flex items-center justify-between p-3 md:p-4 border-b">
+            <h3
+              id="modalTitle"
+              class="text-sm font-semibold text-gray-900 dark:text-white"
+            >
+              Preview
+            </h3>
+            <button
+              type="button"
+              class="text-blue-800 bg-transparent hover:bg-gray-200 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center"
+              onclick="closeDynamicPreview()"
+            >
+              <svg
+                class="w-3 h-3"
+                aria-hidden="true"
+                fill="none"
+                viewBox="0 0 14 14"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="p-4 flex justify-center bg-gray-50">
+            <img
+              id="modalImg"
+              src=""
+              alt="Resume Preview"
+              class="max-h-[75vh] w-auto rounded shadow-md border"
+            />
+          </div>
         </div>
+      </div>
     </div>
-</div>
 
-<!-- Main modal -->
-<div id="previewModal" tabindex="-1" aria-hidden="true"
-    class="hidden fixed inset-0 z-50 flex justify-center items-center w-full h-full backdrop-blur-xl">
-    <div class="rounded-lg relative p-4 w-auto max-w-full max-h-full">
-        <!-- Modal content -->
-        <div class="relative bg-white rounded-lg dark:bg-gray-700 overflow-hidden" id="innerPreviewModal">
-            <!-- Modal header -->
-            <div class="flex items-center justify-between p-3 md:p-4">
-                <h3 class="text-xs font-semibold text-gray-900 dark:text-white">
-                    Preview: Advanced - Forest
-                </h3>
-                <button type="button"
-                    class="text-blue-800 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-4 h-4 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                    onclick="closePreviewModal()">
-                    <svg class="w-2.5 h-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="#3057D6"
-                        viewBox="0 0 14 14">
-                        <path stroke="#3057D6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                    </svg>
-                    <span class="sr-only">Close modal</span>
-                </button>
-            </div>
-            <!-- Modal body -->
-            <div class="modalBody rounded-lg">
-                <img class=" w-full md:w-auto" id="resumeHolderImg" src="/static/CV-preview/advanced-0.png"
-                    alt="image description">
-            </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-8">
+      {% for temp in templates %}
+      <div
+        class="relative bg-[#eff2f9] border border-gray-200 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 group"
+      >
+        <div class="relative aspect-[3/4] overflow-hidden p-4">
+          <img
+            src="/static/CV-preview/{{ temp.preview }}"
+            class="w-full h-full object-cover rounded-md shadow-sm"
+            alt="{{ temp.name }}"
+          />
+
+          <div
+            class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          >
+            <form method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="template_id" value="{{ temp.id }}" />
+              <button
+                type="submit"
+                class="w-36 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors"
+              >
+                Select Template
+              </button>
+            </form>
+
+            <button
+              onclick="openDynamicPreview('{{ temp.name }}', '/static/CV-preview/{{ temp.preview }}')"
+              class="w-36 py-2 bg-white hover:bg-gray-100 text-blue-600 border border-blue-600 rounded-lg font-semibold transition-colors"
+            >
+              Preview
+            </button>
+          </div>
         </div>
-    </div>
-</div>
 
-<!-- Second Template Modal -->
-<div id="previewModal1" tabindex="-1" aria-hidden="true"
-    class="hidden fixed inset-0 z-50 flex justify-center items-center w-full h-full backdrop-blur-xl">
-    <div class="rounded-lg relative p-4 w-auto max-w-full max-h-full">
-        <!-- Modal content -->
-        <div class="relative bg-white rounded-lg dark:bg-gray-700 overflow-hidden" id="innerPreviewModal1">
-            <!-- Modal header -->
-            <div class="flex items-center justify-between p-3 md:p-4">
-                <h3 class="text-xs font-semibold text-gray-900 dark:text-white">
-                    Preview: Minimal-Snow
-                </h3>
-                <button type="button"
-                    class="text-blue-800 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-4 h-4 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                    onclick="closePreviewModal1()">
-                    <svg class="w-2.5 h-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="#3057D6"
-                        viewBox="0 0 14 14">
-                        <path stroke="#3057D6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                    </svg>
-                    <span class="sr-only">Close modal</span>
-                </button>
-            </div>
-            <!-- Modal body -->
-            <div class="modalBody rounded-lg">
-                <img class="w-full md:w-auto" id="resumeHolderImg1" src="/static/CV-preview/minimalist-1.png"
-                    alt="image description">
-            </div>
+        <div
+          class="p-4 flex items-center justify-between border-t bg-white rounded-b-xl"
+        >
+          <p class="text-gray-900 font-bold">{{ temp.name }}</p>
+          <div
+            class="bg-red-600 text-white px-1.5 py-0.5 rounded text-[10px] font-bold"
+          >
+            PDF
+          </div>
         </div>
+      </div>
+      {% endfor %}
     </div>
+  </div>
 </div>
-
-
-
-<style>
-    #select-template-button-0,
-    #previewBtn {
-        width: 100%;
-        /* Make both elements take full width of their parent container */
-        max-width: 160px;
-        /* Set max width to match the "Select Template" button */
-        padding: 0.5rem 1rem;
-        /* Equal padding for both */
-        font-size: 0.875rem;
-        /* Smaller text size */
-        text-align: center;
-        /* Ensure text is centered */
-        display: inline-block;
-        /* Ensure the anchor behaves similarly to a button */
-    }
-</style>
-
-<style>
-    #previewModal {
-        backdrop-filter: blur(5px);
-        /* Increase blur intensity as needed */
-        background-color: rgba(0, 0, 0, 0.4);
-        /* Optional: slight tint */
-    }
-
-    #innerPreviewModal {
-        max-width: 100%;
-        width: 460px;
-        max-height: 90vh;
-
-    }
-
-    .modalBody {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-    }
-
-    #resumeHolderImg {
-        max-height: 85vh;
-        max-width: 100%;
-        height: auto;
-        width: auto;
-    }
-
-    .relative {
-        background-color: #EFF2F9;
-    }
-
-    .responsive-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    @media (max-width: 1300px) {
-        .responsive-grid {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-    }
-
-    @media (max-width: 930px) {
-        .responsive-grid {
-            grid-template-columns: repeat(1, minmax(0, 1fr));
-        }
-
-        #previewBtn {
-            display: none;
-        }
-
-    }
-</style>
-
-<style>
-    #previewModal1 {
-        backdrop-filter: blur(5px);
-        /* Increase blur intensity as needed */
-        background-color: rgba(0, 0, 0, 0.4);
-        /* Optional: slight tint */
-    }
-
-    #innerPreviewModal1 {
-        max-width: 100%;
-        width: 460px;
-        max-height: 90vh;
-    }
-
-    .modalBody {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    #resumeHolderImg1 {
-        max-height: 85vh;
-        max-width: 100%;
-        height: auto;
-        width: auto;
-    }
-
-    .relative {
-        background-color: #EFF2F9;
-    }
-
-    .responsive-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    @media (max-width: 1300px) {
-        .responsive-grid {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-    }
-
-    @media (max-width: 930px) {
-        .responsive-grid {
-            grid-template-columns: repeat(1, minmax(0, 1fr));
-        }
-
-        #previewBtn1 {
-            display: none;
-        }
-    }
-</style>
-
-
-
 
 <script>
-    function hoverEffect(element) {
-        const image = element.querySelector('#templateImage');
-        const overlay = element.querySelector('#overlay');
+  function openDynamicPreview(name, imageUrl) {
+    const modal = document.getElementById("dynamicPreviewModal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalImg = document.getElementById("modalImg");
 
-        image.style.filter = 'blur(1px)';
+    modalTitle.innerText = "Preview: " + name;
+    modalImg.src = imageUrl;
 
-        overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.4)'; // Dark overlay
-        overlay.style.opacity = '1';
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+    document.body.style.overflow = "hidden"; // Disable background scroll
+  }
+
+  function closeDynamicPreview() {
+    const modal = document.getElementById("dynamicPreviewModal");
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
+    document.body.style.overflow = "auto"; // Re-enable scroll
+  }
+
+  // Close modal if clicking outside the content
+  window.onclick = function (event) {
+    const modal = document.getElementById("dynamicPreviewModal");
+    if (event.target == modal) {
+      closeDynamicPreview();
     }
-
-    function removeHoverEffect(element) {
-        const image = element.querySelector('#templateImage');
-        const overlay = element.querySelector('#overlay');
-
-        image.style.filter = 'none';
-
-        // Reset overlay properties
-        overlay.style.backgroundColor = 'rgba(0, 0, 0, 0)';
-        overlay.style.opacity = '0';
-    }
-</script>
-
-
-<script>
-    function openPreviewModal() {
-        // Open modal and disable page scroll
-        document.getElementById('previewModal').classList.remove('hidden');
-        document.getElementById('previewModal').classList.add('flex');
-        document.body.style.overflow = 'hidden'; // Disable page scroll
-    }
-
-    function closePreviewModal() {
-        // Close modal and enable page scroll
-        document.getElementById('previewModal').classList.add('hidden');
-        document.getElementById('previewModal').classList.remove('flex');
-        document.body.style.overflow = 'auto'; // Re-enable page scroll
-    }
-    function openPreviewModal1() {
-        // Open second template modal and disable page scroll
-        document.getElementById('previewModal1').classList.remove('hidden');
-        document.getElementById('previewModal1').classList.add('flex');
-        document.body.style.overflow = 'hidden'; // Disable page scroll
-    }
-
-    function closePreviewModal1() {
-        // Close second template modal and enable page scroll
-        document.getElementById('previewModal1').classList.add('hidden');
-        document.getElementById('previewModal1').classList.remove('flex');
-        document.body.style.overflow = 'auto'; // Re-enable page scroll
-    }
+  };
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-
 
 {% endblock %}

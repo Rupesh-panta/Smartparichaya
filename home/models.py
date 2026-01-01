@@ -101,3 +101,17 @@ class ResumeCount(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.count} resumes created"
+
+# home/models.py
+from django.db import models
+
+# ... keep your existing models (Contact, Blog, Profile, etc.) ...
+
+class Vacancy(models.Model):  # Ensure 'V' is capital and it inherits from models.Model
+    title = models.CharField(max_length=255)
+    company_name = models.CharField(max_length=255)
+    skills = models.TextField()
+    posted_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title

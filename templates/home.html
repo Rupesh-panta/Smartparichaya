@@ -1,44 +1,84 @@
-{% extends "baseTemp.html" %}
-{% block body %}
+{% extends "baseTemp.html" %} {% block body %}
 
-
-<section class="bg-white white:bg-gray-900" id="SmartParichaya"
-  style="padding-top: 100px; background-image:linear-gradient(to right, #E6E9F0,#E7F1FD,#E9E8ED) ;">
-  <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+<section
+  class="bg-white white:bg-gray-900"
+  id="SmartParichaya"
+  style="
+    padding-top: 100px;
+    background-image: linear-gradient(to right, #e6e9f0, #e7f1fd, #e9e8ed);
+  "
+>
+  <div
+    class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12"
+  >
     <div class="mr-auto place-self-center lg:col-span-7">
       <h1
-        class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl light:text-white">
-        SmartParichaya Your CV Buddy</h1>
-      <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl light:text-gray-400">From checkout
-        to global sales tax compliance, companies around the world use Flowbite to simplify their payment stack.</p>
+        class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl light:text-white"
+      >
+        Smart Parichaya-CV Generation Platform
+      </h1>
+      <p
+        class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl light:text-gray-400"
+      >
+        From checkout to global sales tax compliance, companies around the world
+        use Flowbite to simplify their payment stack.
+      </p>
 
-      <div class="flex flex-col space-y-4 sm:flex-row sm:space-y-0" id="learnBtn">
-
+      <div
+        class="flex flex-col space-y-4 sm:flex-row sm:space-y-0"
+        id="learnBtn"
+      >
         {% if user.is_authenticated %}
-        <a href="/testUserAuth"
-          class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+        <a
+          href="/testUserAuth"
+          class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
+        >
           Build my CV
-          <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-            viewBox="0 0 14 10">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M1 5h12m0 0L9 1m4 4L9 9" />
+          <svg
+            class="w-3.5 h-3.5 ms-2 rtl:rotate-180"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 14 10"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M1 5h12m0 0L9 1m4 4L9 9"
+            />
           </svg>
         </a>
 
         {% else %}
-        <a href="/login"
-          class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+        <a
+          href="/login"
+          class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
+        >
           Build my CV
-          <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-            viewBox="0 0 14 10">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M1 5h12m0 0L9 1m4 4L9 9" />
+          <svg
+            class="w-3.5 h-3.5 ms-2 rtl:rotate-180"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 14 10"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M1 5h12m0 0L9 1m4 4L9 9"
+            />
           </svg>
         </a>
         {% endif %}
 
-        <a href="/signup"
-          class="inline-flex justify-center hover:text-blue-700 items-center py-3 px-5 sm:ms-4 text-base font-medium text-center text-black rounded-lg border border-gray-500  hover:bg-gray-100  focus:z-10 focus:ring-4 focus:ring-gray-400">
+        <a
+          href="/signup"
+          class="inline-flex justify-center hover:text-blue-700 items-center py-3 px-5 sm:ms-4 text-base font-medium text-center text-black rounded-lg border border-gray-500 hover:bg-gray-100 focus:z-10 focus:ring-4 focus:ring-gray-400"
+        >
           Signup for free
         </a>
         <!-- <style>
@@ -56,36 +96,28 @@
           }
         </style> -->
       </div>
-
-
     </div>
-    <div class=" hidden lg:mt-0 lg:col-span-5 lg:flex">
-      <img src="/static/blog-section/homeImg.png" alt="mockup" style="height: auto; width: 100%; ">
+    <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
+      <img
+        src="/static/blog-section/homeImg.png"
+        alt="mockup"
+        style="height: auto; width: 100%"
+      />
     </div>
   </div>
 </section>
 
-
 <style>
   #smartparichayaJumbs {
-
     height: auto;
-
   }
 
-
-  @media(max-width:1023px) {
-
-
+  @media (max-width: 1023px) {
     #SimfolioJumbo {
-
       padding-left: 15px;
       padding-right: 15px;
-
     }
-
   }
-
 
   /*for cards*/
 
@@ -100,55 +132,79 @@
     .max-w-sm {
       width: calc(100% - 20px);
     }
-
-
-
   }
 </style>
 
 <h1
   class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-black"
-  style="text-align: center; padding-top: 100px" id="introHeadingHome">
+  style="text-align: center; padding-top: 100px"
+  id="introHeadingHome"
+>
   Exclusive
   <span class="text-blue-600 dark:text-blue-600">Templates</span>
   Await...
 </h1>
 
-<p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 light:text-gray-400"
-  style="text-align: center; padding-top: 50px;" id="introHomeText">
-
-  At SmartParichaya, we offer customizable templates that leverage technology and innovation to unlock long-term value and
-  drive growth. Our templates meet industry standards and enhance professional profiles, giving users the tools to boost
-  their employability and advance their careers.</p>
-
-
-
+<p
+  class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 light:text-gray-400"
+  style="text-align: center; padding-top: 50px"
+  id="introHomeText"
+>
+  At SmartParichaya, we offer customizable templates that leverage technology
+  and innovation to unlock long-term value and drive growth. Our templates meet
+  industry standards and enhance professional profiles, giving users the tools
+  to boost their employability and advance their careers.
+</p>
 
 <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-8">
-  <h1 class="mb-4 text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-3xl light:text-black"
-    style="text-align: center; margin-top: 150px">
+  <h1
+    class="mb-4 text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-3xl light:text-black"
+    style="text-align: center; margin-top: 150px"
+  >
     How It
-    <span class="underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">Works?</span>
+    <span
+      class="underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600"
+      >Works?</span
+    >
   </h1>
 
-  <div class="grid sm:grid-cols-3 gap-16 sm:gap-8 mt-16 sm:mt-24"
-    style="margin-top: 100px; padding-left: 40px; padding-right: 40px;" id="HIWSection">
-
+  <div
+    class="grid sm:grid-cols-3 gap-16 sm:gap-8 mt-16 sm:mt-24"
+    style="margin-top: 100px; padding-left: 40px; padding-right: 40px"
+    id="HIWSection"
+  >
     <div class="text-center">
-      <div class="relative w-20 h-20 sm:w-28 sm:h-28 lg:w-32 lg:h-32 mx-auto left-2">
+      <div
+        class="relative w-20 h-20 sm:w-28 sm:h-28 lg:w-32 lg:h-32 mx-auto left-2"
+      >
         <div
           class="z-10 relative w-full h-full bg-white rounded-full border border-gray-300 border-4 shadow flex items-center justify-center"
-          style="border: 5px solid #6b7280">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
-            stroke="currentColor" class="text-gray-500 w-1/2 h-1/2" alt="Translate icon">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z">
-            </path>
+          style="border: 5px solid #6b7280"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2.5"
+            stroke="currentColor"
+            class="text-gray-500 w-1/2 h-1/2"
+            alt="Translate icon"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z"
+            ></path>
           </svg>
         </div>
-        <div class="absolute inset-0 -translate-x-2 -translate-y-2 bg-blue-500 rounded-full"></div>
+        <div
+          class="absolute inset-0 -translate-x-2 -translate-y-2 bg-blue-500 rounded-full"
+        ></div>
       </div>
-      <h3 class="mb-4 font-medium headline tracking-tight text-xl sm:text-2xl mt-6 sm:mt-10" style="color: #1c1c1c">
+      <h3
+        class="mb-4 font-medium headline tracking-tight text-xl sm:text-2xl mt-6 sm:mt-10"
+        style="color: #1c1c1c"
+      >
         1. Template selection
       </h3>
       <p class="leading-relaxed mt-4">
@@ -157,41 +213,76 @@
     </div>
 
     <div class="text-center">
-      <div class="relative w-20 h-20 sm:w-28 sm:h-28 lg:w-32 lg:h-32 mx-auto left-2">
+      <div
+        class="relative w-20 h-20 sm:w-28 sm:h-28 lg:w-32 lg:h-32 mx-auto left-2"
+      >
         <div
           class="z-10 relative w-full h-full bg-white rounded-full border border-gray-300 border-4 shadow flex items-center justify-center"
-          style="border: 5px solid #6b7280">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
-            stroke="currentColor" class="text-gray-500 w-1/2 h-1/2" alt="Translate icon">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"></path>
+          style="border: 5px solid #6b7280"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2.5"
+            stroke="currentColor"
+            class="text-gray-500 w-1/2 h-1/2"
+            alt="Translate icon"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"
+            ></path>
           </svg>
         </div>
-        <div class="absolute inset-0 -translate-x-2 -translate-y-2 bg-blue-500 rounded-full"></div>
+        <div
+          class="absolute inset-0 -translate-x-2 -translate-y-2 bg-blue-500 rounded-full"
+        ></div>
       </div>
-      <h3 class="mb-4 font-medium headline tracking-tight text-xl sm:text-2xl mt-6 sm:mt-10" style="color: #1c1c1c">
+      <h3
+        class="mb-4 font-medium headline tracking-tight text-xl sm:text-2xl mt-6 sm:mt-10"
+        style="color: #1c1c1c"
+      >
         2. Data fillup
       </h3>
       <p class="leading-relaxed mt-4">
-        Fill out all of your professional data that is required to be
-        included in your CV.
+        Fill out all of your professional data that is required to be included
+        in your CV.
       </p>
     </div>
     <div class="text-center">
-      <div class="relative w-20 h-20 sm:w-28 sm:h-28 lg:w-32 lg:h-32 mx-auto left-2">
+      <div
+        class="relative w-20 h-20 sm:w-28 sm:h-28 lg:w-32 lg:h-32 mx-auto left-2"
+      >
         <div
           class="z-10 relative w-full h-full bg-white rounded-full border border-gray-300 border-4 shadow flex items-center justify-center"
-          style="border: 5px solid #6b7280">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
-            stroke="currentColor" class="text-gray-500 w-1/2 h-1/2" alt="Export icon">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M12 9.75v6.75m0 0l-3-3m3 3l3-3m-8.25 6a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z">
-            </path>
+          style="border: 5px solid #6b7280"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2.5"
+            stroke="currentColor"
+            class="text-gray-500 w-1/2 h-1/2"
+            alt="Export icon"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 9.75v6.75m0 0l-3-3m3 3l3-3m-8.25 6a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z"
+            ></path>
           </svg>
         </div>
-        <div class="absolute inset-0 -translate-x-2 -translate-y-2 bg-blue-500 rounded-full"></div>
+        <div
+          class="absolute inset-0 -translate-x-2 -translate-y-2 bg-blue-500 rounded-full"
+        ></div>
       </div>
-      <h3 class="mb-4 font-medium headline tracking-tight text-xl sm:text-2xl mt-6 sm:mt-10" style="color: #1c1c1c">
+      <h3
+        class="mb-4 font-medium headline tracking-tight text-xl sm:text-2xl mt-6 sm:mt-10"
+        style="color: #1c1c1c"
+      >
         3. Download
       </h3>
       <p class="leading-relaxed mt-4">
@@ -208,19 +299,15 @@
       grid-template-columns: repeat(1, minmax(0, 1fr));
       padding-left: 20px;
       padding-right: 20px;
-
     }
-
   }
 
-  @media (max-width:410px) {
+  @media (max-width: 410px) {
     .cardCont {
       padding-left: 20px;
       padding-right: 20px;
     }
   }
-
-
 
   @media (max-width: 640px) {
     #introHomeText {
@@ -236,83 +323,111 @@
   }
 </style>
 
-<h1 class="mb-4 text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-3xl light:text-black"
-  style="text-align: center; margin-top: 100px">
+<h1
+  class="mb-4 text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-3xl light:text-black"
+  style="text-align: center; margin-top: 100px"
+>
   Popular
-  <span class="underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">Blogs</span>
+  <span
+    class="underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600"
+    >Blogs</span
+  >
 </h1>
 
-<div class="cardCont" style="
-      display: flex;
-      flex-direction: row;
-      justify-content: space-evenly;
-      flex-wrap: wrap;
-      align-items: center;
-      margin-top: 100px;
-    ">
-
+<div
+  class="cardCont"
+  style="
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 100px;
+  "
+>
   {% for blog in blogs %}
-  <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow light:bg-gray-800 light:border-gray-700">
-
+  <div
+    class="max-w-sm bg-white border border-gray-200 rounded-lg shadow light:bg-gray-800 light:border-gray-700"
+  >
     <img class="rounded-t-lg" src="{{blog.blogImage.url}}" alt="" />
 
     <div class="p-5">
-
-      <h5 class="mb-2 text-2xl font-medium tracking-light text-gray-900 light:text-white">
+      <h5
+        class="mb-2 text-2xl font-medium tracking-light text-gray-900 light:text-white"
+      >
         {{blogs.blogTitle}}
       </h5>
 
       <p class="mb-3 font-normal text-gray-700 light:text-gray-400">
         {{blog.blogPreviewBody}}
       </p>
-      <a href="/blog/{{blog.slug}}"
-        class="inline-flex items-center px-3 py-2 mt-4 mb-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+      <a
+        href="/blog/{{blog.slug}}"
+        class="inline-flex items-center px-3 py-2 mt-4 mb-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      >
         Read more
-        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-          viewBox="0 0 14 10">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M1 5h12m0 0L9 1m4 4L9 9" />
+        <svg
+          class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 14 10"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M1 5h12m0 0L9 1m4 4L9 9"
+          />
         </svg>
       </a>
     </div>
   </div>
   {% endfor %}
-
 </div>
 
-
-
-
-
-
-
-<h1 class="mb-4 text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-3xl light:text-black"
-  style="text-align: center; margin-top: 100px">
+<h1
+  class="mb-4 text-3xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-3xl light:text-black"
+  style="text-align: center; margin-top: 100px"
+>
   Top
-  <span class="underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">Reviews</span>
+  <span
+    class="underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600"
+    >Reviews</span
+  >
 </h1>
 
-<div class="reviewCont" style="
-        margin-top: 100px;
-        padding: 30px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 30px;
-        margin-bottom: 50px;
-      ">
-  {% if feedbacks %}
-  {% for feedback in feedbacks %}
-  <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow light:bg-gray-800 light:border-gray-700">
+<div
+  class="reviewCont"
+  style="
+    margin-top: 100px;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 50px;
+  "
+>
+  {% if feedbacks %} {% for feedback in feedbacks %}
+  <div
+    class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow light:bg-gray-800 light:border-gray-700"
+  >
     <figure class="max-w-screen-md">
       <div class="flex items-center mb-4 text-yellow-300">
         {% for star in "12345" %}
         <svg
           class="w-5 h-5 me-1 {% if star|add:0 <= feedback.rating %}text-yellow-300{% else %}text-gray-300{% endif %}"
-          aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+          viewBox="0 0 22 20"
+        >
           <path
-            d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+            d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+          />
         </svg>
         {% endfor %}
       </div>
@@ -323,19 +438,32 @@
       </blockquote>
       <figcaption class="flex items-center mt-6 space-x-3 rtl:space-x-reverse">
         {% if feedback.profile_picture_url %}
-        <img class="w-6 h-6 rounded-full" src="{{ feedback.profile_picture_url }}" alt="profile picture" />
-      {% else %}
-        <img class="w-6 h-6 rounded-full" src="/media/profile_pics/user-circle_svgrepo.com.png" alt="profile picture" />
-      {% endif %}
-        <div class="flex items-center divide-x-2 rtl:divide-x-reverse divide-gray-300 dark:divide-gray-700">
-          <cite class="pe-3 font-medium text-gray-900 light:text-black">{{ feedback.user.username }}</cite>
-          <cite class="ps-3 text-sm text-gray-500 dark:text-gray-600">{{ feedback.formatted_date }}</cite>
+        <img
+          class="w-6 h-6 rounded-full"
+          src="{{ feedback.profile_picture_url }}"
+          alt="profile picture"
+        />
+        {% else %}
+        <img
+          class="w-6 h-6 rounded-full"
+          src="/media/profile_pics/user-circle_svgrepo.com.png"
+          alt="profile picture"
+        />
+        {% endif %}
+        <div
+          class="flex items-center divide-x-2 rtl:divide-x-reverse divide-gray-300 dark:divide-gray-700"
+        >
+          <cite class="pe-3 font-medium text-gray-900 light:text-black"
+            >{{ feedback.user.username }}</cite
+          >
+          <cite class="ps-3 text-sm text-gray-500 dark:text-gray-600"
+            >{{ feedback.formatted_date }}</cite
+          >
         </div>
       </figcaption>
     </figure>
   </div>
-  {% endfor %}
-  {% endif %}
+  {% endfor %} {% endif %}
 </div>
 
 {% endblock body %}

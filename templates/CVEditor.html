@@ -380,7 +380,7 @@
                     <a href="/testUserAuth/dashboard/" class="flex items-center justify-between mr-4">
                         <img src="https://flowbite.s3.amazonaws.com/logo.svg" class="mr-3 h-8" alt="Flowbite Logo" />
                         <span
-                            class="self-center text-2xl font-semibold whitespace-nowrap light:text-white">Simpfolio</span>
+                            class="self-center text-2xl font-semibold whitespace-nowrap light:text-white">Smart Parichaya</span>
                     </a>
 
                 </div>
@@ -480,6 +480,22 @@
                             </li>
                         </ul>
                     </div>
+{% if is_job_specific %}
+<div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4 rounded-r-lg shadow-sm">
+    <h4 class="text-blue-800 font-bold text-sm flex items-center">
+        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2H7a1 1 0 100-2h.01zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"></path></svg>
+        Applying for: {{ target_job }}
+    </h4>
+    <p class="text-xs text-blue-600 mt-1">Recommended Keywords:</p>
+    <div class="flex flex-wrap gap-1 mt-2">
+        {% for skill in required_skills_list %}
+            <span class="px-2 py-0.5 bg-white text-blue-700 text-[10px] rounded border border-blue-200 font-medium">
+                {{ skill }}
+            </span>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
 
 
 
@@ -1086,6 +1102,7 @@
 
 
             <section id="preview-sc" class="print_area">
+                
                 <div class="preview-container">
                     <div class="preview-cnt">
                         <div class="preview-cnt-l bg-green text-white">
@@ -1158,6 +1175,7 @@
                                     <h3>projects</h3>
                                 </div>
                                 <div class="projects-items preview-blk-list" id="projects_dsp"></div>
+                                
                             </div>
                         </div>
                     </div>
@@ -1184,7 +1202,7 @@
                     <h3 class="font-semibold text-gray-900 dark:text-white">Pro Tips!</h3>
                 </div>
                 <div class="px-3 py-2">
-                    <p>Consider taking a sneak peek at Simpfolio's Resume Guide</p>
+                    <p>Consider taking a sneak peek at Smart Parichaya's Resume Guide</p>
                 </div>
                 <div data-popper-arrow></div>
             </div>
@@ -1300,7 +1318,7 @@ background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);">
                 event.preventDefault(); // Prevent default action
                 Swal.fire({
                     title: "Signout",
-                    text: "Are you sure you want to sign out from Simpfolio?",
+                    text: "Are you sure you want to sign out from Smart Parichaya?",
                     icon: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#d33",
@@ -1399,7 +1417,7 @@ background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);">
         <script>
             window.addEventListener('beforeunload', function (event) {
                 // This triggers the confirmation dialog with a default message
-                const message = "Leave the page? Changes are not saved by Simpfolio in this version.";
+                const message = "Leave the page? Changes are not saved by Smart Parichaya in this version.";
                 event.returnValue = message;  // Standard for most browsers
                 return message;  // For compatibility with older browsers
             });

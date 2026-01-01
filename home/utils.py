@@ -1,7 +1,30 @@
 import random
 from sympy import isprime, mod_inverse
 
+def match_job_template(job_title, job_skills):
+    """
+    Enhanced Algorithm: Prioritized Rule-Based Template Matching
+    """
+    title = job_title.lower()
+    skills = [s.lower().strip() for s in job_skills]
 
+    # 1. High Priority: Creative / Design (Focus on UI/UX specifically)
+    creative_indicators = ['designer', 'marketing', 'content', 'ui', 'ux', 'video', 'creative', 'graphics', 'branding']
+    if any(word in title for word in creative_indicators) or any(s in creative_indicators for s in skills):
+        return "creative"
+
+    # 2. Medium Priority: Technical / Engineering
+    tech_indicators = ['software', 'developer', 'engineer', 'python', 'java', 'it', 'web', 'backend', 'frontend', 'data science', 'sql']
+    if any(word in title for word in tech_indicators) or any(s in tech_indicators for s in skills):
+        return "technical"
+
+    # 3. Low Priority: Management / Business
+    prof_indicators = ['manager', 'hr', 'finance', 'accountant', 'sales', 'lead', 'director', 'operations', 'executive']
+    if any(word in title for word in prof_indicators) or any(s in prof_indicators for s in skills):
+        return "professional"
+
+    # Default fallback
+    return "simple"
 # Generate two distinct prime numbers
 def generate_prime_candidate(length):
     p = random.getrandbits(length)

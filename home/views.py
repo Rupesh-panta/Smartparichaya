@@ -11,18 +11,113 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.auth.hashers import make_password, check_password
 from django.contrib.auth.password_validation import validate_password
+from django.http import JsonResponse
 from django.core.exceptions import ValidationError
 from .utils import *
 from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse as DjangoJsonResponse, HttpResponse
 import logging
 import secrets
 import os
+from django.http import JsonResponse
 import PyPDF2
 
+from .models import Vacancy
+from .utils import match_job_template
+from django.contrib import messages
+from django.shortcuts import get_object_or_404, redirect
 
+from django.shortcuts import get_object_or_404, redirect
+from django.urls import reverse
+import urllib.parse
 
+from django.urls import reverse
+import urllib.parse
 
-# Ensure NLTK resources are only downloaded once
+@login_required
+def apply_job(request, job_id):
+    # 1. Fetch the specific job details
+    job = get_object_or_404(Vacancy, id=job_id)
+    
+    # 2. Prepare the data to be sent to the CV Editor
+    params = {
+        'target_job': job.title,
+        'required_skills': job.skills,
+        'company': job.company_name,
+        'auto_optimize': 'true'
+    }
+    query_string = urllib.parse.urlencode(params)
+    
+    # 3. Inform the user
+    messages.info(request, f"Redirecting to CV Builder. Let's tailor your CV for the {job.title} role!")
+    
+    # 4. FIX: Ensure return is indented correctly and URL name matches urls.py
+    # If your urls.py has: path('cv-editor/', views.cv_editor, name='cv_editor')
+    url = reverse('cv_editor') 
+    return redirect(f"{url}?{query_string}")
+
+from django.shortcuts import get_object_or_404, redirect
+from django.urls import reverse
+import urllib.parse
+
+@login_required
+def apply_job(request, job_id):
+    job = get_object_or_404(Vacancy, id=job_id)
+    
+    # Data to pass to the editor
+    params = {
+        'target_job': job.title,
+        'required_skills': job.skills,
+        'company': job.company_name,
+    }
+    query_string = urllib.parse.urlencode(params)
+    
+    # reverse('cv_editor') will return '/testUserAuth/cv-editor/'
+    url = reverse('cv_editor') 
+    
+    return redirect(f"{url}?{query_string}")
+
+# Change 'def jobs_view(request):' to 'def jobs(request):'
+@login_required(login_url='/login/')
+def jobs(request):
+    raw_vacancies = Vacancy.objects.all()
+    
+    processed_vacancies = []
+    for job in raw_vacancies:
+        # 1. Handle skills list (split string into list for the UI)
+        skills_list = []
+        if job.skills:
+            skills_list = [s.strip() for s in job.skills.split(',')]
+        
+        # 2. Run your template matching algorithm from utils.py
+        template_choice = match_job_template(job.title, skills_list)
+        
+        # 3. MAPPING DATA (Fixes the AttributeError)
+        processed_vacancies.append({
+            'title': job.title,
+            'company': job.company_name,
+            # We use job.skills here because job.description DOES NOT EXIST
+            'description': job.skills, 
+            'skills_list': skills_list,
+            'matched_template': template_choice,
+        })
+
+    return render(request, 'jobs.html', {'vacancies': processed_vacancies})
+
+@login_required
+def cv_editor(request):
+    # Retrieve the job data from the URL parameters
+    target_job = request.GET.get('target_job')
+    required_skills = request.GET.get('required_skills')
+    
+    context = {
+        'target_job': target_job,
+        'required_skills': required_skills,
+        'is_job_specific': True if target_job else False,
+        # ... your existing context (e.g., username, profile data) ...
+    }
+    return render(request, 'cv-editor.html', context)
+
 nltk_data_path = os.path.join(os.path.expanduser("~"), "nltk_data")  # Set a directory for nltk data
 stopwords_path = os.path.join(nltk_data_path, "corpora", "stopwords")
 wordnet_path = os.path.join(nltk_data_path, "corpora", "wordnet")
@@ -38,10 +133,12 @@ def extract_text_from_pdf(pdf_file):
     try:
         pdf_reader = PyPDF2.PdfReader(pdf_file)
         for page in pdf_reader.pages:
-            text += page.extract_text()
+            content = page.extract_text()
+            if content:
+                text += content
     except Exception as e:
         logging.error(f"Error extracting text from PDF: {e}")
-        text = "Error extracting text. Please try another file."
+        return None
     return text
 
 
@@ -72,7 +169,7 @@ def home(request):
             feedback.profile_picture_url = '/media/profile_pics/user-circle_svgrepo.com.png'
 
     data = {
-        'title': 'Simpfolio | Your CV Buddy',
+        'title': 'Smart Parichaya | Your CV Buddy',
         'active_page': 'home',
         'blogs': blogs,
         'feedbacks': feedbacks,
@@ -83,7 +180,7 @@ def home(request):
 def about(request):
     # return HttpResponse("About me")
     data = {
-        'title': 'About - Simpfolio',
+        'title': 'About - Smart Parichaya',
         'active_page': 'about',
     }
     return render(request, 'about.html', data)
@@ -98,7 +195,7 @@ def blog(request):
         feature_on_blog_popular_posts=True)
 
     data = {
-        'title': 'Blog - Simpfolio',
+        'title': 'Blog - Smart Parichaya',
         'active_page': 'blog',
         'latest_blogs': latest_blogs,
         'popular_blogs': popular_blogs,
@@ -125,7 +222,7 @@ def blogpost(request, slug):
 def faq(request):
     # return HttpResponse("faq")
     data = {
-        'title': 'FAQs - Simpfolio',
+        'title': 'FAQs - Smart Parichaya',
         'active_page': 'faq',
     }
     return render(request, 'faq.html', data)
@@ -157,13 +254,13 @@ def contact(request):
         print("Get Request invoked")
 
     data = {
-        'title': 'Contact - Simpfolio',
+        'title': 'Contact - Smart Parichaya',
         'active_page': 'contact',
     }
     return render(request, 'contact.html', data)
 
 
-def loginSimpfolio(request):
+def loginSmartParichaya(request):
     if request.user.is_authenticated:
         return redirect('/testUserAuth/')
 
@@ -188,18 +285,18 @@ def loginSimpfolio(request):
 
     else:
         data = {
-            'title': 'Sign in - Simpfolio',
+            'title': 'Sign in - Smart Parichaya',
 
         }
-        return render(request, 'SimpfolioLogin.html', data)
+        return render(request, 'smartparichaya.html', data)
 
 
-def logoutSimpfolio(request):
+def logoutSmartParichaya(request):
     logout(request)
     return redirect('/login/')
 
 
-def signupSimpfolio(request):
+def signupSmartparichaya(request):
 
     if request.method == 'POST':
         username = request.POST['username']
@@ -216,13 +313,13 @@ def signupSimpfolio(request):
             myUser.save()
 
             # Send welcome email
-            subject = 'Welcome to Simpfolio!'
+            subject = 'Welcome to Smart Parichaya!'
             message = (
                 f"Hi {username},\n\n"
-                "Thank you for registering at Simpfolio. We are excited to help you craft your best resumes and test your CV score!\n\n"
+                "Thank you for registering at Smart Parichaya. We are excited to help you craft your best resumes and test your CV score!\n\n"
                 "Feel free to explore our platform, and reach out if you have any questions.\n\n"
                 "Best regards,\n"
-                "The Simpfolio Team"
+                "The Smart Parichaya Team"
             )
             from_email = settings.DEFAULT_FROM_EMAIL
             recipient_list = [email]
@@ -236,9 +333,9 @@ def signupSimpfolio(request):
             return JsonResponse({'status': 'error', 'message': 'Something went wrong!'}, status=500)
     else:
         data = {
-            'title': 'Signup - Simpfolio',
+            'title': 'Signup - Smart Parichaya',
         }
-        return render(request, 'SimpfolioSignup.html', data)
+        return render(request, 'smartparichayasignup.html', data)
 
 
 @login_required(login_url='/login/')
@@ -286,51 +383,49 @@ def testUserAuth(request, section=None):
         'profile_picture': profile_picture_url,
         'google_profile_picture': google_profile_picture,
         'feedback_count': feedback_count,
-        'title': 'Dashboard | Simpfolio',
+        'title': 'Dashboard | Smart Parichaya',
         'section': section
     }
     return render(request, 'testuserAuth.html', context)
 
 
+from django.urls import reverse
+
 @login_required(login_url='/login/')
 def dashboard(request, section=None):
-    # Get the username and email from the authenticated user
     username = request.user.username
     email = request.user.email
-    social_account = SocialAccount.objects.filter(
-        user=request.user, provider='google').first()
-    google_profile_picture = social_account.extra_data.get(
-        'picture') if social_account else None
-    # Count the feedbacks submitted by the logged-in user
-    feedback_count = models.Feedback.objects.filter(user=request.user).count()
-    # Get or create user profile
+    
+    # 1. Ensure you are getting the profile OBJECT, not a function
+    # Note: Use models.Profile if your model is in the same file or imported as models
     profile, created = models.Profile.objects.get_or_create(user=request.user)
 
-    # Determine profile picture URL
+    social_account = SocialAccount.objects.filter(user=request.user, provider='google').first()
+    google_profile_picture = social_account.extra_data.get('picture') if social_account else None
+    
+    # 2. Logic for profile picture
     if profile.profile_picture and profile.profile_picture.url != '/media/profile_pics/user-circle_svgrepo.com.png':
-        # Custom profile picture exists
         profile_picture_url = profile.profile_picture.url
     elif google_profile_picture:
-        # Google profile picture exists
         profile_picture_url = google_profile_picture
     else:
-        # Default profile picture
         profile_picture_url = '/media/profile_pics/user-circle_svgrepo.com.png'
 
-    # Debug logs
-    print("Profile Picture URL:", profile_picture_url)
-    print("Google Profile Picture URL:", google_profile_picture)
+    # 3. Handle Template Counts (Library Size vs User History)
+    # Total available designs
+    template_library_count = 4 
+    
+    # User's specific history
+    res_count_obj = models.ResumeCount.objects.filter(user=request.user).first()
+    attempts_count = res_count_obj.count if res_count_obj else 0
 
-    # Retrieve template count from the database (ResumeCount model)
-    resume_count = models.ResumeCount.objects.filter(user=request.user).first()
-    template_count = resume_count.count if resume_count else 0
+    # 4. Feedback logic
+    feedback_count = models.Feedback.objects.filter(user=request.user).count()
 
     if request.method == "POST":
         rating = request.POST.get('rating')
         comment = request.POST.get('comment')
-        user = request.user
-        models.Feedback.objects.create(
-            user=user, rating=rating, comment=comment)
+        models.Feedback.objects.create(user=request.user, rating=rating, comment=comment)
         return redirect('testUserAuth')
 
     context = {
@@ -339,64 +434,67 @@ def dashboard(request, section=None):
         'profile_picture': profile_picture_url,
         'google_profile_picture': google_profile_picture,
         'feedback_count': feedback_count,
-        'title': 'Simpfolio | Dashboard',
+        'title': 'Smart Parichaya | Dashboard',
         'section': section,
-        'template_count': template_count,
+        'template_count': template_library_count, # Shows 4
+        'resume_attempts': attempts_count,        # Shows user history (e.g. 11)
     }
     return render(request, 'dashboard.html', context)
 
 
 @login_required(login_url='/login/')
 def CvBuilder(request, section=None):
-    # Get the username and email from the authenticated user
     username = request.user.username
     email = request.user.email
-    social_account = SocialAccount.objects.filter(
-        user=request.user, provider='google').first()
-    google_profile_picture = social_account.extra_data.get(
-        'picture') if social_account else None
-    # Count the feedbacks submitted by the logged-in user
+    social_account = SocialAccount.objects.filter(user=request.user, provider='google').first()
+    google_profile_picture = social_account.extra_data.get('picture') if social_account else None
     feedback_count = models.Feedback.objects.filter(user=request.user).count()
 
-    # Get or create user profile
     profile, created = models.Profile.objects.get_or_create(user=request.user)
 
-    # Determine profile picture URL
     if profile.profile_picture and profile.profile_picture.url != '/media/profile_pics/user-circle_svgrepo.com.png':
-        # Custom profile picture exists
         profile_picture_url = profile.profile_picture.url
     elif google_profile_picture:
-        # Google profile picture exists
         profile_picture_url = google_profile_picture
     else:
-        # Default profile picture
         profile_picture_url = '/media/profile_pics/user-circle_svgrepo.com.png'
 
-    # Debug logs
-    print("Profile Picture URL:", profile_picture_url)
-    print("Google Profile Picture URL:", google_profile_picture)
+    # MANUALLY ADD TEMPLATE DATA HERE
+    templates_data = [
+        {"name": "Advanced - Forest", "id": "advanced-0", "preview": "advanced-0.png"},
+        {"name": "Minimal - Snow", "id": "minimalist-1", "preview": "minimalist-1.png"},
+        {"name": "Advanced - Modern", "id": "advanced-2", "preview": "advanced-2.png"},
+        {"name": "Professional - 1", "id": "professional-1", "preview": "professional-1.png"},
+    ]
 
-    # Handle the "Select Template" button click
-    if request.method == "POST":
+    from django.urls import reverse # Ensure this is imported at the top
 
-        resume_count, created = models.ResumeCount.objects.get_or_create(
-            user=request.user)
-
-        resume_count.count += 1
-        resume_count.save()
-        return redirect('/cv-editor/')
-
-    # Always load the page with resume count information
-    resume_count, created = models.ResumeCount.objects.get_or_create(
-        user=request.user)
+    # ... previous code (templates_data, etc.) ...
 
     if request.method == "POST":
+        # Handle Template Selection
+        template_id = request.POST.get('template_id')
+        
+        # This MUST be indented inside the POST block
+        if template_id:
+            request.session['selected_template'] = template_id
+            
+            resume_count, created = models.ResumeCount.objects.get_or_create(user=request.user)
+            resume_count.count += 1
+            resume_count.save()
+            
+            return redirect(reverse('cv_editor'))
+
+        # Handle Feedback submission (also inside the POST block)
         rating = request.POST.get('rating')
         comment = request.POST.get('comment')
-        user = request.user
-        models.Feedback.objects.create(
-            user=user, rating=rating, comment=comment)
-        return redirect('testUserAuth')
+        if rating:
+            models.Feedback.objects.create(user=request.user, rating=rating, comment=comment)
+            return redirect('testUserAuth')
+
+    # This runs for GET requests
+
+    resume_count, created = models.ResumeCount.objects.get_or_create(user=request.user)
 
     context = {
         'username': username,
@@ -404,12 +502,19 @@ def CvBuilder(request, section=None):
         'profile_picture': profile_picture_url,
         'google_profile_picture': google_profile_picture,
         'feedback_count': feedback_count,
-        'title': 'Simpfolio | CV-Builder',
+        'title': 'Smart Parichaya | CV-Builder',
         'section': section,
         'template_count': resume_count.count if resume_count else 0,
+        'templates': templates_data, # NEW: Pass templates to HTML
     }
     return render(request, 'cv-builder.html', context)
-
+def jobs(request):
+    # This is where you decide which template to recommend
+    # For testing, let's just pick "Alien"
+    context = {
+        'recommendation': 'Alien', 
+    }
+    return render(request, 'future_templates.html', context)
 
 @login_required(login_url='/login/')
 def coverLetter(request, section=None):
@@ -456,98 +561,65 @@ def coverLetter(request, section=None):
         'profile_picture': profile_picture_url,
         'google_profile_picture': google_profile_picture,
         'feedback_count': feedback_count,
-        'title': 'Simpfolio | Cover-Letter',
+        'title': 'Smart Parichaya | Cover-Letter',
         'section': section
     }
     return render(request, 'coverletter.html', context)
 
 
+from django.contrib import messages
+
+from django.shortcuts import render, redirect
+# Use an ALIAS (DjangoJsonResponse) to prevent UnboundLocalError
+from django.http import JsonResponse as DjangoJsonResponse, HttpResponse
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from . import models
+
 @login_required(login_url='/login/')
-def resumeScore(request, section=None):
-    # Get user details
-    username = request.user.username
-    email = request.user.email
-    social_account = SocialAccount.objects.filter(
-        user=request.user, provider='google'
-    ).first()
-    google_profile_picture = social_account.extra_data.get(
-        'picture') if social_account else None
+def resumeScore(request):
+    # --- 1. SET DEFAULTS AT THE VERY TOP ---
+    # This ensures 'score' and 'recommendation' exist for both GET and POST
+    score = 0 
+    recommendation = "Serenity"
 
-    # Count feedbacks
-    feedback_count = models.Feedback.objects.filter(user=request.user).count()
+    # --- 2. Verification Gate ---
+    try:
+        if not request.user.profile.is_verified:
+            return redirect('dashboard')
+    except Exception:
+        return redirect('dashboard')
 
-    # Get or create profile
-    profile, created = models.Profile.objects.get_or_create(user=request.user)
-    profile_picture_url = (
-        profile.profile_picture.url
-        if profile.profile_picture and profile.profile_picture.url != '/media/profile_pics/user-circle_svgrepo.com.png'
-        else google_profile_picture or '/media/profile_pics/user-circle_svgrepo.com.png'
-    )
-
-from django.shortcuts import render
-from django.http import JsonResponse
-import logging
-
-def resume_upload_view(request):
-    # Initialize variables
-    prediction_result = None
-    prediction_class = None
-    prediction_score = 0  # Default score as percentage
-    result_class = "error"  # Default result class
-    cleaned_text = ""
-    probabilities = None
-    max_probability = None
-
-    if request.method == "POST" and request.FILES.get('resume'):
-        resume_file = request.FILES['resume']  # Get uploaded file
-        try:
-            # Extract text from PDF
+    # --- 3. Handle POST (The AJAX upload) ---
+    if request.method == "POST":
+        if request.FILES.get('resume'):
+            resume_file = request.FILES['resume']
             text = extract_text_from_pdf(resume_file)
-
+            
             if text:
-                cleaned_text = text.strip()
-                prediction_class = "N/A"
-                prediction_score = 0
-                prediction_result = "Resume uploaded successfully. Text extracted for viewing."
-                result_class = "success"
-            else:
-                cleaned_text = ""
-                prediction_class = "No text found in PDF"
-                prediction_score = 0
-                prediction_result = "Could not extract any text from the resume."
-                result_class = "error"
-
-            # Debugging prints
-            print(f"Extracted Text: {text[:500]}\n\n")  # First 500 chars
-            print(f"Cleaned Text: {cleaned_text}")
-            print(f"Probabilities: {probabilities}")
-            print(f"Max Probability: {max_probability}")
-            print(f"Prediction Class: {prediction_class}")
-            print(f"Score: {prediction_score}")
-
-        except Exception as e:
-            logging.error(f"Error processing resume: {e}")
-            cleaned_text = "Error reading the file."
-            prediction_class = "Error"
-            prediction_score = 0
-            prediction_result = "An error occurred while processing the resume."
-            result_class = "error"
-
-        # Handle AJAX requests
-        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-            return JsonResponse({
-                'score': prediction_score,
-                'result': prediction_result,
-                'resultClass': result_class,
+                keywords = ['python', 'django', 'javascript', 'react', 'sql', 'html', 'css', 'api', 'git']
+                matches = [w for w in keywords if w in text.lower()]
+                score = min(100, (len(matches) * 10) + 15)
+            
+            return DjangoJsonResponse({
+                'score': score,
+                'resultClass': 'success' if score >= 50 else 'warning'
             })
 
-    # Render template for normal requests
+    # --- 4. Logic for GET Request (Normal Page Load) ---
+    # Now this code can run safely even if POST was skipped
+    if score > 80:
+        recommendation = "Alien"
+    elif score > 50:
+        recommendation = "Column Mint"
+
     context = {
-        'prediction_result': prediction_result,
-        'prediction_class': prediction_class,
-        'prediction_score': prediction_score,
-        'cleaned_text': cleaned_text,
+        'username': request.user.username,
+        'recommendation': recommendation,
+        'score': score,
     }
+    
+    # Make sure you are rendering the right template name here
     return render(request, 'resume-score.html', context)
 
 
@@ -608,7 +680,7 @@ def resume_upload_view(request):
         'profile_picture': profile_picture_url,
         'google_profile_picture': google_profile_picture,
         'feedback_count': feedback_count,
-        'title': 'Simpfolio | Resume-Score',
+        'title': 'Smart Parichaya | Resume-Score',
         'section': section,
         'prediction_result': prediction_result,
         'prediction_class': prediction_class,
@@ -623,7 +695,7 @@ def resume_upload_view(request):
         'profile_picture': profile_picture_url,
         'google_profile_picture': google_profile_picture,
         'feedback_count': feedback_count,
-        'title': 'Simpfolio | Resume-Score',
+        'title': 'Smart Parichaya | Resume-Score',
         'section': section,
         'prediction_result': prediction_result,
         'prediction_class': prediction_class,
@@ -633,54 +705,52 @@ def resume_upload_view(request):
 
 @login_required(login_url='/login/')
 def jobs(request, section=None):
-    # Get the username and email from the authenticated user
+    # 1. Boilerplate for User Profile/UI
     username = request.user.username
     email = request.user.email
-
-    social_account = SocialAccount.objects.filter(
-        user=request.user, provider='google').first()
-    google_profile_picture = social_account.extra_data.get(
-        'picture') if social_account else None
-
+    social_account = SocialAccount.objects.filter(user=request.user, provider='google').first()
+    google_profile_picture = social_account.extra_data.get('picture') if social_account else None
     profile, created = models.Profile.objects.get_or_create(user=request.user)
-
-    # Count the feedbacks submitted by the logged-in user
     feedback_count = models.Feedback.objects.filter(user=request.user).count()
 
-    # Determine profile picture URL
-    if profile.profile_picture and profile.profile_picture.url != '/media/profile_pics/user-circle_svgrepo.com.png':
-        # Custom profile picture exists
-        profile_picture_url = profile.profile_picture.url
-    elif google_profile_picture:
-        # Google profile picture exists
-        profile_picture_url = google_profile_picture
-    else:
-        # Default profile picture
-        profile_picture_url = '/media/profile_pics/user-circle_svgrepo.com.png'
+    profile_picture_url = (
+        profile.profile_picture.url
+        if profile.profile_picture and profile.profile_picture.url != '/media/profile_pics/user-circle_svgrepo.com.png'
+        else google_profile_picture or '/media/profile_pics/user-circle_svgrepo.com.png'
+    )
 
-    # Debug logs
-    print("Profile Picture URL:", profile_picture_url)
-    print("Google Profile Picture URL:", google_profile_picture)
+    # 2. FETCH VACANCIES & RUN ALGORITHM
+    raw_vacancies = models.Vacancy.objects.all().order_by('-posted_at')
+    processed_vacancies = []
+    
+    for job in raw_vacancies:
+        # Split skills string into a list
+        skills_list = [s.strip() for s in job.skills.split(',')]
+        
+        # Apply your Rule-Based Algorithm from utils.py
+        template_choice = match_job_template(job.title, skills_list)
+        
+        processed_vacancies.append({
+            'id': job.id,
+            'title': job.title,
+            # We map the database field 'skills' to the dictionary key 'description'
+            'description': job.skills, 
+            'skills_list': skills_list,
+            'matched_template': template_choice,
+        })
 
-    if request.method == "POST":
-        rating = request.POST.get('rating')
-        comment = request.POST.get('comment')
-        user = request.user
-        models.Feedback.objects.create(
-            user=user, rating=rating, comment=comment)
-        return redirect('testUserAuth')
-
+    # 3. Context for the template
     context = {
         'username': username,
         'email': email,
         'profile_picture': profile_picture_url,
         'google_profile_picture': google_profile_picture,
         'feedback_count': feedback_count,
-        'title': 'Simpfolio | Jobs',
-        'section': section
+        'title': 'Smart Parichaya | Jobs',
+        'section': section,
+        'vacancies': processed_vacancies # THIS IS CRUCIAL
     }
     return render(request, 'jobs.html', context)
-
 
 @login_required(login_url='/login/')
 def feedback(request, section=None):
@@ -725,7 +795,7 @@ def feedback(request, section=None):
         'profile_picture': profile_picture_url,
         'google_profile_picture': google_profile_picture,
         'feedback_count': feedback_count,
-        'title': 'Simpfolio | Feedback',
+        'title': 'Smart Parichaya | Feedback',
         'section': section
     }
     return render(request, 'feedback.html', context)
@@ -774,7 +844,7 @@ def profile(request, section=None):
         'profile_picture': profile_picture_url,
         'google_profile_picture': google_profile_picture,
         'feedback_count': feedback_count,
-        'title': 'Simpfolio | Profile',
+        'title': 'Smart Parichaya | Profile',
         'section': section,
         'is_google_authenticated': is_google_authenticated,
         'password_set': password_set,
@@ -805,46 +875,61 @@ def upload_profile_picture(request):
     return JsonResponse({'status': 'error', 'message': 'Invalid request.'}, status=400)
 
 
-@login_required(login_url='/login/')
+import os
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+
+# 1. This handles JUST the profile picture removal
+from django.contrib import messages
+from django.shortcuts import redirect
+from django.http import JsonResponse
+import os
+
+# Fix for AttributeError: 'delete_profile_picture'
+@login_required
 def delete_profile_picture(request):
-    if request.method == 'DELETE':
-        profile, created = models.Profile.objects.get_or_create(
-            user=request.user)
+    profile = request.user.profile
+    if profile.profile_picture:
+        # Check if the file exists on your MacBook and delete it
+        if os.path.exists(profile.profile_picture.path):
+            os.remove(profile.profile_picture.path)
+        
+        profile.profile_picture = None
+        profile.save()
+        return JsonResponse({'status': 'success', 'message': 'Picture deleted'})
+    return JsonResponse({'status': 'error', 'message': 'No picture found'})
 
-        # Only allow deletion if the user has uploaded a profile picture
-        if profile.profile_picture and profile.profile_picture.name != 'profile_pics/user-circle_svgrepo.com.png':
-            profile.profile_picture.delete(save=False)
-            # Reset to default picture
-            profile.profile_picture = 'profile_pics/user-circle_svgrepo.com.png'
-            profile.save()
-            return JsonResponse({'status': 'success'}, status=200)
-        else:
-            return JsonResponse({'status': 'error', 'message': 'No picture to delete or default picture.'}, status=400)
-
-    return JsonResponse({'status': 'error', 'message': 'Invalid request.'}, status=400)
-
-
+# Fix for AttributeError: 'update_username'
+@login_required
 def update_username(request):
     if request.method == 'POST':
-        data = json.loads(request.body)
-        new_username = data.get('username')
-
-        if new_username and request.user.is_authenticated:
-            # Check if username already exists
-            if User.objects.filter(username=new_username).exists():
-                return JsonResponse({'status': 'error', 'message': 'Username already taken!'}, status=400)
-
-            # Update the authenticated user's username
+        new_username = request.POST.get('username')
+        if new_username:
             request.user.username = new_username
             request.user.save()
+            messages.success(request, "Username updated successfully!")
+        return redirect('profile') # Adjust this to your profile URL name
+    return JsonResponse({'status': 'error', 'message': 'Invalid request'})
 
-            return JsonResponse({'status': 'success', 'message': 'Username updated successfully!'})
-        else:
-            return JsonResponse({'status': 'error', 'message': 'Invalid request!'}, status=400)
+from django.contrib.auth import logout # Add this import
 
-    return JsonResponse({'status': 'error', 'message': 'Invalid method!'}, status=405)
+from django.contrib.auth import logout # Crucial import
 
-
+@login_required
+def delete_profile(request):
+    if request.method != 'POST':
+        return JsonResponse({'status': 'error', 'message': 'Invalid method'}, status=405)
+    
+    try:
+        user = request.user
+        # Log out BEFORE deleting the user record
+        logout(request) 
+        user.delete() 
+        return JsonResponse({'status': 'success'})
+    except Exception as e:
+        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+        
 @login_required
 def change_password(request):
     if request.method == 'POST':
@@ -894,7 +979,7 @@ def change_password(request):
 
 def send_password_change_email(email):
     send_mail(
-        subject='Your Simpfolio password was changed',
+        subject='Your Smart Parichaya password was changed',
         message='Your password has been successfully changed. If you did not make this change, please contact support.',
         from_email=settings.DEFAULT_FROM_EMAIL,
         recipient_list=[email],
@@ -908,37 +993,34 @@ def send_password_change_email(email):
 def send_verification_otp(request):
     if request.method == 'POST':
         user_email = request.user.email
-
-        # Step 1: Generate a 6-digit OTP
         otp = ''.join([str(random.randint(0, 9)) for _ in range(6)])
 
-        # Step 2: Generate RSA keys
+        # Ensure these functions return strings/serialized data for session storage
         public_key, private_key = generate_rsa_keys()
-
-        # Step 3: Encrypt the OTP using the public key
         encrypted_otp = rsa_encrypt(otp, public_key)
 
-        # Step 4: Store encrypted OTP and private key securely in the session
         request.session['encrypted_otp'] = encrypted_otp
         request.session['private_key'] = private_key
 
-        # Step 5: Send the OTP via email to the user
         try:
+            # FIX: Joined the message strings properly
+            message = (
+                f"The verification code to verify your Smart Parichaya account is {otp}.\n\n"
+                "Kindly provide this code in the application to complete your request. "
+                "Do not share this with anyone.\n\n"
+                "Best regards,\nSmart Parichaya Team"
+            )
+            
             send_mail(
                 subject='Your OTP for Verification',
-               message = f'The verification code to reset your Simpfolio password is {otp}.'
-
-                f'Kindly provide this code in the application to complete your account verification request, '
-                'and do not share this with anyone.\n\n'
-                'Best regards,\n'
-                'Simpfolio Team',
+                message=message,
                 from_email=settings.DEFAULT_FROM_EMAIL,
                 recipient_list=[user_email],
                 fail_silently=False,
             )
             return JsonResponse({'status': 'OTP sent, check your email', 'email': user_email})
         except Exception as e:
-            return JsonResponse({'status': 'error', 'message': 'Failed to send OTP email.'})
+            return JsonResponse({'status': 'error', 'message': str(e)})
 
     return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
 
@@ -974,9 +1056,9 @@ def verify_otp(request):
 
 @login_required
 def check_verification_status(request):
-    is_verified = request.user.is_verified
+    # FIX: Check the profile model, not the User model
+    is_verified = request.user.profile.is_verified 
     return JsonResponse({'is_verified': is_verified})
-
 
 # reset forgotten password
 
@@ -987,7 +1069,7 @@ def generate_otp():
 
 def forgot_password(request):
     context = {
-        'title': 'Simpfolio | Forgot-Password',
+        'title': 'Smart Parichaya | Forgot-Password',
     }
 
     if request.method == "POST":
@@ -1001,14 +1083,14 @@ def forgot_password(request):
             request.session['email'] = email
 
             # Prepare email content
-            subject = 'Password Reset OTP for Simpfolio'
+            subject = 'Password Reset OTP for Smart Parichaya'
             message = (
     f"Dear {user.username},\n\n"
-    f"The verification code to reset your Simpfolio password is {otp}.\n\n"
+    f"The verification code to reset your Smart Parichaya password is {otp}.\n\n"
     "Kindly provide this code in the application to complete your password reset request, "
     "and do not share this with anyone.\n\n"
     "Best regards,\n"
-    "Simpfolio Team"
+    "Smart Parichaya Team"
 )
 
             # Send email with OTP
@@ -1074,7 +1156,7 @@ def update_password(request):
             user.set_password(new_password)
             user.save()
             send_mail(
-                subject='Your Simpfolio password was changed',
+                subject='Your Smart Parichaya password was changed',
                 message='Your password has been successfully changed. If you did not make this change, please contact support.',
                 from_email='noreply@simpfolio.com',
                 recipient_list=[email],
@@ -1089,33 +1171,42 @@ def update_password(request):
     return JsonResponse({'status': 'error', 'message': 'Invalid request method.'}, status=405)
 
 
+from .models import Vacancy # Ensure this is imported
+
 @login_required(login_url='/login/')
 def cv_editor(request, section=None):
+    # 1. Retrieve the Selected Template from Session
+    selected_template = request.session.get('selected_template', 'advanced-0')
+
+    # 2. Standard User/Profile Logic
     username = request.user.username
     email = request.user.email
-    social_account = SocialAccount.objects.filter(
-        user=request.user, provider='google').first()
-    google_profile_picture = social_account.extra_data.get(
-        'picture') if social_account else None
-    # Count the feedbacks submitted by the logged-in user
-    feedback_count = models.Feedback.objects.filter(user=request.user).count()
-    # Get or create user profile
+    social_account = SocialAccount.objects.filter(user=request.user, provider='google').first()
+    google_profile_picture = social_account.extra_data.get('picture') if social_account else None
+    
     profile, created = models.Profile.objects.get_or_create(user=request.user)
+    feedback_count = models.Feedback.objects.filter(user=request.user).count()
 
-    # Determine profile picture URL
-    if profile.profile_picture and profile.profile_picture.url != '/media/profile_pics/user-circle_svgrepo.com.png':
-        # Custom profile picture exists
+    profile_picture_url = '/media/profile_pics/user-circle_svgrepo.com.png'
+    if profile.profile_picture and profile.profile_picture.url != profile_picture_url:
         profile_picture_url = profile.profile_picture.url
     elif google_profile_picture:
-        # Google profile picture exists
         profile_picture_url = google_profile_picture
-    else:
-        # Default profile picture
-        profile_picture_url = '/media/profile_pics/user-circle_svgrepo.com.png'
 
-        # Debug logs
-    print("Profile Picture URL:", profile_picture_url)
-    print("Google Profile Picture URL:", google_profile_picture)
+    # 3. VACANCY LOGIC
+    all_vacancies = Vacancy.objects.all()
+    vacancy_count = all_vacancies.count()
+    best_match_score = 98 if vacancy_count > 0 else 0
+
+    # 4. JOB TAILORING LOGIC (Catch data from 'Apply Now')
+    target_job = request.GET.get('target_job')
+    raw_skills = request.GET.get('required_skills', '')
+    
+    # We clean the skills here so the template doesn't have to use 'replace'
+    # This splits by comma or space and removes extra characters
+    skills_list = [s.strip().replace(',', '') for s in raw_skills.split(',') if s.strip()]
+    if not skills_list and raw_skills: # Fallback if split by comma failed
+        skills_list = [s.strip().replace(',', '') for s in raw_skills.split() if s.strip()]
 
     context = {
         'username': username,
@@ -1124,7 +1215,18 @@ def cv_editor(request, section=None):
         'profile_picture': profile_picture_url,
         'google_profile_picture': google_profile_picture,
         'feedback_count': feedback_count,
-        'title': 'Simpfolio | Dashboard',
+        'selected_template': selected_template,
+        
+        'vacancies': all_vacancies,
+        'vacancy_count': vacancy_count,
+        'best_match': best_match_score,
+        
+        # New Job Specific Context
+        'target_job': target_job,
+        'required_skills_list': skills_list,
+        'is_job_specific': True if target_job else False,
+        
+        'title': f'Smart Parichaya | Editing {selected_template}',
         'section': section
     }
 

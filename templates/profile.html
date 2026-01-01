@@ -1,672 +1,831 @@
-{% extends 'testuserAuth.html' %}
-{% block content %}
+{% extends 'testuserAuth.html' %} {% block content %}
 <!-- Profile Content -->
-<div id="profile-content"
-    class="tab-content p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
-    <h2 class="text-2xl font-semibold">Profile</h2>
-    <div class="max-w-6xl mx-auto p-4 grid gap-6 grid-cols-1 lg:grid-cols-2">
+<div
+  id="profile-content"
+  class="tab-content p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14"
+>
+  <h2 class="text-2xl font-semibold">Profile</h2>
+  <div class="max-w-6xl mx-auto p-4 grid gap-6 grid-cols-1 lg:grid-cols-2">
+    <!-- Account Information Form -->
+    <div class="bg-white rounded-lg shadow p-6">
+      <h2 class="text-xl font-semibold mb-2">Account Information</h2>
+      <p class="text-gray-600 mb-4">Edit your profile</p>
 
-        <!-- Account Information Form -->
-        <div class="bg-white rounded-lg shadow p-6">
-            <h2 class="text-xl font-semibold mb-2">Account Information</h2>
-            <p class="text-gray-600 mb-4">Edit your profile</p>
-
-            <!-- Profile Image and Details Section -->
-            <div class="flex flex-col lg:flex-row lg:items-start mb-6 space-y-4 lg:space-y-0 lg:space-x-4">
-                <!-- Profile Image -->
-                <div class="flex-shrink-0">
-                    {% if profile_picture %}
-                    <img src="{{ profile_picture }}" alt="user photo" class="w-20 h-20 rounded-full object-cover">
-                    {% else %}
-                    <img src="/media/profile_pics/user-circle_svgrepo.com.png" alt="user photo"
-                        class="w-20 h-20 rounded-full object-cover">
-                    {% endif %}
-
-                </div>
-                <!-- Name, Email, and Buttons -->
-                <div class="flex flex-col  lg:mt-0 lg:ml-6 mt-4 userInfoSection">
-
-                    <div class="flex items-center">
-                        <p class="text-lg font-medium text-gray-900">{{username}}</p> 
-                        {% if user.profile.is_verified %}
-                        <svg class="w-3.5 h-3.5 ms-2 text-green-500 dark:text-green-400 flex-shrink-0"
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                            viewBox="0 0 20 20">
-                            <path
-                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
-                        </svg>
-                        {% else %}
-                        <svg class="w-3.5 h-3.5 ms-2 text-gray-500 dark:text-gray-400 flex-shrink-0" 
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="#8c8c8c" viewBox="0 0 20 20">
-                            <path
-                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
-                        </svg>
-                        {% endif %}
-
-                    </div>
-
-                    <p class="text-sm text-gray-500 mb-2">{{email}}</p>
-                    <div class="flex flex-wrap gap-1">
-                        <button type="button" id="change-picture-btn"
-                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Change
-                            Picture</button>
-                        <button type="button" id="delete-picture-btn"
-                            class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Delete</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Form Fields -->
-            <form class="space-y-4">
-                {% csrf_token %}
-                <div>
-                    <label for="first-name" class="block text-sm font-medium text-gray-700">Username</label>
-                    <input type="text" id="first-name" value="{{username}}"
-                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                </div>
-
-                <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
-                    <input type="email" id="email" placeholder="{{email}}" disabled
-                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                </div>
-
-                <button type="button" id="changeUname"
-                    class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Update
-                    Now</button>
-            </form>
+      <!-- Profile Image and Details Section -->
+      <div
+        class="flex flex-col lg:flex-row lg:items-start mb-6 space-y-4 lg:space-y-0 lg:space-x-4"
+      >
+        <!-- Profile Image -->
+        <div class="flex-shrink-0">
+          {% if profile_picture %}
+          <img
+            src="{{ profile_picture }}"
+            alt="user photo"
+            class="w-20 h-20 rounded-full object-cover"
+          />
+          {% else %}
+          <img
+            src="/media/profile_pics/user-circle_svgrepo.com.png"
+            alt="user photo"
+            class="w-20 h-20 rounded-full object-cover"
+          />
+          {% endif %}
         </div>
-
-        <!-- Password Change Form -->
-        <div class="bg-white rounded-lg shadow p-6">
-            <h2 class="text-xl font-semibold mb-2">Password</h2>
-            <!-- Form Fields -->
-            <form class="space-y-4 my-4" id="passwordForm">
-                {% if not password_set %}
-                <div>
-                    <label for="new-password" class="block text-sm font-medium text-gray-700">New Password</label>
-                    <input type="password" id="new-password" name="new_password"
-                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                </div>
-                <div>
-                    <label for="retype-password" class="block text-sm font-medium text-gray-700">Re-type New
-                        Password</label>
-                    <input type="password" id="retype-password" name="retype_password"
-                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                </div>
-                {% else %}
-                <div>
-                    <label for="current-password" class="block text-sm font-medium text-gray-700">Current
-                        Password</label>
-                    <input type="password" id="current-password" name="current_password"
-                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                </div>
-                <div>
-                    <label for="new-password" class="block text-sm font-medium text-gray-700">New Password</label>
-                    <input type="password" id="new-password" name="new_password"
-                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                </div>
-                <div>
-                    <label for="retype-password" class="block text-sm font-medium text-gray-700">Re-type New
-                        Password</label>
-                    <input type="password" id="retype-password" name="retype_password"
-                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                </div>
-                {% endif %}
-                <button type="button" id="changePW"
-                    class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Save</button>
-            </form>
-
-
-
-        </div>
-
-        <div class="bg-white rounded-lg shadow p-6">
-            <h2 class="text-xl font-semibold mb-2">Account Verification</h2>
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <tbody>
-                    <tr class="bg-white dark:bg-gray-800 ">
-                        <th scope="row" class=" py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Status
-                        </th>
-
-
-                        {% if user.profile.is_verified %}
-                        <!-- Initially unverified -->
-                        <td class="px-6 py-4">
-                            <li class="flex items-center">
-                                <svg class="w-3.5 h-3.5 me-2 text-green-500 dark:text-green-400 flex-shrink-0"
-                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                    viewBox="0 0 20 20">
-                                    <path
-                                        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
-                                </svg>
-                                Verified
-                            </li>
-                        </td>
-
-                        {% else %}
-                        <td class="px-6 py-4">
-                            <li class="flex items-center">
-                                <svg class="w-3.5 h-3.5 me-2 text-gray-500 dark:text-gray-400 flex-shrink-0"
-                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="#8c8c8c"
-                                    viewBox="0 0 20 20">
-                                    <path
-                                        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
-                                </svg>
-                                Unverified
-                            </li>
-                        </td>
-
-                        {% endif %}
-
-
-                    </tr>
-                </tbody>
-            </table>
+        <!-- Name, Email, and Buttons -->
+        <div class="flex flex-col lg:mt-0 lg:ml-6 mt-4 userInfoSection">
+          <div class="flex items-center">
+            <p class="text-lg font-medium text-gray-900">{{username}}</p>
             {% if user.profile.is_verified %}
-            <button type="button" id="verified-verify-button" disabled
-                class="w-full my-4 text-white bg-green-500  focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                Verified
-            </button>
+            <svg
+              class="w-3.5 h-3.5 ms-2 text-green-500 dark:text-green-400 flex-shrink-0"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"
+              />
+            </svg>
             {% else %}
-            <button type="button" id="verify-button"
-                class="w-full my-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                Verify Account
-            </button>
+            <svg
+              class="w-3.5 h-3.5 ms-2 text-gray-500 dark:text-gray-400 flex-shrink-0"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="#8c8c8c"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"
+              />
+            </svg>
             {% endif %}
+          </div>
+
+          <p class="text-sm text-gray-500 mb-2">{{email}}</p>
+          <div class="flex flex-wrap gap-1">
+            <button
+              type="button"
+              id="change-picture-btn"
+              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+            >
+              Change Picture
+            </button>
+            <button
+              type="button"
+              id="delete-picture-btn"
+              class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Fields -->
+      <form class="space-y-4">
+        {% csrf_token %}
+        <div>
+          <label
+            for="first-name"
+            class="block text-sm font-medium text-gray-700"
+            >Username</label
+          >
+          <input
+            type="text"
+            id="first-name"
+            value="{{username}}"
+            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+          />
         </div>
 
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700"
+            >Email Address</label
+          >
+          <input
+            type="email"
+            id="email"
+            placeholder="{{email}}"
+            disabled
+            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+          />
+        </div>
+
+        <button
+          type="button"
+          id="changeUname"
+          class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+        >
+          Update Now
+        </button>
+      </form>
     </div>
+
+    <!-- Password Change Form -->
+    <div class="bg-white rounded-lg shadow p-6">
+      <h2 class="text-xl font-semibold mb-2">Password</h2>
+      <!-- Form Fields -->
+      <form class="space-y-4 my-4" id="passwordForm">
+        {% if not password_set %}
+        <div>
+          <label
+            for="new-password"
+            class="block text-sm font-medium text-gray-700"
+            >New Password</label
+          >
+          <input
+            type="password"
+            id="new-password"
+            name="new_password"
+            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+          />
+        </div>
+        <div>
+          <label
+            for="retype-password"
+            class="block text-sm font-medium text-gray-700"
+            >Re-type New Password</label
+          >
+          <input
+            type="password"
+            id="retype-password"
+            name="retype_password"
+            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+          />
+        </div>
+        {% else %}
+        <div>
+          <label
+            for="current-password"
+            class="block text-sm font-medium text-gray-700"
+            >Current Password</label
+          >
+          <input
+            type="password"
+            id="current-password"
+            name="current_password"
+            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+          />
+        </div>
+        <div>
+          <label
+            for="new-password"
+            class="block text-sm font-medium text-gray-700"
+            >New Password</label
+          >
+          <input
+            type="password"
+            id="new-password"
+            name="new_password"
+            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+          />
+        </div>
+        <div>
+          <label
+            for="retype-password"
+            class="block text-sm font-medium text-gray-700"
+            >Re-type New Password</label
+          >
+          <input
+            type="password"
+            id="retype-password"
+            name="retype_password"
+            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+          />
+        </div>
+        {% endif %}
+        <button
+          type="button"
+          id="changePW"
+          class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+        >
+          Save
+        </button>
+      </form>
+    </div>
+
+    <div class="bg-white rounded-lg shadow p-6">
+      <h2 class="text-xl font-semibold mb-2">Account Verification</h2>
+      <table
+        class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+      >
+        <tbody>
+          <tr class="bg-white dark:bg-gray-800">
+            <th
+              scope="row"
+              class="py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+            >
+              Status
+            </th>
+
+            {% if user.profile.is_verified %}
+            <!-- Initially unverified -->
+            <td class="px-6 py-4">
+              <li class="flex items-center">
+                <svg
+                  class="w-3.5 h-3.5 me-2 text-green-500 dark:text-green-400 flex-shrink-0"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"
+                  />
+                </svg>
+                Verified
+              </li>
+            </td>
+
+            {% else %}
+            <td class="px-6 py-4">
+              <li class="flex items-center">
+                <svg
+                  class="w-3.5 h-3.5 me-2 text-gray-500 dark:text-gray-400 flex-shrink-0"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="#8c8c8c"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"
+                  />
+                </svg>
+                Unverified
+              </li>
+            </td>
+
+            {% endif %}
+          </tr>
+        </tbody>
+      </table>
+      {% if user.profile.is_verified %}
+      <button
+        type="button"
+        id="verified-verify-button"
+        disabled
+        class="w-full my-4 text-white bg-green-500 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+      >
+        Verified
+      </button>
+      {% else %}
+      <button
+        type="button"
+        id="verify-button"
+        class="w-full my-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+      >
+        Verify Account
+      </button>
+      {% endif %}
+    </div>
+  </div>
 </div>
 
-
-
-
-
-
 <style>
-    #verified-verify-button:hover {
-        cursor: not-allowed;
-    }
+  #verified-verify-button:hover {
+    cursor: not-allowed;
+  }
 
-    #change-picture-modal {
-        z-index: 1000;
-    }
+  #change-picture-modal {
+    z-index: 1000;
+  }
 
-    /* Updated to use RGBA for background opacity */
-    .bg-gray-500 {
-        background-color: rgba(107, 114, 128, 0.8);
-        /* Using RGBA for 30% opacity */
-    }
+  /* Updated to use RGBA for background opacity */
+  .bg-gray-500 {
+    background-color: rgba(107, 114, 128, 0.8);
+    /* Using RGBA for 30% opacity */
+  }
 
-    #profile-picture-input {
-        display: none;
-        /* Hide the default file input */
-    }
+  #profile-picture-input {
+    display: none;
+    /* Hide the default file input */
+  }
 
-    .border-dashed {
-        border-style: dashed;
-        transition: border-color 0.3s ease;
-    }
+  .border-dashed {
+    border-style: dashed;
+    transition: border-color 0.3s ease;
+  }
 
-    #drop-area {
-        cursor: pointer;
-    }
+  #drop-area {
+    cursor: pointer;
+  }
 
-    #drop-area:hover {
-        border-color: #1d4ed8;
-        /* Change border color on hover */
-    }
+  #drop-area:hover {
+    border-color: #1d4ed8;
+    /* Change border color on hover */
+  }
 
-    #upload-button:disabled {
-        background-color: #cbd5e1;
-        /* Light gray for disabled button */
-    }
+  #upload-button:disabled {
+    background-color: #cbd5e1;
+    /* Light gray for disabled button */
+  }
 
-    /* Additional styles for the modal width */
-    .w-128 {
-        width: 32rem;
-        /* Custom width */
-    }
+  /* Additional styles for the modal width */
+  .w-128 {
+    width: 32rem;
+    /* Custom width */
+  }
 </style>
 
 <!-- Change Picture Modal -->
-<div id="change-picture-modal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
-    <div class="modal-overlay absolute inset-0 bg-gray-500 opacity-75"></div>
-    <div class="modal-container bg-white rounded-lg overflow-hidden shadow-lg z-50 w-128">
-        <div class="modal-header flex justify-between items-center p-4 border-b">
-            <h3 class="text-lg font-semibold">Change Profile Picture</h3>
-            <button id="close-modal" class="text-gray-500 hover:text-gray-700">&times;</button>
-        </div>
-        <div class="modal-body p-6">
-            <div class="flex items-center justify-center w-full">
-                <label for="dropzone-file"
-                    class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                    <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                        <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
-                        </svg>
-                        <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to
-                                upload</span> a profile picture</p>
-                        <p class="text-xs text-gray-500 dark:text-gray-400">Select a suitable image to display on your
-                            profile </p>
-                    </div>
-                    <input id="dropzone-file" type="file" class="hidden" accept="image/*" />
-                </label>
-            </div>
-            <!-- Display selected file name -->
-            <div id="selected-file-name" class="mt-4 text-gray-700 font-semibold hidden"></div>
-            <!-- Progress bar -->
-            <div class="mt-4">
-                <div id="upload-progress" class="bg-gray-200 rounded-full h-2.5 w-full hidden">
-                    <div id="progress-bar" class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-            </div>
-        </div>
-        <div class="modal-footer flex justify-end p-4 border-t">
-            <button id="upload-button"
-                class="text-white bg-blue-700 hover:bg-blue-800 rounded-lg px-4 py-2">Upload</button>
-            <button id="close-modal-footer" class="text-gray-500 hover:text-gray-700 ml-2">Cancel</button>
-        </div>
+<div
+  id="change-picture-modal"
+  class="fixed inset-0 flex items-center justify-center z-50 hidden"
+>
+  <div class="modal-overlay absolute inset-0 bg-gray-500 opacity-75"></div>
+  <div
+    class="modal-container bg-white rounded-lg overflow-hidden shadow-lg z-50 w-128"
+  >
+    <div class="modal-header flex justify-between items-center p-4 border-b">
+      <h3 class="text-lg font-semibold">Change Profile Picture</h3>
+      <button id="close-modal" class="text-gray-500 hover:text-gray-700">
+        &times;
+      </button>
     </div>
+    <div class="modal-body p-6">
+      <div class="flex items-center justify-center w-full">
+        <label
+          for="dropzone-file"
+          class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+        >
+          <div class="flex flex-col items-center justify-center pt-5 pb-6">
+            <svg
+              class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 20 16"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+              />
+            </svg>
+            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
+              <span class="font-semibold">Click to upload</span> a profile
+              picture
+            </p>
+            <p class="text-xs text-gray-500 dark:text-gray-400">
+              Select a suitable image to display on your profile
+            </p>
+          </div>
+          <input
+            id="dropzone-file"
+            type="file"
+            class="hidden"
+            accept="image/*"
+          />
+        </label>
+      </div>
+      <!-- Display selected file name -->
+      <div
+        id="selected-file-name"
+        class="mt-4 text-gray-700 font-semibold hidden"
+      ></div>
+      <!-- Progress bar -->
+      <div class="mt-4">
+        <div
+          id="upload-progress"
+          class="bg-gray-200 rounded-full h-2.5 w-full hidden"
+        >
+          <div
+            id="progress-bar"
+            class="bg-blue-600 h-2.5 rounded-full"
+            style="width: 0%"
+          ></div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer flex justify-end p-4 border-t">
+      <button
+        id="upload-button"
+        class="text-white bg-blue-700 hover:bg-blue-800 rounded-lg px-4 py-2"
+      >
+        Upload
+      </button>
+      <button
+        id="close-modal-footer"
+        class="text-gray-500 hover:text-gray-700 ml-2"
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
 </div>
 
-
 <script>
-    // Change Picture Button (existing code)
-    document.getElementById('change-picture-btn').addEventListener('click', function () {
-        document.getElementById('change-picture-modal').classList.remove('hidden');
+  // Change Picture Button (existing code)
+  document
+    .getElementById("change-picture-btn")
+    .addEventListener("click", function () {
+      document
+        .getElementById("change-picture-modal")
+        .classList.remove("hidden");
     });
 
-    // Close Modal Logic (existing code)
-    document.getElementById('close-modal').addEventListener('click', function () {
-        document.getElementById('change-picture-modal').classList.add('hidden');
+  // Close Modal Logic (existing code)
+  document.getElementById("close-modal").addEventListener("click", function () {
+    document.getElementById("change-picture-modal").classList.add("hidden");
+  });
+
+  document
+    .getElementById("close-modal-footer")
+    .addEventListener("click", function () {
+      document.getElementById("change-picture-modal").classList.add("hidden");
     });
 
-    document.getElementById('close-modal-footer').addEventListener('click', function () {
-        document.getElementById('change-picture-modal').classList.add('hidden');
+  // Display selected file name and progress bar logic
+  const fileInput = document.getElementById("dropzone-file");
+  fileInput.addEventListener("change", function () {
+    const file = fileInput.files[0];
+    const selectedFileNameDiv = document.getElementById("selected-file-name");
+
+    if (file) {
+      selectedFileNameDiv.textContent = `Selected File: ${file.name}`;
+      selectedFileNameDiv.classList.remove("hidden"); // Show the file name
+    } else {
+      selectedFileNameDiv.classList.add("hidden"); // Hide if no file selected
+    }
+
+    // Reset progress bar
+    const uploadProgress = document.getElementById("upload-progress");
+    const progressBar = document.getElementById("progress-bar");
+    uploadProgress.classList.add("hidden"); // Hide initially
+    progressBar.style.width = "0%"; // Reset width
+  });
+
+  // Upload Picture Logic (modified code)
+  document
+    .getElementById("upload-button")
+    .addEventListener("click", function () {
+      const file = fileInput.files[0];
+
+      if (file) {
+        const formData = new FormData();
+        formData.append("profile_picture", file);
+
+        const uploadProgress = document.getElementById("upload-progress");
+        const progressBar = document.getElementById("progress-bar");
+        uploadProgress.classList.remove("hidden"); // Show progress bar
+
+        // Upload Picture Logic
+        fetch("/testUserAuth/upload-profile-picture/", {
+          method: "POST",
+          body: formData,
+          headers: {
+            "X-CSRFToken": "{{ csrf_token }}", // Ensure CSRF protection
+          },
+        })
+          .then((response) => {
+            if (response.ok) {
+              // Show success SweetAlert and reload on OK click
+              Swal.fire({
+                title: "Success!",
+                text: "Profile picture updated successfully!",
+                icon: "success",
+                confirmButtonColor: "#007bff",
+              }).then(() => {
+                location.reload(); // Reload the page to reflect changes
+              });
+            } else {
+              // Show SweetAlert error message
+              Swal.fire({
+                title: "Error!",
+                text: "Error uploading image. Please try again.",
+                icon: "error",
+                confirmButtonColor: "#007bff",
+              });
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            // Show SweetAlert error message
+            Swal.fire({
+              title: "Error!",
+              text: "Error uploading image. Please try again.",
+              icon: "error",
+              confirmButtonColor: "#007bff",
+            });
+          });
+      } else {
+        // Show SweetAlert warning message
+        Swal.fire({
+          title: "Warning!",
+          text: "Please select a file to upload.",
+          icon: "warning",
+          confirmButtonColor: "#007bff",
+        });
+      }
     });
 
-    // Display selected file name and progress bar logic
-    const fileInput = document.getElementById('dropzone-file');
-    fileInput.addEventListener('change', function () {
-        const file = fileInput.files[0];
-        const selectedFileNameDiv = document.getElementById('selected-file-name');
-
-        if (file) {
-            selectedFileNameDiv.textContent = `Selected File: ${file.name}`;
-            selectedFileNameDiv.classList.remove('hidden'); // Show the file name
-        } else {
-            selectedFileNameDiv.classList.add('hidden'); // Hide if no file selected
-        }
-
-        // Reset progress bar
-        const uploadProgress = document.getElementById('upload-progress');
-        const progressBar = document.getElementById('progress-bar');
-        uploadProgress.classList.add('hidden'); // Hide initially
-        progressBar.style.width = '0%'; // Reset width
-    });
-
-    // Upload Picture Logic (modified code)
-    document.getElementById('upload-button').addEventListener('click', function () {
-        const file = fileInput.files[0];
-
-        if (file) {
-            const formData = new FormData();
-            formData.append('profile_picture', file);
-
-            const uploadProgress = document.getElementById('upload-progress');
-            const progressBar = document.getElementById('progress-bar');
-            uploadProgress.classList.remove('hidden'); // Show progress bar
-
-            // Upload Picture Logic
-            fetch('/testUserAuth/upload-profile-picture/', {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'X-CSRFToken': '{{ csrf_token }}'  // Ensure CSRF protection
-                }
+  // Delete Picture Logic (existing code)
+  document
+    .getElementById("delete-picture-btn")
+    .addEventListener("click", function () {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          fetch("/testUserAuth/delete-profile-picture/", {
+            // Replace with your actual delete URL
+            method: "DELETE",
+            headers: {
+              "X-CSRFToken": "{{ csrf_token }}", // Ensure CSRF protection
+            },
+          })
+            .then((response) => {
+              if (response.ok) {
+                Swal.fire({
+                  title: "Deleted!",
+                  text: "Your profile picture has been deleted.",
+                  icon: "success",
+                  confirmButtonColor: "#007bff",
+                }).then(() => {
+                  location.reload(); // Reload the page to reflect changes
+                });
+              } else {
+                Swal.fire({
+                  title: "Error!",
+                  text: "Please check if you have an existing profile picture uploaded. Also could be an internal server error.",
+                  icon: "error",
+                  confirmButtonColor: "#007bff",
+                });
+              }
             })
-                .then(response => {
-                    if (response.ok) {
-                        // Show success SweetAlert and reload on OK click
-                        Swal.fire({
-                            title: "Success!",
-                            text: "Profile picture updated successfully!",
-                            icon: "success",
-                            confirmButtonColor: "#007bff"
-                        }).then(() => {
-                            location.reload(); // Reload the page to reflect changes
-                        });
-                    } else {
-                        // Show SweetAlert error message
-                        Swal.fire({
-                            title: "Error!",
-                            text: "Error uploading image. Please try again.",
-                            icon: "error",
-                            confirmButtonColor: "#007bff"
-                        });
-                    }
+            .catch((error) => {
+              console.error("Error:", error);
+              Swal.fire({
+                title: "Error!",
+                text: "Error deleting image. Please try again.",
+                icon: "error",
+                confirmButtonColor: "#007bff",
+              });
+            });
+        }
+      });
+    });
+</script>
+
+<script>
+  document.getElementById("changeUname").addEventListener("click", function () {
+    const newUsername = document.getElementById("first-name").value.trim();
+
+    // Ensure username is not empty
+    if (newUsername === "") {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Username cannot be empty!",
+        confirmButtonColor: "#3085d6",
+      });
+      return;
+    }
+
+    // SweetAlert confirmation before making the request
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Do you want to change your username to " + newUsername + "?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Change",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Send the request to update the username
+        fetch("/update-username/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": "{{ csrf_token }}", // Django's CSRF token for security
+          },
+          body: JSON.stringify({
+            username: newUsername,
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.status === "success") {
+              // Username successfully updated
+              Swal.fire({
+                icon: "success",
+                title: "Username Changed!",
+                text: "Your username has been successfully updated.",
+                confirmButtonColor: "#3085d6",
+              }).then(() => {
+                // Reload the page to reflect the new username
+                window.location.reload();
+              });
+            } else {
+              // Error handling
+              Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: data.message || "Something went wrong!",
+                confirmButtonColor: "#3085d6",
+              });
+            }
+          })
+          .catch((error) => {
+            Swal.fire({
+              icon: "error",
+              title: "Error",
+              text: "Something went wrong while updating the username!",
+              confirmButtonColor: "#3085d6",
+            });
+          });
+      }
+    });
+  });
+</script>
+
+<script>
+  // Get the CSRF token from the Django template
+  const csrfToken = document.querySelector("[name=csrfmiddlewaretoken]").value;
+
+  document.getElementById("changePW").addEventListener("click", function () {
+    // Show confirmation dialog
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Do you really want to change your password?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Change",
+      cancelButtonText: "Cancel",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const form = document.getElementById("passwordForm");
+        const formData = new FormData(form);
+
+        // Show loading popup
+        let timerInterval;
+        Swal.fire({
+          title: "Processing...",
+          html: "Please wait while we process your request.",
+          timer: 20000, // Set a longer timer for processing
+          timerProgressBar: true,
+          didOpen: () => {
+            Swal.showLoading();
+            timerInterval = setInterval(() => {
+              Swal.getHtmlContainer().querySelector(
+                "b"
+              ).textContent = `${Swal.getTimerLeft()}`;
+            }, 100);
+          },
+          willClose: () => {
+            clearInterval(timerInterval);
+          },
+        });
+
+        // Include the CSRF token in the headers
+        fetch("{% url 'change_password' %}", {
+          method: "POST",
+          body: formData,
+          headers: {
+            "X-CSRFToken": csrfToken, // Add CSRF token to the request
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // Close the loading popup
+            Swal.close(); // Close the loading popup before showing success/error
+
+            if (data.status === "success") {
+              Swal.fire({
+                icon: "success",
+                title: "Success",
+                text: data.message,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "OK",
+              }).then(() => {
+                // Reload the page for both Google and normal users after success
+                location.reload();
+              });
+            } else {
+              Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: data.message,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "OK",
+              });
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            Swal.close(); // Ensure the loading popup is closed on error
+            Swal.fire({
+              icon: "error",
+              title: "Error",
+              text: "An error occurred. Please try again later.",
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "OK",
+            });
+          });
+      }
+    });
+  });
+</script>
+
+<script>
+  document
+    .getElementById("verify-button")
+    .addEventListener("click", function () {
+      // Show confirmation SweetAlert
+      Swal.fire({
+        title: "Are you sure?",
+        text: "Do you want to proceed with the verification process?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Proceed",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Show delay timer SweetAlert
+          Swal.fire({
+            title: "Sending OTP...",
+            text: "Please wait while we send the OTP to your email.",
+            allowOutsideClick: false,
+            didOpen: () => {
+              Swal.showLoading();
+
+              // Proceed to send the OTP
+              fetch("/send-verification-otp/", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  "X-CSRFToken": getCookie("csrftoken"),
+                },
+                body: JSON.stringify({}),
+              })
+                .then((response) => {
+                  if (!response.ok) {
+                    throw new Error("HTTP error, status = " + response.status);
+                  }
+                  return response.json();
                 })
-                .catch(error => {
-                    console.error('Error:', error);
-                    // Show SweetAlert error message
+                .then((data) => {
+                  if (data.status === "OTP sent, check your email") {
+                    Swal.close();
+                    showOtpInputModal(data.email);
+                  } else {
+                    Swal.close();
                     Swal.fire({
-                        title: "Error!",
-                        text: "Error uploading image. Please try again.",
-                        icon: "error",
-                        confirmButtonColor: "#007bff"
+                      icon: "error",
+                      title: "Error",
+                      text:
+                        data.message || "An error occurred while sending OTP.",
+                      confirmButtonColor: "#3085d6",
                     });
+                  }
+                })
+                .catch((error) => {
+                  console.error("Error:", error);
+                  Swal.close();
+                  Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "Failed to send OTP. Please try again.",
+                    confirmButtonColor: "#3085d6",
+                  });
                 });
-
-        } else {
-            // Show SweetAlert warning message
-            Swal.fire({
-                title: "Warning!",
-                text: "Please select a file to upload.",
-                icon: "warning",
-                confirmButtonColor: "#007bff"
-            });
+            },
+          });
         }
+      });
     });
 
-    // Delete Picture Logic (existing code)
-    document.getElementById('delete-picture-btn').addEventListener('click', function () {
-        Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                fetch('/testUserAuth/delete-profile-picture/', {  // Replace with your actual delete URL
-                    method: 'DELETE',
-                    headers: {
-                        'X-CSRFToken': '{{ csrf_token }}'  // Ensure CSRF protection
-                    }
-                })
-                    .then(response => {
-                        if (response.ok) {
-                            Swal.fire({
-                                title: "Deleted!",
-                                text: "Your profile picture has been deleted.",
-                                icon: "success",
-                                confirmButtonColor: "#007bff"
-                            }).then(() => {
-                                location.reload(); // Reload the page to reflect changes
-                            });
-                        } else {
-                            Swal.fire({
-                                title: "Error!",
-                                text: "Please check if you have an existing profile picture uploaded. Also could be an internal server error.",
-                                icon: "error",
-                                confirmButtonColor: "#007bff"
-                            });
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        Swal.fire({
-                            title: "Error!",
-                            text: "Error deleting image. Please try again.",
-                            icon: "error",
-                            confirmButtonColor: "#007bff"
-                        });
-                    });
-            }
-        });
-    });
+  function showOtpInputModal(email) {
+    const censoredEmail = censorEmail(email);
 
-</script>
-
-<script>
-    document.getElementById('changeUname').addEventListener('click', function () {
-        const newUsername = document.getElementById('first-name').value.trim();
-
-        // Ensure username is not empty
-        if (newUsername === '') {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Username cannot be empty!',
-                confirmButtonColor: '#3085d6',
-            });
-            return;
-        }
-
-        // SweetAlert confirmation before making the request
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "Do you want to change your username to " + newUsername + "?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Change'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Send the request to update the username
-                fetch('/update-username/', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRFToken': '{{ csrf_token }}'  // Django's CSRF token for security
-                    },
-                    body: JSON.stringify({
-                        username: newUsername
-                    })
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.status === 'success') {
-                            // Username successfully updated
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Username Changed!',
-                                text: 'Your username has been successfully updated.',
-                                confirmButtonColor: '#3085d6',
-                            }).then(() => {
-                                // Reload the page to reflect the new username
-                                window.location.reload();
-                            });
-                        } else {
-                            // Error handling
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Error',
-                                text: data.message || 'Something went wrong!',
-                                confirmButtonColor: '#3085d6',
-                            });
-                        }
-                    })
-                    .catch(error => {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Error',
-                            text: 'Something went wrong while updating the username!',
-                            confirmButtonColor: '#3085d6',
-                        });
-                    });
-            }
-        });
-    });
-
-</script>
-
-<script>
-    // Get the CSRF token from the Django template
-    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-
-    document.getElementById('changePW').addEventListener('click', function () {
-        // Show confirmation dialog
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "Do you really want to change your password?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Change',
-            cancelButtonText: 'Cancel'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                const form = document.getElementById('passwordForm');
-                const formData = new FormData(form);
-
-                // Show loading popup
-                let timerInterval;
-                Swal.fire({
-                    title: 'Processing...',
-                    html: 'Please wait while we process your request.',
-                    timer: 20000, // Set a longer timer for processing
-                    timerProgressBar: true,
-                    didOpen: () => {
-                        Swal.showLoading();
-                        timerInterval = setInterval(() => {
-                            Swal.getHtmlContainer().querySelector('b').textContent = `${Swal.getTimerLeft()}`;
-                        }, 100);
-                    },
-                    willClose: () => {
-                        clearInterval(timerInterval);
-                    }
-                });
-
-                // Include the CSRF token in the headers
-                fetch("{% url 'change_password' %}", {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'X-CSRFToken': csrfToken,  // Add CSRF token to the request
-                    }
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        // Close the loading popup
-                        Swal.close(); // Close the loading popup before showing success/error
-
-                        if (data.status === 'success') {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Success',
-                                text: data.message,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: 'OK'
-                            }).then(() => {
-                                // Reload the page for both Google and normal users after success
-                                location.reload();
-                            });
-                        } else {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Error',
-                                text: data.message,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: 'OK'
-                            });
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        Swal.close(); // Ensure the loading popup is closed on error
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Error',
-                            text: 'An error occurred. Please try again later.',
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'OK'
-                        });
-                    });
-            }
-        });
-    });
-</script>
-
-<script>
-    document.getElementById('verify-button').addEventListener('click', function () {
-        // Show confirmation SweetAlert
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "Do you want to proceed with the verification process?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Proceed'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Show delay timer SweetAlert
-                Swal.fire({
-                    title: 'Sending OTP...',
-                    text: 'Please wait while we send the OTP to your email.',
-                    allowOutsideClick: false,
-                    didOpen: () => {
-                        Swal.showLoading();
-
-                        // Proceed to send the OTP
-                        fetch('/send-verification-otp/', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRFToken': getCookie('csrftoken'),
-                            },
-                            body: JSON.stringify({})
-                        })
-                            .then(response => {
-                                if (!response.ok) {
-                                    throw new Error('HTTP error, status = ' + response.status);
-                                }
-                                return response.json();
-                            })
-                            .then(data => {
-                                if (data.status === 'OTP sent, check your email') {
-                                    Swal.close();
-                                    showOtpInputModal(data.email);
-                                } else {
-                                    Swal.close();
-                                    Swal.fire({
-                                        icon: 'error',
-                                        title: 'Error',
-                                        text: data.message || 'An error occurred while sending OTP.',
-                                        confirmButtonColor: '#3085d6',
-                                    });
-                                }
-                            })
-                            .catch(error => {
-                                console.error('Error:', error);
-                                Swal.close();
-                                Swal.fire({
-                                    icon: 'error',
-                                    title: 'Error',
-                                    text: 'Failed to send OTP. Please try again.',
-                                    confirmButtonColor: '#3085d6',
-                                });
-                            });
-                    }
-                });
-            }
-        });
-    });
-
-    function showOtpInputModal(email) {
-        const censoredEmail = censorEmail(email);
-
-        Swal.fire({
-            title: 'Email Verification',
-            html: `
+    Swal.fire({
+      title: "Email Verification",
+      html: `
                 <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
                     <p style="text-align: center; margin-bottom: 20px;">Please enter the 6-digit code we sent to <strong>${censoredEmail}</strong>.</p>
                     <div style="display: flex; gap: 10px; justify-content: center; margin-bottom: 20px;">
-                        ${[...Array(6)].map((_, i) => `<input type="text" maxlength="1" class="otp-input" style="width: 40px; height: 40px; text-align: center; font-size: 20px; border-radius:5px" />`).join('')}
+                        ${[...Array(6)]
+                          .map(
+                            (_, i) =>
+                              `<input type="text" maxlength="1" class="otp-input" style="width: 40px; height: 40px; text-align: center; font-size: 20px; border-radius:5px" />`
+                          )
+                          .join("")}
                     </div>
                     <div style="text-align: center;">
                         <span>Didn't receive a code?</span>
@@ -675,188 +834,171 @@
                     </div>
                 </div>
             `,
-            focusConfirm: false,
-            showCancelButton: true,
-            confirmButtonText: 'Verify Account',
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                const otp = Array.from(document.querySelectorAll('.otp-input')).map(input => input.value.trim()).join('');
+      focusConfirm: false,
+      showCancelButton: true,
+      confirmButtonText: "Verify Account",
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const otp = Array.from(document.querySelectorAll(".otp-input"))
+          .map((input) => input.value.trim())
+          .join("");
 
-                if (otp.length !== 6) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Invalid OTP',
-                        text: 'Please enter a valid 6-digit OTP.',
-                        confirmButtonColor: '#3085d6',
-                    });
-                    return;
-                }
-
-                fetch('/verify-otp/', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRFToken': getCookie('csrftoken'),
-                    },
-                    body: JSON.stringify({ otp })
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.status === 'verified') {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Success',
-                                text: 'Account verified successfully.',
-                                confirmButtonColor: '#3085d6',
-                            }).then(() => {
-                                updateVerificationStatus();  // Update the verification status in the UI
-                            });
-                        } else if (data.status === 'invalid OTP') {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Invalid OTP',
-                                text: 'The OTP you entered is invalid. Please try again.',
-                                confirmButtonColor: '#3085d6',
-                            });
-                        } else {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Error',
-                                text: data.message || 'An error occurred during verification.',
-                                confirmButtonColor: '#3085d6',
-                            });
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Error',
-                            text: 'Verification failed. Please try again.',
-                            confirmButtonColor: '#3085d6',
-                        });
-                    });
-            }
-        });
-
-        // Add event listener for Resend OTP
-        document.getElementById('resend-otp').addEventListener('click', function () {
-            startResendCountdown();
-            fetch('/send-verification-otp/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': getCookie('csrftoken'),
-                },
-                body: JSON.stringify({})
-            })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        });
-
-        // Add input listeners to OTP inputs
-        const otpInputs = document.querySelectorAll('.otp-input');
-        otpInputs.forEach((input, index) => {
-            // Move to the next input on input
-            input.addEventListener('input', (e) => {
-                if (e.target.value.length === 1 && index < otpInputs.length - 1) {
-                    otpInputs[index + 1].focus();
-                }
-            });
-
-            // Move back on backspace
-            input.addEventListener('keydown', (e) => {
-                if (e.key === 'Backspace' && input.value === '' && index > 0) {
-                    otpInputs[index - 1].focus();
-                }
-            });
-
-            // Handle pasting
-            input.addEventListener('paste', (e) => {
-                const pasteData = e.clipboardData.getData('text').slice(0, 6); // Get pasted text
-                otpInputs.forEach((inputField, idx) => {
-                    if (idx < pasteData.length) {
-                        inputField.value = pasteData[idx];
-                        if (idx < otpInputs.length - 1) {
-                            otpInputs[idx + 1].focus(); // Move to next input
-                        }
-                    }
-                });
-                e.preventDefault(); // Prevent default paste behavior
-            });
-        });
-    }
-
-    function startResendCountdown() {
-        const resendLink = document.getElementById('resend-otp');
-        const countdownTimer = document.getElementById('countdown-timer');
-        let countdown = 60; // 1 minute countdown
-
-        resendLink.style.display = 'none';
-        countdownTimer.style.display = 'inline';
-
-        const countdownInterval = setInterval(() => {
-            countdownTimer.textContent = `Resend in ${countdown} seconds`;
-            countdown--;
-
-            if (countdown < 0) {
-                clearInterval(countdownInterval);
-                countdownTimer.style.display = 'none';
-                resendLink.style.display = 'inline';
-            }
-        }, 1000);
-    }
-    function updateVerificationStatus() {
-
-        window.location.href = '/testUserAuth/profile/';
-
-    }
-
-
-    function censorEmail(email) {
-        const [localPart, domain] = email.split('@');
-        const censoredLocalPart = localPart.length > 4 ? localPart[0] + '**' + localPart.slice(-2) : localPart;
-        return `${censoredLocalPart}@${domain}`;
-    }
-
-    // Function to get CSRF token
-    function getCookie(name) {
-        let cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-            const cookies = document.cookie.split(';');
-            for (let i = 0; i < cookies.length; i++) {
-                const cookie = cookies[i].trim();
-                if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
-                }
-            }
+        if (otp.length !== 6) {
+          Swal.fire({
+            icon: "error",
+            title: "Invalid OTP",
+            text: "Please enter a valid 6-digit OTP.",
+            confirmButtonColor: "#3085d6",
+          });
+          return;
         }
-        return cookieValue;
+
+        fetch("/verify-otp/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": getCookie("csrftoken"),
+          },
+          body: JSON.stringify({ otp }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.status === "verified") {
+              Swal.fire({
+                icon: "success",
+                title: "Success",
+                text: "Account verified successfully.",
+                confirmButtonColor: "#3085d6",
+              }).then(() => {
+                updateVerificationStatus(); // Update the verification status in the UI
+              });
+            } else if (data.status === "invalid OTP") {
+              Swal.fire({
+                icon: "error",
+                title: "Invalid OTP",
+                text: "The OTP you entered is invalid. Please try again.",
+                confirmButtonColor: "#3085d6",
+              });
+            } else {
+              Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: data.message || "An error occurred during verification.",
+                confirmButtonColor: "#3085d6",
+              });
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            Swal.fire({
+              icon: "error",
+              title: "Error",
+              text: "Verification failed. Please try again.",
+              confirmButtonColor: "#3085d6",
+            });
+          });
+      }
+    });
+
+    // Add event listener for Resend OTP
+    document
+      .getElementById("resend-otp")
+      .addEventListener("click", function () {
+        startResendCountdown();
+        fetch("/send-verification-otp/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": getCookie("csrftoken"),
+          },
+          body: JSON.stringify({}),
+        }).catch((error) => {
+          console.error("Error:", error);
+        });
+      });
+
+    // Add input listeners to OTP inputs
+    const otpInputs = document.querySelectorAll(".otp-input");
+    otpInputs.forEach((input, index) => {
+      // Move to the next input on input
+      input.addEventListener("input", (e) => {
+        if (e.target.value.length === 1 && index < otpInputs.length - 1) {
+          otpInputs[index + 1].focus();
+        }
+      });
+
+      // Move back on backspace
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Backspace" && input.value === "" && index > 0) {
+          otpInputs[index - 1].focus();
+        }
+      });
+
+      // Handle pasting
+      input.addEventListener("paste", (e) => {
+        const pasteData = e.clipboardData.getData("text").slice(0, 6); // Get pasted text
+        otpInputs.forEach((inputField, idx) => {
+          if (idx < pasteData.length) {
+            inputField.value = pasteData[idx];
+            if (idx < otpInputs.length - 1) {
+              otpInputs[idx + 1].focus(); // Move to next input
+            }
+          }
+        });
+        e.preventDefault(); // Prevent default paste behavior
+      });
+    });
+  }
+
+  function startResendCountdown() {
+    const resendLink = document.getElementById("resend-otp");
+    const countdownTimer = document.getElementById("countdown-timer");
+    let countdown = 60; // 1 minute countdown
+
+    resendLink.style.display = "none";
+    countdownTimer.style.display = "inline";
+
+    const countdownInterval = setInterval(() => {
+      countdownTimer.textContent = `Resend in ${countdown} seconds`;
+      countdown--;
+
+      if (countdown < 0) {
+        clearInterval(countdownInterval);
+        countdownTimer.style.display = "none";
+        resendLink.style.display = "inline";
+      }
+    }, 1000);
+  }
+  function updateVerificationStatus() {
+    window.location.href = "/testUserAuth/profile/";
+  }
+
+  function censorEmail(email) {
+    const [localPart, domain] = email.split("@");
+    const censoredLocalPart =
+      localPart.length > 4
+        ? localPart[0] + "**" + localPart.slice(-2)
+        : localPart;
+    return `${censoredLocalPart}@${domain}`;
+  }
+
+  // Function to get CSRF token
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== "") {
+      const cookies = document.cookie.split(";");
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.substring(0, name.length + 1) === name + "=") {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
     }
+    return cookieValue;
+  }
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 {% endblock %}
